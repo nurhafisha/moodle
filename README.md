@@ -6,7 +6,7 @@ Moodle Simplifié est un projet de gestion d'unités d'enseignement (UE) pour le
 - **Backend** : Symfony 7
 - **Base de Données** : MySQL
 - **Serveur** : Apache (via XAMPP)
-- **Frontend** : Bootstrap 5, jQuery
+- **Frontend** : HTML, CSS, JavaScript 
 
 ## 🗒  Prérequis
 - XAMPP ou tout autre environnement compatible avec Apache et MySQL
