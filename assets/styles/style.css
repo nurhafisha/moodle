@@ -13,13 +13,14 @@ body {
 nav {
   display: flex;
   align-items: center;
-  background-color: white;
+  justify-content: flex-start;
+  background-color: #337ab7;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
-  width: 100px; /* Adjust width as needed */
-  height: auto; /* Maintain aspect ratio */
+  width: 164px;
+  height: 87;
   margin: 20px 10px; /* Add space between logo and links */
 }
 
@@ -38,7 +39,7 @@ span {
   margin-right: 1rem;
 }
 
-nav a {
+/* nav a {
   height: 100%;
   padding: 0 1rem;
   text-decoration: none;
@@ -46,10 +47,27 @@ nav a {
   align-items: center;
   transition: all 0.3s ease;
   color: #000;
+} */
+nav a {
+  color: white;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
-nav a:hover {
+/* nav a:hover {
   background-color: #f0f0f0;
+} */
+nav a:hover {
+  background-color: white;
+  color: black;
+}
+
+nav a.active {
+  background-color: white;
+  color: black;
 }
 
 nav li:first-child {
@@ -73,14 +91,33 @@ nav li:first-child {
 
 .sidebar li {
   width: 100%;
+  border-bottom: 1px solid #f0f0f0;
 }
 .sidebar a {
   width: 100%;
+  color: black;
   box-sizing: border-box;
+}
+.sidebar a:hover {
+  background-color: #f0f0f0;
+}
+.sidebar a.active {
+  background-color: #f0f0f0;
 }
 .menu-button {
   display: none;
 }
+@media (max-width: 1200px) {
+  .navbar li:nth-child(5) {
+    display: none;
+  }
+}
+@media (max-width: 1000px) {
+  .navbar li:nth-child(4) {
+    display: none;
+  }
+}
+
 @media (max-width: 826px) {
   .hideOnMobile {
     display: none;
