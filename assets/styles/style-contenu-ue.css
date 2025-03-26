@@ -1,5 +1,5 @@
 main{
-    margin: 3em;
+    margin: 3em 10vw;
 }
 
 #navbar-ue{
@@ -25,29 +25,50 @@ main{
 }
 
 #btn-add-post{
+    display: inline-flex;
+    align-items: center;
+    color: black;
+    text-decoration: none;
     background-color: #a6a6a6;
     border: none;
-    margin: 2em 0;
+    margin-top: 2vh;
     padding: 5px 20px;
     border-radius: 30px;
 }
 
-#post{
-    list-style-type: none;
+#btn-add-post:hover{
+    cursor: pointer;
+    background-color: grey;
+    color: white;
 }
 
-#post-title{
+.post{
+    list-style-type: none;
+    margin: 4vh 0;
+}
+
+.post-title-text{
+    display: flex;
+    align-items: center;
+}
+
+.post-title{
     display: flex;
     justify-content: space-between;
 }
 
-#post-title h3{
+.post-title h3{
     display: inline;
 }
 
-#post-time{
+.post-time{
     background-color: #a6a6a6;
     height: min-content;
     padding: 5px 20px;
     border-radius: 30px;
+}
+
+.btn-edit-post:hover{
+    color: grey;
+    cursor: pointer;
 }
