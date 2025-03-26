@@ -1,6 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contenu UE - WE4A{% endblock %}
+{% block title %}
+{% if slug == 'edit' %}
+    Modifier Post ID {{ id }}
+{% else %}
+    Créer Nouveau Post
+{% endif %}
+{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('styles/style-contenu-ue.css') }}" />
@@ -14,7 +20,13 @@
       <a href="#"><li><span class="material-icons-sharp">group</span>Participants</li></a>
     </ul>
     <div class="form-container">
-        <h2><b>Nouveau Post</b></h2>
+        <h2><b>
+        {% if slug == 'edit' %}
+            Modifier Post ID {{ id }}
+        {% else %}
+            Créer Nouveau Post
+        {% endif %}
+        </b></h2>
         
         <div class="form-group">
             <label for="title">Titre</label>

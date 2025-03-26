@@ -26,9 +26,20 @@ class Controller extends AbstractController
         return $this->render('contenu_ue.html.twig');
     }
 
-    #[Route('/UE/contenu/post', name:'post')]
-    public function post() : Response
+    #[Route('/UE/contenu/post/{slug}', name:'new_post')]
+    public function new_post(string $slug) : Response
     {
-        return $this->render('post.html.twig');
+        return $this->render('post.html.twig', [
+            'slug' => $slug
+        ]);
+    }
+
+    #[Route('/UE/contenu/post/{slug}/{id?}', name:'edit_post')]
+    public function edit_post(int $id, string $slug) : Response
+    {
+        return $this->render('post.html.twig', [
+            'id' => $id,
+            'slug' => $slug
+        ]);
     }
 }
