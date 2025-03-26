@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contenu UE - WE4A{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/style-contenu-ue.css') }}" />
+{% endblock %}
+
+{% block body %}
+  <main>
+    <h1>WE4A Technologies et programmation WEB</h1>
+    <ul id="navbar-ue">
+      <a href="{{ path('contenu_UE') }}"><li><span class="material-icons-sharp">school</span>Course</li></a>
+      <a href="#"><li><span class="material-icons-sharp">group</span>Participants</li></a>
+    </ul>
+    <div class="form-container">
+        <h2><b>Nouveau Post</b></h2>
+        
+        <div class="form-group">
+            <label for="title">Titre</label>
+            <input type="text" id="title">
+        </div>
+
+        <div class="form-group">
+            <label for="type">Type</label>
+            <select id="type">
+                <option>Important</option>
+                <option>Normal</option>
+                <option>Optionnel</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="text">Texte</label>
+            <textarea id="text"></textarea>
+        </div>
+
+        <div class="form-group">
+            <input type="file">
+        </div>
+
+        <div class="form-actions">
+            <button class="btn">Créer</button>
+        </div>
+    </div>
+  </main>
+{% endblock %}

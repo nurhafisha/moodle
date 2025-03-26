@@ -25,4 +25,10 @@ class Controller extends AbstractController
     {
         return $this->render('contenu_ue.html.twig');
     }
+
+    #[Route('/UE/contenu/post', name:'post')]
+    public function post() : Response
+    {
+        return $this->render('post.html.twig');
+    }
 }
