@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contenu UE - WE4A{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/style-contenu-ue.css') }}" />
+{% endblock %}
+
+{% block body %}
+  <main>
+    <h1>WE4A Technologies et programmation WEB</h1>
+    <ul id="navbar-ue">
+      <a href="#"><li>Course</li></a>
+      <a href="#"><li>Participants</li></a>
+    </ul>
+    <a href="#"><button id="btn-add-post">
+      <span class="material-icons-sharp">add</span>
+      ajouter nouveau post
+    </button></a>
+    <ul id="posts">
+      <li id="post">
+        <div id="post-title">
+          <div>
+            <span class="material-icons-sharp">mail</span>
+            <h3>Information Examen</h3>
+            <a><span class="material-icons-sharp">edit_note</span></a>
+          </div>
+          <div id="post-time">
+            <p>23/3/2025 17:57</p>
+          </div>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+          enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+          nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
+          in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
+          nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+          sunt in culpa qui officia deserunt mollit anim id est laborum
+        </p>
+      </li>
+    </ul>
+  </main>
+{% endblock %}
