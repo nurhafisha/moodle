@@ -23,51 +23,75 @@
             <img  src="{{ asset('Images/utbm.png') }}" class="logo" alt="Logo" />
 
             <ul class="sidebar">
-            <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a></li>
-            <li>
-                <a href="#"
-                ><span class="material-icons-sharp">dashboard</span>Dashboard</a
-                >
-            </li>
-            <li>
-                <a href="#"
-                ><span class="material-icons-sharp">school</span>My Courses</a
-                >
-            </li>
-            <li>
-                <a href="#"
-                ><span class="material-icons-sharp">settings</span>Settings</a
-                >
-            </li>
-            
-            <li>
-                <a href="{{ path('app_logout') }}"
-                ><span class="material-icons-sharp">logout</span>Logout</a
-                >
-            </li>
+                <li onclick="hideSidebar()">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="26"
+                        viewBox="0 96 960 960"
+                        width="26"
+                    >
+                        <path
+                        d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"
+                        />
+                    </svg>
+                </li>
+                
+                <li>
+                    <a href="#"
+                    ><span class="material-icons-sharp">dashboard</span>Dashboard</a
+                    >
+                </li>
+                <li>
+                    <a href="#"
+                    ><span class="material-icons-sharp">school</span>My Courses</a
+                    >
+                </li>
+                <li>
+                    <a href="#"
+                    ><span class="material-icons-sharp">settings</span>Settings</a
+                    >
+                </li>
+                
+                <li>
+                    <a href="{{ path('app_logout') }}"
+                    ><span class="material-icons-sharp">logout</span>Logout</a
+                    >
+                </li>
             </ul>
             <ul class="navbar">
-            <li class="hideOnMobile">
-                <a href="#"
-                ><span class="material-icons-sharp">dashboard</span>Dashboard</a
-                >
-            </li>
-            <li class="hideOnMobile">
-                <a href="#"
-                ><span class="material-icons-sharp">school</span>My Courses</a
-                >
-            </li>
-            <li class="hideOnMobile">
-                <a href="#"
-                ><span class="material-icons-sharp">settings</span>Settings</a
-                >
-            </li>
-            <li class="hideOnMobile">
-                <a href="{{ path('app_logout') }}"
-                ><span class="material-icons-sharp">logout</span>Logout</a
-                >
-            </li>
-            <li class="menu-button" onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
+                <li class="menu-button" onclick="showSidebar()">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="26"
+                        viewBox="0 96 960 960"
+                        width="26"
+                    >
+                    <path
+                        d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"
+                        />
+                    </svg>
+                </li>
+                
+                <li class="hideOnMobile">
+                    <a href="#"
+                    ><span class="material-icons-sharp">dashboard</span>Dashboard</a
+                    >
+                </li>
+                <li class="hideOnMobile">
+                    <a href="#"
+                    ><span class="material-icons-sharp">school</span>My Courses</a
+                    >
+                </li>
+                <li class="hideOnMobile">
+                    <a href="#"
+                    ><span class="material-icons-sharp">settings</span>Settings</a
+                    >
+                </li>
+                <li class="hideOnMobile">
+                    <a href="{{ path('app_logout') }}"
+                    ><span class="material-icons-sharp">logout</span>Logout</a
+                    >
+                </li>
             </ul>
         </nav>
         {% block body %}{% endblock %}
