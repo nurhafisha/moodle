@@ -24,8 +24,7 @@ nav {
   margin: 20px 10px; /* Add space between logo and links */
 }
 
-nav ul,
-#navbar-dashboard {
+nav ul {
   list-style: none;
   display: flex;
   justify-content: flex-start;
@@ -40,8 +39,7 @@ span {
   margin-right: 1rem;
 }
 
-nav a,
-#navbar-dashboard a {
+nav a {
   color: white;
   padding: 1rem 1.5rem;
   display: flex;
