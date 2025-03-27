@@ -74,6 +74,7 @@ main{
     cursor: pointer;
 }
 
+/* edit, create post */
 .form-container {
     background: #d9d9d9;
     padding: 20px;
@@ -141,4 +142,19 @@ main{
 .btn:hover {
     background: black;
     color: white;
+}
+
+/* participants */
+#liste-participants {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+#liste-participants th, #liste-participants td {
+    padding: 10px;
+    text-align: left;
+}
+
+#liste-participants th {
+    font-weight: bold;
 }

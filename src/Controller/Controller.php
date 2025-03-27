@@ -42,4 +42,10 @@ class Controller extends AbstractController
             'slug' => $slug
         ]);
     }
+
+    #[Route('/UE/contenu/participants', name:'participants_UE')]
+    public function participants_UE() : Response
+    {
+        return $this->render('participants.html.twig');
+    }
 }
