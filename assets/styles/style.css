@@ -10,6 +10,11 @@ body {
   font-size: smaller;
 }
 
+main {
+  margin: 3em 5vw;
+  background-color: white;
+}
+
 nav {
   display: flex;
   align-items: center;
@@ -123,7 +128,27 @@ nav .li:first-child {
   }
 }
 
-main-container {
+.main-container {
+  padding: 1rem;
+  border: 1px solid black;
+}
+
+#navbar-dashboard a {
+  color: black;
+  padding: 1rem 1.5rem;
   display: flex;
+  align-items: center;
+  text-decoration: none;
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  height: min-content;
+  padding: 1em 2em;
+}
+
+#navbar-dashboard {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
   align-items: center;
 }
