@@ -25,8 +25,15 @@ cd moodle-simplifie
 ```bash
 composer install
 ```
+3. **Installing Encore**
+- Make sure you download [node.js]([https://github.com/user/repo/blob/branch/other_file.md](https://nodejs.org/en/download/))
+- Run these commands to install both the PHP and JavaScript dependencies in your project:
+```bash
+composer require symfony/webpack-encore-bundle
+npm install
+```
 
-3. **Configurer la base de données**
+4. **Configurer la base de données**
 - Créez une base de données MySQL :
 ```sql
 CREATE DATABASE moodle_simplifie;
@@ -36,12 +43,12 @@ CREATE DATABASE moodle_simplifie;
 DATABASE_URL="mysql://root:@localhost:3306/moodle_simplifie"
 ```
 
-4. **Exécuter les migrations**
+5. **Exécuter les migrations**
 ```bash
 php bin/console doctrine:migrations:migrate
 ```
 
-5. **Lancer le serveur Symfony**
+6. **Lancer le serveur Symfony**
 ```bash
 symfony server:start
 ```
