@@ -1,0 +1,140 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.main-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.searchbar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.searchinputcont {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.searchiinput {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.sortUE {
+    display: flex;
+    align-items: center;
+}
+
+.sortoption {
+    color: #666;
+    font-size: 14px;
+}
+
+
+.section {
+    margin-bottom: 5px;
+}
+
+.section h1 {
+    font-size: 20px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.show-count {
+    color: #666;
+    font-size: 14px;
+    margin: 5px 0 15px 0;
+}
+
+.show-count span {
+    font-weight: bold;
+}
+
+
+.divider {
+    border: 0;
+    height: 1px;
+    background: #ddd;
+    margin: 10px 0;
+}
+
+
+.noti {
+    display: block;
+    background: white;
+    padding: 15px;
+    margin: 10px 0;
+    text-decoration: none;
+    color: #333;
+    border-radius: 4px;
+}
+
+.noti-content {
+    display: flex;
+}
+
+.course-code {
+    font-weight: bold;
+    margin-right: 15px;
+    color: #444;
+    min-width: 50px;
+}
+
+.noti-details h2 {
+    font-size: 16px;
+    margin: 0 0 5px 0;
+    font-weight: normal;
+}
+
+.date {
+    color: #666;
+    font-size: 13px;
+}
+
+.boxUE {
+    display: block;
+    background: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #333;
+    border-radius: 4px;
+}
+
+.codeUE h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+
+@media (max-width: 600px) {
+    .searchbar {
+        flex-direction: column;
+    }
+    
+    .searchinputcont {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .noti-content {
+        flex-direction: column;
+    }
+    
+    .course-code {
+        margin-bottom: 5px;
+    }
+}

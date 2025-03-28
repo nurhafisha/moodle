@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/choixUE-etu.css') }}" />
+{% endblock %}
+
+<div class="main-container">
+  <div class="searchbar">
+    <div class="searchinputcont">
+      <input class="searchiinput" type="text" placeholder="Rechercher">
+    </div>
+    <div class="sortUE">
+      <span class="sortoption">Trier par nom de cours</span>
+    </div>
+  </div>
+<div class="section">
+    <h1>Fil d'actualités</h1>
+    <div class="show-count">Afficher <span>4</span></div>
+  </div>
+
+  <hr class="divider">
+
+  <nav aria-label="noti navigation">
+    
+    <a href="#" class="noti">
+      <div class="noti-content">
+        <div class="course-code">WF4A</div>
+        <div class="noti-details">
+          <h2>M Litzler a posté un fichier &lt;Cours HTML&gt;</h2>
+          <div class="date">23/3/2025 5:27 PM</div>
+        </div>
+      </div>
+    </a>
+
+    <hr class="divider">
+
+    
+    <a href="#" class="noti">
+      <div class="noti-content">
+        <div class="course-code">RS40</div>
+        <div class="noti-details">
+          <h2>M. LOMBARD a posté un message &lt;Changement salle&gt;</h2>
+          <div class="date">23/3/2025 2:57 PM</div>
+        </div>
+      </div>
+    </a>
+
+    <hr class="divider">
+
+    
+    <a href="#" class="noti">
+      <div class="noti-content">
+        <div class="course-code">SI40</div>
+        <div class="noti-details">
+          <h2>M. BOUYERHF a posté un message &lt;Annulation de cours&gt;</h2>
+          <div class="date">17/3/2025 1:27 PM</div>
+        </div>
+      </div>
+    </a>
+
+    <hr class="divider">
+
+   
+    <a href="#" class="noti">
+      <div class="noti-content">
+        <div class="course-code">HM40</div>
+        <div class="noti-details">
+          <h2>M. CREPUT a posté un fichier &lt;Ressources TP3&gt;</h2>
+          <div class="date">10/3/2025 9:16 AM</div>
+        </div>
+      </div>
+    </a>
+  </nav>
+ 
+  <div class="section">
+    <h1>Mes cours</h1>
+    <div class="show-count">Afficher <span>3</span></div>
+  </div>
+
+  <hr class="divider">
+
+  <nav aria-label="Course navigation">
+
+    <a href="#" class="boxUE">
+      <div class="codeUE">
+        <h4>LS01 Espagnol niveau 1</h4>
+      </div>
+    </a>
+
+    <a href="#" class="boxUE">
+      <div class="codeUE">
+        <h4>SY43 Android development</h4>
+      </div>
+    </a>
+
+
+    <a href="#" class="boxUE">
+      <div class="codeUE">
+        <h4>SI40 Systemes d'information</h4>
+      </div>
+    </a>
+  </nav>
+
+</div>
+{% endblock %}
