@@ -19,6 +19,11 @@ class Controller extends AbstractController
     {
         return $this->render('profile.html.twig');
     }
+    #[Route('/choixUE', name:'choixUE')]
+    public function choixUE() : Response
+    {
+        return $this->render('choixUE.html.twig');
+
 
     #[Route('/UE/contenu', name:'contenu_UE')]
     public function contenu_UE() : Response
@@ -47,5 +52,6 @@ class Controller extends AbstractController
     public function participants_UE() : Response
     {
         return $this->render('participants.html.twig');
+
     }
 }
