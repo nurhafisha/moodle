@@ -75,13 +75,6 @@ Accédez à votre application via `http://localhost:8000`
 
 ---
 
-## 🔍 Fonctionnalités Nice To Have
-- Épingler/Désépingler les posts importants.
-- Notifications pour les actions administratives.
-- Contrôle de l'ordre des posts par les professeurs.
-
----
-
 ## 🔧 Commandes Utiles
 - Lancer le serveur Symfony :
 ```bash
