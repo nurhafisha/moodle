@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contenu UE - WE4A{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/style-contenu-ue.css') }}" />
+{% endblock %}
+
+{% block body %}
+  <main>
+    <h1>WE4A Technologies et programmation WEB</h1>
+    <ul id="navbar-ue">
+      <a href="{{ path('contenu_UE') }}" id="selected"><li><span class="material-icons-sharp">school</span><b>Course</b></li></a>
+      <a href="{{ path('participants_UE') }}"><li><span class="material-icons-sharp">group</span>Participants</li></a>
+    </ul>
+    <a href="{{ path('new_post', { 'slug': 'new' }) }}" id="btn-add-post">
+      <span class="material-icons-sharp">add</span>
+      <b>ajouter nouveau post</b>
+    </a>
+    <ul id="posts">
+      <li class="post">
+        <div class="post-title">
+          <div class="post-title-text">
+            <span class="material-icons-sharp">mail</span>
+            <span><h3>Information Examen</h3></span>
+            <a href="{{ path('edit_post', { 'id': 3, 'slug': 'edit' }) }}"><span class="material-icons-sharp btn-edit-post">edit_note</span></a>
+          </div>
+          <div class="post-time">
+            <p>23/3/2025 17:57</p>
+          </div>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+          enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+          nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
+          in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
+          nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+          sunt in culpa qui officia deserunt mollit anim id est laborum
+        </p>
+      </li>
+
+      <li class="post">
+        <div class="post-title">
+          <div class="post-title-text">
+            <span class="material-icons-sharp">priority_high</span>
+            <span><h3>Rappel Rendu</h3></span>
+            <a href="{{ path('edit_post', { 'id': 2, 'slug': 'edit' }) }}"><span class="material-icons-sharp btn-edit-post">edit_note</span></a>
+          </div>
+          <div class="post-time">
+            <p>23/3/2025 17:57</p>
+          </div>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+          enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+          nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
+          in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
+          nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+          sunt in culpa qui officia deserunt mollit anim id est laborum
+        </p>
+      </li>
+
+      <li class="post">
+        <div class="post-title">
+          <div class="post-title-text">
+            <span class="material-icons-sharp">description</span>
+            <span><h3>Diaporama Cours 1</h3></span>
+            <a href="{{ path('edit_post', { 'id': 1, 'slug': 'edit' }) }}"><span class="material-icons-sharp btn-edit-post">edit_note</span></a>
+          </div>
+          <div class="post-time">
+            <p>23/3/2025 17:57</p>
+          </div>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+          enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+          nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
+          in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
+          nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+          sunt in culpa qui officia deserunt mollit anim id est laborum
+        </p>
+      </li>
+    </ul>
+  </main>
+{% endblock %}

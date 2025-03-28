@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Participants
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/style-contenu-ue.css') }}" />
+{% endblock %}
+
+{% block body %}
+  <main>
+    <h1>WE4A Technologies et programmation WEB</h1>
+    <ul id="navbar-ue">
+      <a href="{{ path('contenu_UE') }}"><li><span class="material-icons-sharp">school</span>Course</li></a>
+      <a href="{{ path('participants_UE') }}" id="selected"><li><span class="material-icons-sharp">group</span><b>Participants</b></li></a>
+    </ul>
+
+    <table id="liste-participants">
+        <thead>
+            <tr>
+                <th>Prénom/Nom</th>
+                <th>Email</th>
+                <th>Rôles</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Muhammad Akmal BIN MOHD SABRI</td>
+                <td>muhammad.bin-mohd-sabri@utbm.fr</td>
+                <td>Étudiant</td>
+            </tr>
+            <tr>
+                <td>Jean PAUL</td>
+                <td>jean.paul@utbm.fr</td>
+                <td>Étudiant</td>
+            </tr>
+            <tr>
+                <td>Eluan FRANK</td>
+                <td>muhammad.bin-mohd-sabri@utbm.fr</td>
+                <td>Professeur</td>
+            </tr>
+            <tr>
+                <td>Muhammad Akmal BIN MOHD SABRI</td>
+                <td>muhammad.bin-mohd-sabri@utbm.fr</td>
+                <td>Étudiant</td>
+            </tr>
+        </tbody>
+    </table>
+   </main>
+{% endblock %}
