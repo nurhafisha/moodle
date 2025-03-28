@@ -48,4 +48,10 @@ class Controller extends AbstractController
     {
         return $this->render('participants.html.twig');
     }
+
+    #[Route('/edit' , name:'edit_profile')]
+    public function edit_profile():Response
+    {
+        return $this->render('editProfile.html.twig');
+    }
 }
