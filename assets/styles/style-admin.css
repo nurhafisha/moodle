@@ -1,0 +1,48 @@
+.main-container {
+  padding: 2em;
+  margin: 2em;
+  border: 1px solid black;
+  background-color: aquamarine;
+}
+
+.onglet,
+.title-container {
+  margin: auto 1em;
+}
+.title-container {
+  padding: 1em;
+  background-color: azure;
+  border-bottom: 1px solid black;
+}
+
+.onglet {
+  background-color: skyblue;
+}
+
+#navbar-dashboard a {
+  color: black;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  height: min-content;
+  padding: 2em 2em;
+}
+
+#navbar-dashboard a:hover {
+  color: black;
+  background-color: #f0f0f0;
+}
+
+#navbar-dashboard {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.liste {
+  margin-top: 1em;
+}
