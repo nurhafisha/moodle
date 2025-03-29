@@ -32,10 +32,10 @@ class Controller extends AbstractController
     public function choixUE(): Response
     {
         return $this->render('choixUE.html.twig');
+    }
 
-
-    #[Route('/UE/contenu', name:'contenu_UE')]
-    public function contenu_UE() : Response
+    #[Route('/UE/contenu', name: 'contenu_UE')]
+    public function contenu_UE(): Response
     {
         return $this->render('contenu_ue.html.twig');
     }
