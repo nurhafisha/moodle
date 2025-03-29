@@ -29,6 +29,9 @@ class Post
     #[ORM\Column(length: 255)]
     private ?string $descriptionPost = null;
 
+    #[ORM\Column(type: Types::BLOB, nullable: true)]
+    private $depotPost = null;
+
     public function getId(): ?int
     {
         return $this->idPost;
@@ -90,6 +93,18 @@ class Post
     public function setDescriptionPost(string $descriptionPost): static
     {
         $this->descriptionPost = $descriptionPost;
+
+        return $this;
+    }
+
+    public function getDepotPost()
+    {
+        return $this->depotPost;
+    }
+
+    public function setDepotPost($depotPost): static
+    {
+        $this->depotPost = $depotPost;
 
         return $this;
     }
