@@ -20,18 +20,12 @@ class Controller extends AbstractController
         return $this->render('profile.html.twig');
     }
 
-    //Administrateur
-
-    #[Route('/admin_catalogue', name: 'adminCatalogue')]
-    public function admin_Catalogue(): Response
+    #[Route('/admin_catalog', name: 'adminCatalog')]
+    public function adminCat(): Response
     {
         return $this->render('admin_catalogue.html.twig');
     }
-    #[Route('/admin/index', name: 'adminCatalogue')]
-    public function adminIndex(): Response
-    {
-        return $this->render('admin/new.html.twig');
-    }
+
 
     //Choix UE
     #[Route('/choixUE', name: 'choixUE')]

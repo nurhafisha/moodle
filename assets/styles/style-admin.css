@@ -5,10 +5,10 @@
   background-color: aquamarine;
 }
 
-.onglet,
+/* .onglet,
 .title-container {
   margin: auto 1em;
-}
+} */
 .title-container {
   padding: 1em;
   background-color: azure;

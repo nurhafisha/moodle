@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -16,7 +17,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $idUser = null;
 
     #[ORM\Column(length: 180)]
     private ?string $email = null;
@@ -33,9 +34,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $nomUser = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $prenomUser = null;
+
+    #[ORM\Column(type: Types::BLOB, nullable: true)]
+    private $imageUser = null;
+
     public function getId(): ?int
     {
-        return $this->id;
+        return $this->idUser;
     }
 
     public function getEmail(): ?string
@@ -106,5 +116,41 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getNomUser(): ?string
+    {
+        return $this->nomUser;
+    }
+
+    public function setNomUser(string $nomUser): static
+    {
+        $this->nomUser = $nomUser;
+
+        return $this;
+    }
+
+    public function getPrenomUser(): ?string
+    {
+        return $this->prenomUser;
+    }
+
+    public function setPrenomUser(string $prenomUser): static
+    {
+        $this->prenomUser = $prenomUser;
+
+        return $this;
+    }
+
+    public function getImageUser()
+    {
+        return $this->imageUser;
+    }
+
+    public function setImageUser($imageUser): static
+    {
+        $this->imageUser = $imageUser;
+
+        return $this;
     }
 }
