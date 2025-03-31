@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -19,13 +20,6 @@ class Controller extends AbstractController
     {
         return $this->render('profile.html.twig');
     }
-
-    #[Route('/admin_catalog', name: 'adminCatalog')]
-    public function adminCat(): Response
-    {
-        return $this->render('admin_catalogue.html.twig');
-    }
-
 
     //Choix UE
     #[Route('/choixUE', name: 'choixUE')]

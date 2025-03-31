@@ -1,19 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Profile Page{% endblock %}
+{% block title %}Catalogue{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('styles/style-admin.css') }}" />
 {% endblock %}
+
 {% block body %}
-  <main>
+<main>
     <div class="main-container">
-    
-      <div class="title-container">
+        <div class="header">
             <h1>Catalogue</h1>
-      </div>
-      <div class="onglet">
-            <ul id="navbar-dashboard">
+        </div>
+
+        <ul id="navbar-dashboard">
               <li>
                 <a href="#">
                   <span class="material-icons-sharp"> group </span
@@ -27,20 +27,48 @@
                 </a>
               </li>
             </ul>
-      </div>
-      
-      <div class="liste">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur id tortor ac accumsan. Fusce viverra placerat laoreet. Integer eu scelerisque lacus. Suspendisse vel fringilla nunc. Sed eu rhoncus orci, vitae posuere erat. Duis sollicitudin diam elit, et feugiat magna blandit semper. Aenean dapibus aliquam nibh, nec condimentum justo bibendum id. Cras pretium, augue ac convallis blandit, eros turpis rutrum dui, in finibus elit purus sed ex. Aliquam sodales enim eget diam euismod, nec tempus velit cursus. Nulla pharetra odio dui, ut tempus odio lobortis non. Ut egestas tincidunt commodo. Vivamus a tincidunt leo. Donec mollis ligula ante, in cursus nibh cursus eu. Aenean ac enim vel erat dapibus aliquam. Curabitur mattis vitae nisl eu elementum. Nunc eget arcu elit.</p>
 
-              <p>Donec in elit sed nulla porta ornare a tincidunt ante. Aliquam at consequat mi. Phasellus maximus metus in viverra pharetra. Proin id ligula faucibus, mattis eros sit amet, porttitor sem. Cras luctus, justo non facilisis laoreet, nibh neque sollicitudin ligula, ac tempor lacus nisl at ligula. Duis pellentesque leo vitae mauris accumsan mollis ut sit amet arcu. Curabitur tincidunt diam bibendum pretium eleifend. Duis tristique finibus justo et malesuada. Nam aliquam semper ante interdum ornare. Aenean placerat a lacus ut tristique. Morbi convallis libero et eleifend egestas. Sed lobortis orci ac libero vestibulum, vitae lacinia quam elementum. Etiam eu ante in ex suscipit sollicitudin in sit amet magna. Cras sed facilisis elit. Aenean auctor, ante mollis tincidunt pellentesque, quam nunc pharetra libero, sit amet malesuada nunc felis eget neque.</p>
+        <div class="content">
+            <h2>Gestion des Utilisateurs</h2>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Email</th>
+                        <th>Mot de passe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.nomUser }}</td>
+                            <td>{{ user.prenomUser }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.password }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
 
-              <p>Duis mattis tortor quis libero fermentum pellentesque. Ut blandit dolor malesuada, mollis elit nec, consequat est. Quisque tortor lacus, congue rutrum ipsum at, convallis laoreet sapien. Quisque porttitor convallis nisi, sit amet aliquam libero venenatis a. Cras ac nibh ac justo ultricies ullamcorper. Suspendisse potenti. Duis vitae sem sagittis, placerat ipsum eu, bibendum eros.</p>
-
-              <p>Nullam et ligula in quam tempus ornare ut pulvinar ante. Quisque ut congue augue, quis suscipit ipsum. Mauris a tortor vel ligula tincidunt bibendum. Nunc sit amet hendrerit odio. Ut ut tortor eget lacus pulvinar eleifend in quis odio. Mauris finibus, risus eget euismod suscipit, libero felis ultrices sem, id imperdiet nisl arcu ornare sapien. Mauris condimentum porttitor leo, id accumsan nisl scelerisque vitae. Cras eget pretium est. Ut pretium ut odio convallis tempor. Aliquam bibendum tortor non nisi fermentum, non lobortis ipsum ultrices. Pellentesque pulvinar feugiat massa, vel laoreet eros. Integer sed lectus orci.</p>
-
-              <p>Suspendisse potenti. Sed nunc massa, molestie ac ultricies vitae, consequat id dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam non nisl purus. Donec auctor quam ac tortor hendrerit, vitae tempor nisi dapibus. Nunc at sollicitudin elit. In gravida mattis venenatis. Quisque egestas orci in ex rutrum, vitae sodales lorem pulvinar. Etiam felis felis, pulvinar vitae augue eu, tristique vehicula metus. Phasellus efficitur quam et massa sagittis, et feugiat metus fringilla.</p>
-       </div>
-      
+            <h2>List of UEs</h2>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Nom</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ue in ues %}
+                        <tr>
+                            <td>{{ ue.codeUE }}</td>
+                            <td>{{ ue.nomUE }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-  </main>
+</main>
 {% endblock %}
