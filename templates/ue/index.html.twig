@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UE index{% endblock %}
+
+{% block body %}
+    <h1>UE index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdUE</th>
+                <th>CodeUE</th>
+                <th>NomUE</th>
+                <th>ImageUE</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for u_e in u_es %}
+            <tr>
+                <td>{{ u_e.idUE }}</td>
+                <td>{{ u_e.codeUE }}</td>
+                <td>{{ u_e.nomUE }}</td>
+                <td>{{ u_e.imageUE }}</td>
+                <td>
+                    <a href="{{ path('app_u_e_show', {'idUE': u_e.idUE}) }}">show</a>
+                    <a href="{{ path('app_u_e_edit', {'idUE': u_e.idUE}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_u_e_new') }}">Create new</a>
+{% endblock %}

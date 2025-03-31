@@ -11,8 +11,11 @@ class UE
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $codeUE = null;
+    #[ORM\Column(type: 'integer')]
+    private ?int $idUE = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $codeUE = null;
 
     #[ORM\Column(length: 255)]
     private ?string $nomUE = null;
@@ -20,13 +23,17 @@ class UE
     #[ORM\Column(type: Types::BLOB, nullable: true)]
     private $imageUE;
 
+    public function getIdUE(): ?int
+    {
+        return $this->idUE;
+    }
 
-    public function getCodeUE(): ?int
+    public function getCodeUE(): ?string
     {
         return $this->codeUE;
     }
 
-    public function setCodeUE(int $codeUE): static
+    public function setCodeUE(string $codeUE): static
     {
         $this->codeUE = $codeUE;
 
