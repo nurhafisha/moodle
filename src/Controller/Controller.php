@@ -32,7 +32,7 @@ class Controller extends AbstractController
     {
         return $this->render('choixUE-prof.html.twig');
 
-
+    }
     //Choix UE
     #[Route('/choixUE', name: 'choixUE')]
     public function choixUE(): Response
@@ -79,7 +79,7 @@ class Controller extends AbstractController
 
 }   
 
-}
+
 
 
 
