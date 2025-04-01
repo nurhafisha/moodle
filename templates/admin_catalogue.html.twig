@@ -13,62 +13,72 @@
             <h1>Catalogue</h1>
         </div>
 
-        <ul id="navbar-dashboard">
-              <li>
-                <a href="{{ path('user_index') }}">
-                  <span class="material-icons-sharp"> group </span
-                  ><b>Gestion des Utilisateurs</b>
-                </a>
-              </li>
-              <li>
-                <a href="{{ path('app_ue_index') }}">
-                  <span class="material-icons-sharp"> app_registration </span
-                  >Gestion des UEs
-                </a>
-              </li>
-            </ul>
+        
 
         <div class="content">
-            <h2>Gestion des Utilisateurs</h2>
-            <table class="styled-table">
-                <thead>
+        
+            <ul id="navbar-dashboard">
+              
+              <a href="{{ path('admin_catalogue') }}"> 
+                 <li> 
+                
+                  <span class="material-icons-sharp"> group </span
+                  ><b>Gestion des Utilisateurs</b>
+                
+                 </li>
+              </a>
+              <a href="{{ path('app_u_e_new') }}">
+                    <li>
+                        <span class="material-icons-sharp">app_registration</span>
+                        Gestion des UEs
+                    </li>
+              </a>
+                
+            </ul>
+    <h2>Gestion des Utilisateurs</h2>
+    <div class="table-container">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
                     <tr>
-                        <th>Nom</th>
-                        <th>Prénom</th>
-                        <th>Email</th>
-                        <th>Mot de passe</th>
+                        <td>{{ user.nomUser }}</td>
+                        <td>{{ user.prenomUser }}</td>
+                        <td>{{ user.email }}</td>
+                        <td><button class="btn btn-mod">Modifier</button><button class="btn btn-del">Supprimer</button></td>
                     </tr>
-                </thead>
-                <tbody>
-                    {% for user in users %}
-                        <tr>
-                            <td>{{ user.nomUser }}</td>
-                            <td>{{ user.prenomUser }}</td>
-                            <td>{{ user.email }}</td>
-                            <td>{{ user.password }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-            <h2>List of UEs</h2>
-            <table class="styled-table">
-                <thead>
+    <h2>List of UEs</h2>
+    <div class="table-container">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Nom</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ue in ues %}
                     <tr>
-                        <th>Code</th>
-                        <th>Nom</th>
+                        <td>{{ ue.codeUE }}</td>
+                        <td>{{ ue.nomUE }}</td>
                     </tr>
-                </thead>
-                <tbody>
-                    {% for ue in ues %}
-                        <tr>
-                            <td>{{ ue.codeUE }}</td>
-                            <td>{{ ue.nomUE }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
     </div>
 </main>
 {% endblock %}

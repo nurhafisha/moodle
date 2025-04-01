@@ -1,23 +1,6 @@
-/* .main-container {
-  padding: 2em;
-  margin: 2em;
-  border: 1px solid black;
-  background-color: aquamarine;
-} */
-
-/* .onglet,
-.title-container {
-  margin: auto 1em;
-} */
-/* .title-container {
-  padding: 1em;
-  background-color: azure;
-  border-bottom: 1px solid black;
-} */
-
-/* .onglet {
-  background-color: skyblue;
-} */
+main {
+  margin: 3em 10vw;
+}
 
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
@@ -27,33 +10,34 @@ body {
 }
 
 .main-container {
-  width: 80%;
-  margin: 20px auto;
-  background-color: #e0fff4;
-  border-radius: 10px;
-  padding: 20px;
+  width: 100%;
+  margin: 1em auto;
+  background-color: white;
+  padding: 1em;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Header */
 .header h1 {
-  text-align: center;
+  text-align: left;
   color: #333;
-  margin-bottom: 20px;
+  margin: 20px;
 }
 
 /* Tables */
+/* Add this CSS for table responsiveness */
+.table-container {
+  overflow-x: auto; /* Enable horizontal scrolling */
+  margin: 1em 0; /* Add some spacing around the table */
+}
+
+/* Ensure the table fits within the container */
 .styled-table {
-  width: 100%;
+  width: 100%; /* Make the table take up the full width of the container */
+  table-layout: fixed; /* Force columns to share space equally */
   border-collapse: collapse;
   margin: 20px 0;
   font-size: 16px;
-  text-align: left;
-}
-
-.styled-table thead tr {
-  background-color: #0288d1;
-  color: #ffffff;
   text-align: left;
 }
 
@@ -61,6 +45,14 @@ body {
 .styled-table td {
   padding: 12px 15px;
   border: 1px solid #ddd;
+  word-wrap: break-word; /* Allow text to wrap within cells */
+  white-space: normal; /* Allow text to wrap instead of overflowing */
+}
+
+.styled-table thead tr {
+  background-color: #0288d1;
+  color: #ffffff;
+  text-align: left;
 }
 
 .styled-table tbody tr {
@@ -78,29 +70,75 @@ body {
 .content {
   margin: 1em;
 }
-#navbar-dashboard a {
-  color: black;
+
+#navbar-dashboard {
+  margin-top: 2em;
   display: flex;
-  align-items: center;
+  justify-content: flex-start; /* Align items to the left */
+  border-bottom: 2px solid lightgray;
+  list-style: none;
+}
+
+#navbar-dashboard a {
   text-decoration: none;
+  color: black;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#navbar-dashboard a:hover {
+  background-color: lightgray; /* Light green on hover */
+}
+
+#navbar-dashboard li {
+  color: black;
   list-style-type: none;
   display: flex;
   align-items: center;
   height: min-content;
-  padding: 2em 2em;
+  padding: 1em 2em;
 }
 
-#navbar-dashboard a:hover {
-  color: black;
-  background-color: #f0f0f0;
+#navbar-dashboard #selected {
+  border-bottom: 2px solid #037bbf;
 }
 
-#navbar-dashboard {
-  list-style: none;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+.btn {
+  display: inline-block;
+  padding: 1em;
+  margin: 1em;
+  font-size: 10px;
+  font-weight: normal;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
+.btn-mod {
+  background-color: #d4edda; /* Light green background */
+  color: black; /* Dark green text */
+  border: 1px solid #c3e6cb; /* Light green border */
+}
+
+.btn-mod:hover {
+  background-color: #c3e6cb; /* Slightly darker green on hover */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+.btn-del {
+  background-color: #f8d7da; /* Light red background */
+  color: black; /* Dark red text */
+  border: 1px solid #f5c6cb; /* Light red border */
+}
+
+.btn-del:hover {
+  background-color: #f5c6cb; /* Slightly darker red on hover */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .main-container {

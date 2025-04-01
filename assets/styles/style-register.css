@@ -1,5 +1,6 @@
 /* Style the main container */
 main {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   max-width: 600px;
   margin: 2rem auto;
   padding: 2em;

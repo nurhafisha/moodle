@@ -12,6 +12,7 @@ class UEType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            // ->add('idUE')
             ->add('codeUE')
             ->add('nomUE')
             ->add('imageUE')

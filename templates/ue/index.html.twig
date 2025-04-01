@@ -1,39 +1,63 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}UE index{% endblock %}
+{% block title %}Gestion des UEs{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/style-ue.css') }}" />
+{% endblock %}
 
 {% block body %}
-    <h1>UE index</h1>
+<main>
+    <div class="main-container">
+        <div class="header">
+            <h1>Gestion des UEs</h1>
+            <a href="{{ path('app_u_e_new') }}" class="btn btn-add">Ajouter une UE</a>
+        </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>IdUE</th>
-                <th>CodeUE</th>
-                <th>NomUE</th>
-                <th>ImageUE</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for u_e in u_es %}
-            <tr>
-                <td>{{ u_e.idUE }}</td>
-                <td>{{ u_e.codeUE }}</td>
-                <td>{{ u_e.nomUE }}</td>
-                <td>{{ u_e.imageUE }}</td>
-                <td>
-                    <a href="{{ path('app_u_e_show', {'idUE': u_e.idUE}) }}">show</a>
-                    <a href="{{ path('app_u_e_edit', {'idUE': u_e.idUE}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Nom</th>
+                    {#<th>Image</th>#}
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ue in u_es %}
+                    <tr>
+                        <td>{{ ue.codeUE }}</td>
+                        <td>{{ ue.nomUE }}</td>
+                        {#<td>
+                            {% if ue.imageUE %}
+                                <img src="data:image/png;base64,{{ ue.imageUE|base64_encode }}" alt="UE Image" class="ue-image">
+                            {% else %}
+                                No Image
+                            {% endif %}
 
-    <a href="{{ path('app_u_e_new') }}">Create new</a>
+
+                        </td>
+                        
+                        <td>
+                            {% if ue.idUE is defined and ue.idUE is not null %}
+                                <a href="{{ path('app_u_e_edit')}}" class="btn btn-edit">Modifier</a>
+                                <form method="post" action="{{ path('app_u_e_delete', { id: ue.idUE }) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette UE ?');" style="display:inline;">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ ue.idUE) }}">
+                                    <button class="btn btn-delete">Supprimer</button>
+                                </form>
+                            {% else %}
+                                <span>Invalid UE</span>
+                            {% endif %}
+                         </td>#}
+                        
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">Aucune UE trouvée.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
 {% endblock %}

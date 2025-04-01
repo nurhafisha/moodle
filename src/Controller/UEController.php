@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/ue')]
 final class UEController extends AbstractController
 {
-    #[Route(name: 'app_ue_index', methods: ['GET'])]
+    #[Route(name: 'app_u_e_index', methods: ['GET'])]
     public function index(UERepository $uERepository): Response
     {
         return $this->render('ue/index.html.twig', [
@@ -22,7 +22,7 @@ final class UEController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_ue_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'app_u_e_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $uE = new UE();
@@ -33,7 +33,7 @@ final class UEController extends AbstractController
             $entityManager->persist($uE);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_ue_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_u_e_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('ue/new.html.twig', [
@@ -42,7 +42,7 @@ final class UEController extends AbstractController
         ]);
     }
 
-    #[Route('/{idUE}', name: 'app_ue_show', methods: ['GET'])]
+    #[Route('/{idUE}', name: 'app_u_e_show', methods: ['GET'])]
     public function show(UE $uE): Response
     {
         return $this->render('ue/show.html.twig', [
@@ -50,7 +50,7 @@ final class UEController extends AbstractController
         ]);
     }
 
-    #[Route('/{idUE}/edit', name: 'app_ue_edit', methods: ['GET', 'POST'])]
+    #[Route('/{idUE}/edit', name: 'app_u_e_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, UE $uE, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(UEType::class, $uE);
@@ -59,7 +59,7 @@ final class UEController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_ue_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_u_e_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('ue/edit.html.twig', [
@@ -68,7 +68,7 @@ final class UEController extends AbstractController
         ]);
     }
 
-    #[Route('/{idUE}', name: 'app_ue_delete', methods: ['POST'])]
+    #[Route('/{idUE}', name: 'app_u_e_delete', methods: ['POST'])]
     public function delete(Request $request, UE $uE, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $uE->getIdUE(), $request->getPayload()->getString('_token'))) {
@@ -76,6 +76,6 @@ final class UEController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_ue_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_u_e_index', [], Response::HTTP_SEE_OTHER);
     }
 }
