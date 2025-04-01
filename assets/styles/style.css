@@ -20,7 +20,11 @@ main {
 
 body {
   min-height: 100vh;
+
+  background-color: rgb(230, 238, 235);
+
   background-color: #f0f0f0;
+
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: smaller;
 }
