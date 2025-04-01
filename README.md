@@ -3,8 +3,8 @@
 Moodle Simplifié est un projet de gestion d'unités d'enseignement (UE) pour les universités, simplifiant les interactions entre les administrateurs, professeurs et étudiants.
 
 ## 🛠 Technologies Utilisées
-- **Backend** : Symfony 7
-- **Base de Données** : MySQL
+- **Framework** : Symfony 7
+- **Base de Données** : MySQL (via phpMyAdmin)
 - **Serveur** : Apache (via XAMPP)
 - **Frontend** : HTML, CSS, JavaScript 
 

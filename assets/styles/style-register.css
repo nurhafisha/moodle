@@ -1,0 +1,96 @@
+/* Style the main container */
+main {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2em;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the heading */
+main h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Style the form rows */
+form .form-group {
+  margin-bottom: 15px;
+}
+
+/* Style the input fields */
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="checkbox"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Style the labels */
+form label {
+  display: block;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+/* Style the error messages */
+form .form-error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+/* Style the submit button */
+form button[type="submit"] {
+  margin-top: 20px; /* Add space between the last input field and the button */
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Add some spacing for the checkbox */
+/* form input[type="checkbox"] {
+  width: auto;
+  margin-right: 10px;
+} */
+
+/* Style the agree terms row */
+/* form .form-row.agree-terms {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+} */
+
+/* Style the nomUser field */
+/* #registration_form_nomUser {
+  border: 2px solid #007bff;
+  background-color: #eef;
+} */
+
+/* Style the prenomUser field */
+/* #registration_form_prenomUser {
+  border: 2px solid #28a745;
+  background-color: #e8f5e9;
+} */

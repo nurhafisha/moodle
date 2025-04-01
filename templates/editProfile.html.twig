@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion du compte
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/editProfile.css') }}" />
+{% endblock %}
+
+{% block body %}
+    <main>
+        <div class="box"> <h3>Accueil/Gestion du compte</h3> </div>
+        <h2>General</h2>
+
+        <div>
+            <div class="picture">
+                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="profilePicture">
+                <h1>Muhammad Akmal BIN MOHD SABRI</h1>
+                </div>
+             <div class="form-group"  >
+            <form>
+                <div class="form-item">
+                    <label>Prénom :</label>
+                    <input type="text" , id="Fname" , name="Fname"><br>
+                </div>
+
+                <div class="form-item">
+                    <label> Nom : </label>
+                    <input type="text" , id="Lname" , name="Lname"><br>
+                </div>
+
+                <div class="form-item">
+                    <label>Email :</label>
+                    <input type="email" , id="Email" , name="Email"><br>
+                </div>
+
+                <div class="form-item">
+                <label> Password : </label>
+                <input type="password" , id="Password" , name="Password"><br>
+
+                </div>
+
+                <button type="submit" value="submit">save</button>
+            </form>
+             </div>
+        </div>
+    </main>
+{% endblock %}
+
