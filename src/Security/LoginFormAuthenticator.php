@@ -48,7 +48,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
+        // tukar link ke sini 
          return new RedirectResponse($this->urlGenerator->generate('profile'));
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
