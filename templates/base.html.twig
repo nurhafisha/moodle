@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/png" href="{{ asset('Images/moodle-icon.png') }}">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="stylesheet" href="{{ asset('styles/style.css') }}" />
         <link
@@ -21,9 +22,11 @@
     </head>
     <body>
         <nav>
-            <img  src="{{ asset('Images/utbm.png') }}" class="logo" alt="Logo" />
+            <img id="logo" src="{{ asset('Images/utbm-blanc.png') }}" class="hideOnMobile" alt="Logo" />
 
             <ul class="sidebar">
+                
+                <a id="link-hamburger" href="#">
                 <li onclick="hideSidebar()">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +38,9 @@
                         d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"
                         />
                     </svg>
-                </li>
+                    </li>
+                </a>
+                
                 
                 <li>
                     <a href="#"
@@ -43,7 +48,7 @@
                     >
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="{{ path('choixUE') }}"
                     ><span class="material-icons-sharp">school</span>My Courses</a
                     >
                 </li>
@@ -61,16 +66,18 @@
             </ul>
             <ul class="navbar">
                 <li class="menu-button" onclick="showSidebar()">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        height="26"
-                        viewBox="0 96 960 960"
-                        width="26"
-                    >
-                    <path
-                        d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"
-                        />
-                    </svg>
+                    <a href="#">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="26"
+                            viewBox="0 96 960 960"
+                            width="26"
+                        >
+                        <path
+                            d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"
+                            />
+                        </svg>
+                    </a>
                 </li>
                 
                 <li class="hideOnMobile">
@@ -79,7 +86,7 @@
                     >
                 </li>
                 <li class="hideOnMobile">
-                    <a href="#"
+                    <a href="{{ path('choixUE') }}"
                     ><span class="material-icons-sharp">school</span>My Courses</a
                     >
                 </li>
