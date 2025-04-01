@@ -80,7 +80,11 @@
                 </li>
             </ul>
             <ul class="navbar-right">
-                <li>Muhammad Akmal BIN MOHD SABRI</li>
+                {% if app.user %}
+                    <li>{{ app.user.nomUser }} {{ app.user.prenomUser }}</li>
+                {% else %}
+                    <li>Guest</li>
+                {% endif %}
                 <li class="hideOnMobile">
                     <a href="{{ path('app_logout') }}"
                     ><span class="material-icons-sharp" id="btn-logout">logout</span></a>
