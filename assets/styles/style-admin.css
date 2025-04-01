@@ -25,10 +25,10 @@ body {
 }
 
 /* Tables */
-/* Add this CSS for table responsiveness */
+
 .table-container {
   overflow-x: auto; /* Enable horizontal scrolling */
-  margin: 1em 0; /* Add some spacing around the table */
+  margin: 1em 0;
 }
 
 /* Ensure the table fits within the container */
@@ -74,7 +74,7 @@ body {
 #navbar-dashboard {
   margin-top: 2em;
   display: flex;
-  justify-content: flex-start; /* Align items to the left */
+  justify-content: flex-start;
   border-bottom: 2px solid lightgray;
   list-style: none;
 }
@@ -86,7 +86,7 @@ body {
 }
 
 #navbar-dashboard a:hover {
-  background-color: lightgray; /* Light green on hover */
+  background-color: lightgray;
 }
 
 #navbar-dashboard li {
@@ -118,25 +118,25 @@ body {
 }
 
 .btn-mod {
-  background-color: #d4edda; /* Light green background */
-  color: black; /* Dark green text */
-  border: 1px solid #c3e6cb; /* Light green border */
+  background-color: #d4edda;
+  color: black;
+  border: 1px solid #c3e6cb;
 }
 
 .btn-mod:hover {
-  background-color: #c3e6cb; /* Slightly darker green on hover */
-  transform: scale(1.05); /* Slight zoom effect */
+  background-color: #c3e6cb;
+  transform: scale(1.05);
 }
 
 .btn-del {
-  background-color: #f8d7da; /* Light red background */
-  color: black; /* Dark red text */
-  border: 1px solid #f5c6cb; /* Light red border */
+  background-color: #f8d7da;
+  color: black;
+  border: 1px solid #f5c6cb;
 }
 
 .btn-del:hover {
-  background-color: #f5c6cb; /* Slightly darker red on hover */
-  transform: scale(1.05); /* Slight zoom effect */
+  background-color: #f5c6cb;
+  transform: scale(1.05);
 }
 
 /* Responsive Design */

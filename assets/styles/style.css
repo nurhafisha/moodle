@@ -124,6 +124,12 @@ nav .li:first-child {
   }
 }
 
+@media (max-width: 905px) {
+  .navbar li:nth-child(3) {
+    display: none;
+  }
+}
+
 @media (max-width: 750px) {
   .hideOnMobile {
     display: none;
@@ -138,11 +144,11 @@ nav .li:first-child {
   }
 }
 
-.navbar-right{
+.navbar-right {
   margin-left: auto;
 }
 
-.navbar-right{
+.navbar-right {
   color: white;
 }
 
@@ -155,11 +161,11 @@ nav .li:first-child {
   padding: 0;
 }
 
-.navbar-right>li:first-child{
+.navbar-right > li:first-child {
   margin-right: 1rem;
 }
 
-#navbar-pic{
+#navbar-pic {
   width: 45px;
   height: 45px;
   object-fit: cover;
