@@ -51,11 +51,6 @@
                     ><span class="material-icons-sharp">school</span>My Courses</a
                     >
                 </li>
-                <li>
-                    <a href="#"
-                    ><span class="material-icons-sharp">settings</span>Settings</a
-                    >
-                </li>
                 
                 <li>
                     <a href="{{ path('app_logout') }}"
@@ -89,15 +84,16 @@
                     ><span class="material-icons-sharp">school</span>My Courses</a
                     >
                 </li>
-                <li class="hideOnMobile">
-                    <a href="#"
-                    ><span class="material-icons-sharp">settings</span>Settings</a
-                    >
-                </li>
+            </ul>
+            <ul class="navbar-right">
+                <li>Muhammad Akmal BIN MOHD SABRI</li>
                 <li class="hideOnMobile">
                     <a href="{{ path('app_logout') }}"
-                    ><span class="material-icons-sharp">logout</span>Logout</a
-                    >
+                    ><span class="material-icons-sharp" id="btn-logout">logout</span></a>
+                </li>
+                <li>
+                    <a href="{{ path('profile') }}">
+                    <img src="{{ asset('Images/moodle-icon.png') }}" id="navbar-pic"></a>
                 </li>
             </ul>
         </nav>

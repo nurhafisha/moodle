@@ -65,9 +65,6 @@ nav a {
   transition: background-color 0.1s ease;
 }
 
-/* nav a:hover {
-  background-color: #f0f0f0;
-} */
 nav a:hover {
   background-color: var(--background_color_hover);
   color: var(--textcolor_hover);
@@ -139,4 +136,37 @@ nav .li:first-child {
   .sidebar {
     width: 100%;
   }
+}
+
+.navbar-right{
+  margin-left: auto;
+}
+
+.navbar-right{
+  color: white;
+}
+
+.navbar-right a:hover {
+  background-color: unset;
+  color: grey;
+}
+
+.navbar-right a {
+  padding: 0;
+}
+
+.navbar-right>li:first-child{
+  margin-right: 1rem;
+}
+
+#navbar-pic{
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  margin-right: 2em;
+  border-radius: 50%;
+}
+
+#navbar-pic:hover {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
