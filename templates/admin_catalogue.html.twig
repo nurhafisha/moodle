@@ -15,7 +15,7 @@
 
         <div class="content">
           <ul id="navbar-dashboard">
-            <a onclick="showOngletUser()" href="#">
+            <a id="selected" onclick="showOngletUser()" href="#">
               <li>
                 <span class="material-icons-sharp"> group </span
                 ><b>Gestion des Utilisateurs</b>
@@ -31,7 +31,7 @@
           <div id="onglet-user" class="onglet-user">
                 <div class=add-user>
                     <h2>Liste des Utilisateurs</h2>
-                    <button id="btn-add">Ajouter utilisateur</button>
+                    <a href="{{ path('app_user_new') }}" class="btn btn-add">Ajouter un utilisateur</a>
                     
                 </div>
 
@@ -52,8 +52,8 @@
                                 <td>{{ user.prenomUser }}</td>
                                 <td>{{ user.email }}</td>
                                 <td>
-                                    <button class="btn btn-mod">Modifier</button>
-                                    <button class="btn btn-del">Supprimer</button>
+                                    <a href="{{ path('app_user_edit', { 'id': user.id}) }}" class="btn btn-mod">Modifier</a>
+                                    <a  href=""{{ path('app_user_delete', { 'id': user.id}) }}"" class="btn btn-del">Supprimer</a>
                                 </td>
                             </tr>
                             {% endfor %}
@@ -65,7 +65,7 @@
             <div id="onglet-ue" class="onglet-ue" style="display: none;">
                 <div class=add-ue>
                     <h2>Liste de UEs</h2>
-                    <button id="btn-add-ue" onclick="window.location.href='{{ path('app_u_e_new') }}'">Ajouter UE</button>
+                    <a href="{{ path('app_u_e_new') }}" class="btn btn-add">Ajouter une UE</a>
                 </div>
                 
                 <div class="table-container">
