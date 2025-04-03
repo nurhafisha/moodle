@@ -1,4 +1,15 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, { 'attr': { 'class': 'form-container' } }) }}
+    <div class="form-group">
+        {{ form_label(form.codeUE) }}
+        {{ form_widget(form.codeUE, { 'attr': { 'class': 'form-control' } }) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.nomUE) }}
+        {{ form_widget(form.nomUE, { 'attr': { 'class': 'form-control' } }) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.imageUE) }}
+        {{ form_widget(form.imageUE, { 'attr': { 'class': 'form-control' } }) }}
+    </div>
+    <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

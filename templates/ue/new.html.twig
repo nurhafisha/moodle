@@ -2,10 +2,18 @@
 
 {% block title %}New UE{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/style-admin.css') }}" />
+{% endblock %}
+
 {% block body %}
-    <h1>Create new UE</h1>
+    <main>
+        <div class="main-container">
+            <h1>Create new UE</h1>
 
-    {{ include('ue/_form.html.twig') }}
+            {{ include('ue/_form.html.twig') }}
 
-    <a href="{{ path('app_u_e_index') }}">back to list</a>
+            <a href="{{ path('admin_catalogue') }}">back to list</a>
+        </div>
+    </main>
 {% endblock %}
