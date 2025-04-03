@@ -118,7 +118,7 @@ nav .li:first-child {
   display: none;
 }
 
-@media (max-width: 1096px) {
+@media (max-width: 1120px) {
   .navbar li:nth-child(4) {
     display: none;
   }
