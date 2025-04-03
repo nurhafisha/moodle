@@ -32,6 +32,7 @@
                 <div class=add-user>
                     <h2>Liste des Utilisateurs</h2>
                     <button id="btn-add">Ajouter utilisateur</button>
+                    
                 </div>
 
                 <div class="table-container">
@@ -62,7 +63,11 @@
             </div>
 
             <div id="onglet-ue" class="onglet-ue" style="display: none;">
-                <h2>Liste de UEs</h2>
+                <div class=add-ue>
+                    <h2>Liste de UEs</h2>
+                    <button id="btn-add-ue" onclick="window.location.href='{{ path('app_u_e_new') }}'">Ajouter UE</button>
+                </div>
+                
                 <div class="table-container">
                     <table class="styled-table">
                         <thead>
