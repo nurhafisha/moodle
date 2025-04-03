@@ -82,10 +82,12 @@ body {
 #navbar-dashboard {
   margin-top: 2em;
   margin-bottom: 2em;
-  display: flex;
+  /* display: flex;
   justify-content: flex-start;
   border-bottom: 2px solid lightgray;
-  list-style: none;
+  list-style: none; */
+  display: flex;
+  border-bottom: 1px solid lightgray;
 }
 
 #navbar-dashboard a {
@@ -94,12 +96,18 @@ body {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-#navbar-dashboard a:hover {
+#navbar-dashboard li:hover {
   background-color: lightgray;
 }
 
 #navbar-dashboard li {
-  color: black;
+  /* color: black;
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  height: min-content;
+  padding: 1em 2em; */
+  color: #037bbf;
   list-style-type: none;
   display: flex;
   align-items: center;
@@ -107,7 +115,7 @@ body {
   padding: 1em 2em;
 }
 
-#navbar-dashboard #selected {
+#selected {
   border-bottom: 2px solid #037bbf;
 }
 
@@ -150,22 +158,18 @@ body {
   /* transform: scale(1.05); */
 }
 
-#btn-add {
-  padding: 10px;
-  color: black;
-  background-color: #c3e6cb;
+.btn {
+  padding: 10px 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff;
 }
 
-#btn-add-ue {
-  padding: 10px 10px;
-  color: black;
-  background-color: #c3e6cb;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.btn-add {
+  background-color: #4caf50;
 }
 
 /* Form Container */
