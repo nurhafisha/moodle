@@ -2,10 +2,20 @@
 
 {% block title %}New User{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/style-admin.css') }}" />
+{% endblock %}
+
 {% block body %}
-    <h1>Create new User</h1>
+    <main>
+        <div class="main-container">
+            <h1>Create new User</h1>
 
-    {{ include('user/_form.html.twig') }}
+            {{ include('user/_form.html.twig') }}
 
-    <a href="{{ path('app_user_index') }}">back to list</a>
+            <a href="{{ path('app_user_index') }}">back to list</a>
+        </div>
+    
+    </main>
+    
 {% endblock %}

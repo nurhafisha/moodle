@@ -31,22 +31,22 @@ body {
   margin: 1em 0;
 }
 
-/* Ensure the table fits within the container */
 .styled-table {
-  width: 100%; /* Make the table take up the full width of the container */
-  table-layout: fixed; /* Force columns to share space equally */
+  width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
   margin: 20px 0;
-  font-size: 16px;
+  font-size: 12px;
   text-align: left;
 }
 
 .styled-table th,
 .styled-table td {
+  height: 10px;
   padding: 12px 15px;
   border: 1px solid #ddd;
-  word-wrap: break-word; /* Allow text to wrap within cells */
-  white-space: normal; /* Allow text to wrap instead of overflowing */
+  word-wrap: break-word;
+  white-space: normal;
 }
 
 .styled-table thead tr {
@@ -71,12 +71,23 @@ body {
   margin: 1em;
 }
 
+.add-user,
+.add-ue {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
 #navbar-dashboard {
   margin-top: 2em;
-  display: flex;
+  margin-bottom: 2em;
+  /* display: flex;
   justify-content: flex-start;
   border-bottom: 2px solid lightgray;
-  list-style: none;
+  list-style: none; */
+  display: flex;
+  border-bottom: 1px solid lightgray;
 }
 
 #navbar-dashboard a {
@@ -85,12 +96,18 @@ body {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-#navbar-dashboard a:hover {
+#navbar-dashboard li:hover {
   background-color: lightgray;
 }
 
 #navbar-dashboard li {
-  color: black;
+  /* color: black;
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  height: min-content;
+  padding: 1em 2em; */
+  color: #037bbf;
   list-style-type: none;
   display: flex;
   align-items: center;
@@ -98,7 +115,7 @@ body {
   padding: 1em 2em;
 }
 
-#navbar-dashboard #selected {
+#selected {
   border-bottom: 2px solid #037bbf;
 }
 
@@ -117,26 +134,90 @@ body {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.btn-mod {
-  background-color: #d4edda;
+.btn-mod,
+.btn-del {
   color: black;
-  border: 1px solid #c3e6cb;
+  border: none;
+}
+
+.btn-mod {
+  background-color: orange;
 }
 
 .btn-mod:hover {
-  background-color: #c3e6cb;
-  transform: scale(1.05);
+  background-color: orange;
+  /* transform: scale(1.05); */
 }
 
 .btn-del {
-  background-color: #f8d7da;
-  color: black;
-  border: 1px solid #f5c6cb;
+  background-color: red;
 }
 
 .btn-del:hover {
-  background-color: #f5c6cb;
-  transform: scale(1.05);
+  background-color: red;
+  /* transform: scale(1.05); */
+}
+
+.btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff;
+}
+
+.btn-add {
+  background-color: #4caf50;
+}
+
+/* Form Container */
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Fields */
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* Submit Button */
+.btn-primary {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #0288d1;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #026aa7;
 }
 
 /* Responsive Design */

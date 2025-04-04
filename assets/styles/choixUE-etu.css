@@ -1,80 +1,92 @@
-main{
-    margin: 3em 10vw;
+main {
+  margin: 3em 10vw;
 }
 body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 20px;
-    color: #333;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #f0f8ff;
+  margin: 0;
+  padding: 0;
+  /* color: #333; */
 }
 
 .main-container {
-    max-width: 1200px;
-    margin: 0 auto;
+  max-width: 1200px;
+  margin: 0 auto;
+  /* width: 100%;
+  margin: 1em auto;
+  background-color: white;
+  padding: 1em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 .searchbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
 .searchinputcont {
-    flex-grow: 1;
-    margin-right: 20px;
+  flex-grow: 1;
+  margin-right: 20px;
 }
 
 .searchiinput {
-    width: 100%;
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
 }
 
 .sortUE {
-    white-space: nowrap;
+  white-space: nowrap;
 }
 
 .sortoption {
-    color: #666;
-    font-size: 14px;
+  color: #666;
+  font-size: 14px;
 }
 
 .section {
+
     display: flex;
     justify-content: space-between;
     align-items:center;
     margin-bottom: 15px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+
 }
 
 .section h1 {
-    font-size: 17px;
-    font-weight: bold;
-    margin: 0;
+  font-size: 17px;
+  font-weight: bold;
+  margin: 0;
 }
 
 .show-count {
-    font-size: 14px;
-    color: #666;
-    margin-left: 10px;
+  font-size: 14px;
+  color: #666;
+  margin-left: 10px;
 }
 
 .show-count span {
-    font-weight: bold;
+  font-weight: bold;
 }
 
-
 .divider {
-    border: none;
-    height: 1px;
-    background-color: #e0e0e0;
-    margin: 15px 0;
+  border: none;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 15px 0;
 }
 
 .noti-navigation {
+
     display: grid;
     grid-template-columns: 1fr;
     gap: 10px;
@@ -96,59 +108,68 @@ body {
 
 .boxnoti:hover{
     background:#89bff5;
+
+  display: grid;
+  /*grid-auto-flow: column dense ;*/
+  background: #ffffff;
+}
+.boxnoti {
+  display: grid;
+  background: #efefef;
+}
+.boxnoti:hover {
+  background: #89bff5;
+
 }
 
-.messagenoti{
-    position:static;
-
+.messagenoti {
+  position: static;
 }
 
-.messagenoti h2{
-    color:blue;
-    
+.messagenoti h2 {
+  color: blue;
 }
-.messagenoti h3{
-    color: black;
-    font-size: 15px;
+.messagenoti h3 {
+  color: black;
+  font-size: 15px;
 }
-
 
 .course-navigation {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-    width: 100%;  
-    background-color: #ffffff;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+  width: 100%;
+  background-color: #ffffff;
 }
 
 .boxUE {
-    display: block;
-    height: 120px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: relative;
-    overflow: hidden;
+  display: block;
+  height: 120px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
 }
 
-.boxUE:hover{
-    background:#666;
-    
+.boxUE:hover {
+  background: #666;
 }
 
 .codeUE {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(255,255,255,0.9);
-    padding: 10px 15px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 10px 15px;
 }
 
 .codeUE h4 {
+
     margin: 0;
     font-size: 14px;
     color: #333;
@@ -190,3 +211,10 @@ body {
 .boxnoti {
     animation: fadeIn 0.3s ease-out;
 }
+
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+  font-weight: bold;
+}
+

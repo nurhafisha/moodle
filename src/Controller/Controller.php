@@ -37,7 +37,7 @@ class Controller extends AbstractController
     #[Route('/choixUE', name: 'choixUE')]
     public function choixUE(): Response
     {
-        return $this->render('choixUE.html.twig');
+        return $this->render('choixUE-etu.html.twig');
 
     }
 
