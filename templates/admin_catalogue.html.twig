@@ -55,11 +55,11 @@
                                 <td>{{ user.nomUser }}</td>
                                 <td>{{ user.prenomUser }}</td>
                                 <td>{{ user.email }}</td>
+                                <td>{{ user.roles|join(', ') }}</td>
                                 <td>{{ user.imageUser }}</td>
-                                <td>{{ user.email }}</td>
                                 <td>
                                     <a href="{{ path('app_user_edit', { 'id': user.id}) }}" class="btn btn-mod">Modifier</a>
-                                    <a  href=""{{ path('app_user_delete', { 'id': user.id}) }}"" class="btn btn-del">Supprimer</a>
+                                    {{ include('user/_delete_form.html.twig', { 'user': user }) }}
                                 </td>
                             </tr>
                             {% endfor %}
