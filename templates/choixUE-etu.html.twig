@@ -8,7 +8,15 @@
   <hr class="divider">
   <div class="section">
     <h1>Fils d'actualité</h1>
+  <div>
+  <label for ="notiCount">Afficher:</label>
+  <select id="notiCount">
+    <option value="3">3</option>
+    <option value="6">6</option>
+    <option value="all">Tous</option>
+  </select>
   </div>
+</div>
 <hr class="divider">
   <nav class="noti-navigation" aria-label="Notification navigation">
     <a href="#" class="boxnoti">
@@ -34,6 +42,14 @@
 
   <div class="section">
     <h1>Mes cours</h1>
+      <div>
+  <label for ="notiCount">Afficher:</label>
+  <select id="notiCount">
+    <option value="3">3</option>
+    <option value="6">6</option>
+    <option value="all">Tous</option>
+  </select>
+  </div>
   </div>
 
   <hr class="divider">
@@ -71,4 +87,6 @@
     </a>
   </nav>
 </div>
+<script>
+
 {% endblock %}

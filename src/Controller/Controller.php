@@ -21,7 +21,7 @@ class Controller extends AbstractController
         return $this->render('profile.html.twig');
     }
 
-    #[Route('/choixUE-etu', name:'choixUE-etu')]
+    #[Route('/UE', name:'choixUE-etu')]
     public function choixUE_etu() : Response
     {
         return $this->render('choixUE-etu.html.twig');

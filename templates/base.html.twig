@@ -40,7 +40,16 @@
                     ><span class="material-icons-sharp">dashboard</span>Tableau de bord</a
                     >
                 </li>
+                {% if not is_granted('ROLE_ADMIN') %}
                 <li>
+
+                    <a href="{{ path('choixUE-etu') }}"
+                    ><span class="material-icons-sharp">school</span>My Courses</a
+                    >
+                </li>
+
+                {% endif %}
+
                     <a href="{{ path('choixUE') }}"
                     ><span class="material-icons-sharp">school</span>Mes Cours</a
                     >
@@ -52,6 +61,7 @@
                       </span>Espace Admin
                     </a>
                 </li>
+
 
                 <li>
                     <a href="{{ path('app_logout') }}"
@@ -74,7 +84,15 @@
                     ><span class="material-icons-sharp">dashboard</span>Tableau de bord</a
                     >
                 </li>
+                {% if not is_granted('ROLE_ADMIN') %}
                 <li class="hideOnMobile">
+
+                    <a href="{{ path('choixUE-etu') }}"
+                    ><span class="material-icons-sharp">school</span>My Courses</a
+                    >
+                </li>
+                {% endif %}
+
                     <a href="{{ path('choixUE') }}"
                     ><span class="material-icons-sharp">school</span>Mes Cours</a
                     >
@@ -85,6 +103,7 @@
                       </span>Espace Admin
                     </a>
                 </li>
+
 
             </ul>
             <ul class="navbar-right">
