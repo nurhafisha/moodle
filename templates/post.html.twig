@@ -19,41 +19,74 @@
       <a href="{{ path('contenu_UE') }}" id="selected"><li><span class="material-icons-sharp">school</span><b>Course</b></li></a>
       <a href="{{ path('participants_UE') }}"><li><span class="material-icons-sharp">group</span>Participants</li></a>
     </ul>
-    <div class="form-container">
-        <h2><b>
-        {% if slug == 'edit' %}
-            Modifier Post ID {{ id }}
-        {% else %}
-            Créer Nouveau Post
-        {% endif %}
-        </b></h2>
-        
-        <div class="form-group">
-            <label for="title">Titre</label>
-            <input type="text" id="title">
+    <div id="div-form">
+        <div class="post-tabs">
+            <button class="tablinks active" onclick="openTab(event, 'msgtxt')">Message Texte</button>
+            <button class="tablinks" onclick="openTab(event, 'partagefic')">Partage Fichier</button>
         </div>
+        <div id="msgtxt" class="form-container tabcontent">
+            <h2><b>
+            {% if slug == 'edit' %}
+                Modifier Post ID {{ id }}
+            {% else %}
+                Créer Nouveau Post
+            {% endif %}
+            </b></h2>
+            
+            <div class="form-group">
+                <label for="title">Titre</label>
+                <input type="text" id="title">
+            </div>
 
-        <div class="form-group">
-            <label for="type">Type</label>
-            <select id="type">
-                <option>Important</option>
-                <option>Normal</option>
-                <option>Optionnel</option>
-            </select>
+            <div class="form-group">
+                <label for="type">Type</label>
+                <select id="type">
+                    <option>Important</option>
+                    <option>Normal</option>
+                    <option>Optionnel</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="text">Texte</label>
+                <textarea id="text"></textarea>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn">Créer</button>
+            </div>
         </div>
+        <div id="partagefic" class="form-container tabcontent">
+            <h2><b>
+            {% if slug == 'edit' %}
+                Modifier Post ID {{ id }}
+            {% else %}
+                Créer Nouveau Post
+            {% endif %}
+            </b></h2>
+            
+            <div class="form-group">
+                <label for="title">Titre</label>
+                <input type="text" id="title">
+            </div>
 
-        <div class="form-group">
-            <label for="text">Texte</label>
-            <textarea id="text"></textarea>
-        </div>
+            <div class="form-group">
+                <label for="text">Texte</label>
+                <textarea id="text"></textarea>
+            </div>
 
-        <div class="form-group">
-            <input type="file">
-        </div>
+            <div class="form-group">
+                <input type="file">
+            </div>
 
-        <div class="form-actions">
-            <button class="btn">Créer</button>
+            <div class="form-actions">
+                <button class="btn">Créer</button>
+            </div>
         </div>
     </div>
   </main>
+{% endblock %}
+
+{% block script %}
+    <script src="{{ asset('contenu-ue.js') }}"></script>
 {% endblock %}
