@@ -23,8 +23,8 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/user/{id}', name: 'app_user_show', methods: ['GET'])]
-    public function showshow(int $id, UserRepository $userRepository): Response
+    #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
+    public function show(int $id, UserRepository $userRepository): Response
     {
         $user = $userRepository->find($id);
 
