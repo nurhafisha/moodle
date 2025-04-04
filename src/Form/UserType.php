@@ -19,22 +19,28 @@ class UserType extends AbstractType
         $builder
             ->add('nomUser', TextType::class, [
                 'label' => 'Nom',
+                'required' => false,
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('prenomUser', TextType::class, [
                 'label' => 'Prénom',
+                'required' => false,
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email',
+                'required' => false,
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('password', PasswordType::class, [
-                'label' => 'Password',
+                'label' => 'New Password',
+                'mapped' => false, // Not mapped to the User entity
+                'required' => false, // Optional utk tukar
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('roles', ChoiceType::class, [
                 'label' => 'Roles',
+                'required' => false,
                 'choices' => [
                     'Etudiant' => 'ROLE_ETUDIANT',
                     'Prof' => 'ROLE_PROF',
@@ -43,11 +49,11 @@ class UserType extends AbstractType
                 ],
                 'expanded' => true, // Renders as checkboxes
                 'multiple' => true, // Allows multiple selections
-            ])
-            ->add('save', SubmitType::class, [
-                'label' => 'Save',
-                'attr' => ['class' => 'btn btn-primary'],
             ]);
+        // ->add('save', SubmitType::class, [
+        //     'label' => 'Save',
+        //     'attr' => ['class' => 'btn btn-primary'],
+        // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
