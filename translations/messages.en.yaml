@@ -1,0 +1,6 @@
+registrationForm:
+  nomUser: "Nom"
+  prenomUser: "Prénom"
+  email: "Email"
+  password: "Password"
+  roles: "Roles"

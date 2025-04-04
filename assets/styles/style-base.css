@@ -117,19 +117,20 @@ nav .li:first-child {
 .menu-button {
   display: none;
 }
-@media (max-width: 1130px) {
-  .navbar li:nth-child(5) {
-    display: none;
-  }
-}
-@media (max-width: 950px) {
+
+@media (max-width: 1120px) {
   .navbar li:nth-child(4) {
     display: none;
   }
 }
-
-@media (max-width: 905px) {
+@media (max-width: 950px) {
   .navbar li:nth-child(3) {
+    display: none;
+  }
+}
+
+@media (max-width: 750px) {
+  .navbar li:nth-child(2) {
     display: none;
   }
 }

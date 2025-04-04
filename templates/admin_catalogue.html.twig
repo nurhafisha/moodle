@@ -15,7 +15,7 @@
 
         <div class="content">
           <ul id="navbar-dashboard">
-            <a onclick="showOngletUser()" href="#">
+            <a id="selected" onclick="showOngletUser()" href="#">
               <li>
                 <span class="material-icons-sharp"> group </span
                 ><b>Gestion des Utilisateurs</b>
@@ -31,28 +31,35 @@
           <div id="onglet-user" class="onglet-user">
                 <div class=add-user>
                     <h2>Liste des Utilisateurs</h2>
-                    <button id="btn-add">Ajouter utilisateur</button>
+                    <a href="{{ path('app_register') }}" class="btn btn-add">Ajouter un utilisateur</a>
+                    
                 </div>
 
                 <div class="table-container">
                     <table class="styled-table">
                         <thead>
                             <tr>
+                                <th>ID User</th>
                                 <th>Nom</th>
                                 <th>Prénom</th>
                                 <th>Email</th>
+                                <th>Role</th>
+                                <th>Profile Image</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for user in users %}
                             <tr>
+                                <td>{{ user.id }}</td>
                                 <td>{{ user.nomUser }}</td>
                                 <td>{{ user.prenomUser }}</td>
                                 <td>{{ user.email }}</td>
+                                <td>{{ user.imageUser }}</td>
+                                <td>{{ user.email }}</td>
                                 <td>
-                                    <button class="btn btn-mod">Modifier</button>
-                                    <button class="btn btn-del">Supprimer</button>
+                                    <a href="{{ path('app_user_edit', { 'id': user.id}) }}" class="btn btn-mod">Modifier</a>
+                                    <a  href=""{{ path('app_user_delete', { 'id': user.id}) }}"" class="btn btn-del">Supprimer</a>
                                 </td>
                             </tr>
                             {% endfor %}
@@ -62,13 +69,17 @@
             </div>
 
             <div id="onglet-ue" class="onglet-ue" style="display: none;">
-                <h2>Liste de UEs</h2>
+                <div class=add-ue>
+                    <h2>Liste de UEs</h2>
+                    <a href="{{ path('app_u_e_new') }}" class="btn btn-add">Ajouter une UE</a>
+                </div>
+                
                 <div class="table-container">
                     <table class="styled-table">
                         <thead>
                             <tr>
-                                <th>Code</th>
-                                <th>Nom</th>
+                                <th>Code UE</th>
+                                <th>Nom UE</th>
                             </tr>
                         </thead>
                         <tbody>

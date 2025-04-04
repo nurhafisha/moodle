@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" type="image/png" href="{{ asset('Images/moodle-icon.png') }}">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" href="{{ asset('styles/style.css') }}" />
+        <link rel="stylesheet" href="{{ asset('styles/style-base.css') }}" />
         <link
         href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
         rel="stylesheet"
@@ -28,36 +28,37 @@
                 
                 <a id="link-hamburger" href="#">
                 <li onclick="hideSidebar()">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        height="26"
-                        viewBox="0 96 960 960"
-                        width="26"
-                    >
-                        <path
-                        d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"
-                        />
-                    </svg>
+                    <span class="material-icons-sharp">
+                    close
+                    </span>
                     </li>
                 </a>
                 
                 
                 <li>
-                    <a href="{{ path('admin_catalogue') }}"
-                    ><span class="material-icons-sharp">dashboard</span>Dashboard</a
+                    <a href="#"
+                    ><span class="material-icons-sharp">dashboard</span>Tableau de bord</a
                     >
                 </li>
                 <li>
                     <a href="{{ path('choixUE') }}"
-                    ><span class="material-icons-sharp">school</span>My Courses</a
+                    ><span class="material-icons-sharp">school</span>Mes Cours</a
                     >
                 </li>
-                
+
+                <li>
+                    <a href="{{ path('admin_catalogue') }}">
+                    <span class="material-icons-sharp">admin_panel_settings
+                      </span>Espace Admin
+                    </a>
+                </li>
+
                 <li>
                     <a href="{{ path('app_logout') }}"
                     ><span class="material-icons-sharp">logout</span>Logout</a
                     >
                 </li>
+                
             </ul>
             <ul class="navbar">
                 <li class="menu-button" onclick="showSidebar()">
@@ -69,15 +70,22 @@
                 </li>
                 
                 <li class="hideOnMobile">
-                    <a href={{ path('admin_catalogue') }}
-                    ><span class="material-icons-sharp">dashboard</span>Dashboard</a
+                    <a href="#"
+                    ><span class="material-icons-sharp">dashboard</span>Tableau de bord</a
                     >
                 </li>
                 <li class="hideOnMobile">
                     <a href="{{ path('choixUE') }}"
-                    ><span class="material-icons-sharp">school</span>My Courses</a
+                    ><span class="material-icons-sharp">school</span>Mes Cours</a
                     >
                 </li>
+                <li class="hideOnMobile">
+                    <a href="{{ path('admin_catalogue') }}">
+                    <span class="material-icons-sharp">admin_panel_settings
+                      </span>Espace Admin
+                    </a>
+                </li>
+
             </ul>
             <ul class="navbar-right">
                 {% if app.user %}
