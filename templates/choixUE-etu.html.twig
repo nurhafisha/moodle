@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+{% block body %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('styles/choixUE-etu.css') }}" />
 {% endblock %}
@@ -10,17 +11,23 @@
 
 <div class="main-container">
   <hr class="divider">
+
   <div class="section">
     <h1>Fils d'actualité</h1>
   <div>
+
   <label for ="notiCount">Afficher:</label>
+
   <select id="notiCount">
     <option value="3">3</option>
     <option value="6">6</option>
     <option value="all">Tous</option>
   </select>
+
   </div>
+
 </div>
+
 <hr class="divider">
   <nav class="noti-navigation" aria-label="Notification navigation">
     <a href="#" class="boxnoti">
@@ -29,18 +36,21 @@
         <h3>M LITZLER a partagé un nouveau fichier</h3>
       </div>
     </a>
+
     <a href="#" class="boxnoti">
       <div class="messagenoti">
         <h2>AP4A</h2>
         <h3>M CREPUT a envoyé un nouveau message</h3>
       </div>
     </a>
+
     <a href="#" class="boxnoti">
       <div class="messagenoti">
         <h2>RS40</h2>
         <h3>M BOUYEKHF a partagé un nouveau fichier</h3>
       </div>
     </a> 
+
   </nav>
   <hr class="divider">
 
@@ -53,7 +63,7 @@
     <option value="6">6</option>
     <option value="all">Tous</option>
   </select>
-  </div>
+      </div>
   </div>
 
   <hr class="divider">
@@ -64,33 +74,38 @@
         <h4>WE4A: Technologies et programmation WEB</h4>
       </div>
     </a>
+
     <a href="{{ path('contenu_UE') }}" class="boxUE" style="background-image: url('{{ asset('Images/box2.jpg') }}');">
       <div class="codeUE">
         <h4>SY43: Android development</h4>
       </div>
     </a>
+
     <a href="{{ path('contenu_UE') }}" class="boxUE" style="background-image: url('{{ asset('Images/box3.jpg') }}');">
       <div class="codeUE">
         <h4>SI40: Systemes d'information</h4>
       </div>
     </a>
+
     <a href="{{ path('contenu_UE') }}" class="boxUE" style="background-image: url('{{ asset('Images/box4.jpg') }}');">
       <div class="codeUE">
         <h4>PH03: Theories du cinema et theories des jeux video</h4>
       </div>
     </a>
+
     <a href="{{ path('contenu_UE') }}" class="boxUE" style="background-image: url('{{ asset('Images/box5.jpg') }}');">
       <div class="codeUE">
         <h4>Reinscription administrative</h4>
       </div>
     </a>
+
     <a href="{{ path('contenu_UE') }}" class="boxUE" style="background-image: url('{{ asset('Images/imageUE.jpg') }}');">
       <div class="codeUE">
         <h4>WE4B: Technologies WEB avancees</h4>
       </div>
     </a>
+    
   </nav>
 </div>
-<script>
 
 {% endblock %}
