@@ -9,7 +9,7 @@
 {% block body %}
     <main>
         <div class="main-container">
-            <h1>Créer un nouveau utilisateur</h1>
+            <h2 id="title-register">Créer un nouveau utilisateur</h2>
 
             {{ form_errors(registrationForm) }}
 
@@ -35,7 +35,7 @@
                     {{ form_widget(registrationForm.roles, { 'attr': { 'class': 'form-control' } }) }}
                 </div>
 
-                <button type="submit" class="btn">Register</button>
+                <button type="submit" class="btn btn-register">Register</button>
             {{ form_end(registrationForm) }}
         </div>
     </main>
