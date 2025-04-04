@@ -40,7 +40,7 @@
                     ><span class="material-icons-sharp">dashboard</span>Tableau de bord</a
                     >
                 </li>
-                {% if not is_granted('ROLE_ADMIN') %}
+                
                 <li>
 
                     <a href="{{ path('choixUE-etu') }}"
@@ -48,12 +48,8 @@
                     >
                 </li>
 
-                {% endif %}
+                
 
-                    <a href="{{ path('choixUE') }}"
-                    ><span class="material-icons-sharp">school</span>Mes Cours</a
-                    >
-                </li>
 
                 <li>
                     <a href="{{ path('admin_catalogue') }}">
@@ -93,16 +89,14 @@
                 </li>
                 {% endif %}
 
-                    <a href="{{ path('choixUE') }}"
-                    ><span class="material-icons-sharp">school</span>Mes Cours</a
-                    >
-                </li>
+                {% if is_granted('ROLE_ADMIN') %}
                 <li class="hideOnMobile">
                     <a href="{{ path('admin_catalogue') }}">
                     <span class="material-icons-sharp">admin_panel_settings
                       </span>Espace Admin
                     </a>
                 </li>
+                {% endif %}
 
 
             </ul>
