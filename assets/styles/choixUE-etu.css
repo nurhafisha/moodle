@@ -46,7 +46,7 @@ body {
 .section {
     display: flex;
     justify-content: space-between;
-    align-items:flex-start;
+    align-items:center;
     margin-bottom: 15px;
 }
 
@@ -76,16 +76,24 @@ body {
 
 .noti-navigation {
     display: grid;
-    /*grid-auto-flow: column dense ;*/
+    grid-template-columns: 1fr;
+    gap: 10px;
     background: #ffffff;
 
 }
 .boxnoti {
     display: grid;
     background: #efefef;
+    padding: 12px 15px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
 
 
 }
+.boxnoti[style*="display: none"] {
+    display: none !important; /* Important to override inline style */
+}
+
 .boxnoti:hover{
     background:#89bff5;
 }
@@ -145,4 +153,40 @@ body {
     font-size: 14px;
     color: #333;
     font-weight: bold;
+}
+
+#notiCount {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 14px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#notiCount:hover {
+    border-color: #89bff5;
+}
+
+@media (max-width: 768px) {
+    .section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    #notiCount {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.boxnoti {
+    animation: fadeIn 0.3s ease-out;
 }

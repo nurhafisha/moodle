@@ -48,14 +48,20 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
+        $user = $token->getUser();
+        
+        //tukar sini kalau ada role lain2
+        if (in_array('ROLE_ADMIN', $user->getRoles(), true)) {
+            return new RedirectResponse($this->urlGenerator->generate('admin_catalogue'));
+        }
+        //default role
+        return new RedirectResponse($this->urlGenerator->generate('choixUE-etu'));
 
-        // tukar link ke sini 
-         return new RedirectResponse($this->urlGenerator->generate('choixUE-etu'));
+
+
 
         
-         
 
-        //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
     protected function getLoginUrl(Request $request): string

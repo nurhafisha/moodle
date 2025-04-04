@@ -47,12 +47,14 @@
                     ><span class="material-icons-sharp">dashboard</span>Dashboard</a
                     >
                 </li>
+                {% if not is_granted('ROLE_ADMIN') %}
                 <li>
-                    <a href="{{ path('choixUE') }}"
+                    <a href="{{ path('choixUE-etu') }}"
                     ><span class="material-icons-sharp">school</span>My Courses</a
                     >
                 </li>
-                
+
+                {% endif %}
                 <li>
                     <a href="{{ path('app_logout') }}"
                     ><span class="material-icons-sharp">logout</span>Logout</a
@@ -73,11 +75,13 @@
                     ><span class="material-icons-sharp">dashboard</span>Dashboard</a
                     >
                 </li>
+                {% if not is_granted('ROLE_ADMIN') %}
                 <li class="hideOnMobile">
-                    <a href="{{ path('choixUE') }}"
+                    <a href="{{ path('choixUE-etu') }}"
                     ><span class="material-icons-sharp">school</span>My Courses</a
                     >
                 </li>
+                {% endif %}
             </ul>
             <ul class="navbar-right">
                 <li>Muhammad Akmal BIN MOHD SABRI</li>

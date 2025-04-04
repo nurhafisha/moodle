@@ -49,18 +49,12 @@ security:
       # switch_user: true
 
 
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
-    access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/UE/contenu, roles: ROLE_STUDENT }
-        # - { path: ^/prof, roles: ROLE_PROF }
 
   # Easy way to control access for large sections of your site
   # Note: Only the *first* access control that matches will be used
   access_control:
-    # - { path: ^/admin, roles: ROLE_ADMIN }
-    # - { path: ^/profile, roles: ROLE_USER }
+     - { path: ^/admin/catalogue, roles: ROLE_ADMIN }
+     - { path: ^/UE, roles: ROLE_USER }
     # - { path: ^/user, roles: ROLE_ADMIN }
     # - { path: ^/ue, roles: ROLE_ADMIN }
 
