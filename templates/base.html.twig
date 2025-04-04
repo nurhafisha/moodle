@@ -44,7 +44,7 @@
                 <li>
 
                     <a href="{{ path('choixUE-etu') }}"
-                    ><span class="material-icons-sharp">school</span>My Courses</a
+                    ><span class="material-icons-sharp">school</span>Mes Cours</a
                     >
                 </li>
 
@@ -84,12 +84,14 @@
                 <li class="hideOnMobile">
 
                     <a href="{{ path('choixUE-etu') }}"
-                    ><span class="material-icons-sharp">school</span>My Courses</a
+                    ><span class="material-icons-sharp">school</span>Mes Cours</a
                     >
                 </li>
                 {% endif %}
 
+
                 {% if is_granted('ROLE_ADMIN') %}
+
                 <li class="hideOnMobile">
                     <a href="{{ path('admin_catalogue') }}">
                     <span class="material-icons-sharp">admin_panel_settings
