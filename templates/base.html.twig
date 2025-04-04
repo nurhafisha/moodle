@@ -40,23 +40,25 @@
                     ><span class="material-icons-sharp">dashboard</span>Tableau de bord</a
                     >
                 </li>
-                
-                <li>
 
+                {% if not is_granted('ROLE_ADMIN') %}
+                <li>
                     <a href="{{ path('choixUE-etu') }}"
                     ><span class="material-icons-sharp">school</span>Mes Cours</a
                     >
                 </li>
+                {% endif %}
 
                 
 
-
+                {% if is_granted('ROLE_ADMIN') %}
                 <li>
                     <a href="{{ path('admin_catalogue') }}">
                     <span class="material-icons-sharp">admin_panel_settings
                       </span>Espace Admin
                     </a>
                 </li>
+                {% endif %}
 
 
                 <li>
