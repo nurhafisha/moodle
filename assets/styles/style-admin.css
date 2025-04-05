@@ -155,28 +155,32 @@ a {
 }
 
 .btn-mod,
-.btn-del {
+.btn-del,
+.btn-aff {
   color: black;
   border: none;
 }
 
+.btn-aff {
+  background-color: #026aa7;
+}
 .btn-mod {
   background-color: orange;
 }
 
-.btn-mod:hover {
+/* .btn-mod:hover {
   background-color: orange;
-  /* transform: scale(1.05); */
-}
+  transform: scale(1.05);
+} */
 
 .btn-del {
   background-color: red;
 }
 
-.btn-del:hover {
+/* .btn-del:hover {
   background-color: red;
-  /* transform: scale(1.05); */
-}
+  transform: scale(1.05);
+} */
 
 .btn {
   padding: 10px 15px;
