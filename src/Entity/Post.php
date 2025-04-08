@@ -17,8 +17,6 @@ class Post
     #[ORM\Column(length: 255)]
     private ?string $titrePost = null;
 
-    #[ORM\Column(type: Types::BLOB)]
-    private $imageUE;
 
     #[ORM\Column(length: 255)]
     private ?string $typePost = null;
@@ -49,17 +47,6 @@ class Post
         return $this;
     }
 
-    public function getImageUE()
-    {
-        return $this->imageUE;
-    }
-
-    public function setImageUE($imageUE): static
-    {
-        $this->imageUE = $imageUE;
-
-        return $this;
-    }
 
     public function getTypePost(): ?string
     {
