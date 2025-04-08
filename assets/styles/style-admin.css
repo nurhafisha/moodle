@@ -156,7 +156,9 @@ a {
 
 .btn-mod,
 .btn-del,
-.btn-aff {
+.btn-aff,
+.btn-back,
+.btn-update {
   color: black;
   border: none;
 }
@@ -167,15 +169,20 @@ a {
 .btn-mod {
   background-color: orange;
 }
-
-/* .btn-mod:hover {
-  background-color: orange;
-  transform: scale(1.05);
-} */
+.btn-update {
+  background-color: #026aa7;
+}
+.btn-back {
+  background-color: seagreen;
+}
 
 .btn-del {
   background-color: red;
 }
+/* .btn-mod:hover {
+  background-color: orange;
+  transform: scale(1.05);
+} */
 
 /* .btn-del:hover {
   background-color: red;
