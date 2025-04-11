@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -46,6 +48,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: Types::BLOB, nullable: true)]
     private $imageUser = null;
+
+    /**
+     * @var Collection<int, Actualite>
+     */
+    #[ORM\ManyToMany(targetEntity: Actualite::class, inversedBy: 'users')]
+    #[ORM\JoinTable(
+        name: 'user_actualite',
+        joinColumns: [
+            new ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')
+        ],
+        inverseJoinColumns: [
+            new ORM\JoinColumn(name: 'actualite_id', referencedColumnName: 'id_actualite')
+        ]
+    )]
+    private Collection $actualites;
+
+    /**
+     * @var Collection<int, UE>
+     */
+    #[ORM\ManyToMany(targetEntity: UE::class, inversedBy: 'users')]
+    #[ORM\JoinTable(
+        name: 'user_ue',
+        joinColumns: [
+            new ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', onDelete: 'CASCADE')
+        ],
+        inverseJoinColumns: [
+            new ORM\JoinColumn(name: 'code_ue', referencedColumnName: 'code_ue', onDelete: 'CASCADE')
+        ]
+    )]
+    private Collection $liste_ue;
+
+    public function __construct()
+    {
+        $this->actualites = new ArrayCollection();
+        $this->liste_ue = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -159,6 +197,54 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setImageUser($imageUser): static
     {
         $this->imageUser = $imageUser;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Actualite>
+     */
+    public function getActualites(): Collection
+    {
+        return $this->actualites;
+    }
+
+    public function addActualite(Actualite $actualite): static
+    {
+        if (!$this->actualites->contains($actualite)) {
+            $this->actualites->add($actualite);
+        }
+
+        return $this;
+    }
+
+    public function removeActualite(Actualite $actualite): static
+    {
+        $this->actualites->removeElement($actualite);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UE>
+     */
+    public function getListeUe(): Collection
+    {
+        return $this->liste_ue;
+    }
+
+    public function addListeUe(UE $listeUe): static
+    {
+        if (!$this->liste_ue->contains($listeUe)) {
+            $this->liste_ue->add($listeUe);
+        }
+
+        return $this;
+    }
+
+    public function removeListeUe(UE $listeUe): static
+    {
+        $this->liste_ue->removeElement($listeUe);
 
         return $this;
     }

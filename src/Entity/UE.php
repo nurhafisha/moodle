@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UERepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -10,11 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 class UE
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private ?int $idUE = null;
-
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(name: "code_ue", type: 'string', length: 4)]
     private ?string $codeUE = null;
 
     #[ORM\Column(length: 255)]
@@ -22,6 +20,17 @@ class UE
 
     #[ORM\Column(type: Types::BLOB, nullable: true)]
     private $imageUE;
+
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'liste_ue')]
+    private Collection $users;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
 
     public function getIdUE(): ?int
     {
@@ -60,6 +69,33 @@ class UE
     public function setImageUE($imageUE): static
     {
         $this->imageUE = $imageUE;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): static
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addListeUe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): static
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeListeUe($this);
+        }
 
         return $this;
     }
