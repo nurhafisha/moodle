@@ -9,6 +9,7 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
+
 /**
  * @extends ServiceEntityRepository<User>
  */
@@ -31,6 +32,25 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $user->setPassword($newHashedPassword);
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
+    }
+
+    public function getUserStatistics(): array
+    {
+        $qb = $this->createQueryBuilder('u');
+        
+        return [
+            'total_users' => $qb->select('COUNT(u.id)')->getQuery()->getSingleScalarResult(),
+            'etudiant' => $qb->select('COUNT(u.id)')
+                ->where('u.roles LIKE :role')
+                ->setParameter('role', '%ROLE_ETUDIANT%')
+                ->getQuery()
+                ->getSingleScalarResult(),
+            'prof' => $qb->select('COUNT(u.id)')
+                ->where('u.roles LIKE :role')
+                ->setParameter('role', '%ROLE_PROF%')
+                ->getQuery()
+                ->getSingleScalarResult(),
+        ];
     }
 
     //    /**

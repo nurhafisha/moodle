@@ -11,12 +11,15 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
+
 
 class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            
             ->add('nomUser', TextType::class, [
                 'label' => 'Nom',
                 'required' => false,
@@ -32,12 +35,14 @@ class UserType extends AbstractType
                 'required' => false,
                 'attr' => ['class' => 'form-control'],
             ])
-            ->add('password', PasswordType::class, [
+            ->add('plainPassword', PasswordType::class, [
                 'label' => 'New Password',
                 'mapped' => false, // Not mapped to the User entity
                 'required' => false, // Optional utk tukar
                 'attr' => ['class' => 'form-control'],
             ])
+
+
             ->add('roles', ChoiceType::class, [
                 'label' => 'Roles',
                 'required' => false,

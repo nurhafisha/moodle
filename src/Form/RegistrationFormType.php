@@ -13,11 +13,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
+
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            
             ->add('nomUser', TextType::class, [
                 'label' => 'registrationForm.nomUser', // Translation key
                 'attr' => ['class' => 'form-control'],

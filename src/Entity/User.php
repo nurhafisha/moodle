@@ -9,11 +9,17 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[Vich\Uploadable]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[UniqueEntity(fields: ['email'], message: '
 Il existe déjà un compte avec cet email')]
+
+
+
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -44,8 +50,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank(message: 'Prenom ne peut pas être vide.')]
     private ?string $prenomUser = null;
 
-    #[ORM\Column(type: Types::BLOB, nullable: true)]
-    private $imageUser = null;
+    #[Vich\UploadableField(mapping: 'imageUser', fileNameProperty: 'imageUser')]
+    private ?File $imageFile = null;
+
+    public function __sleep()
+{
+    // Return only the properties that should be serialized
+    return ['id', 'email', 'roles', 'password', 'nomUser', 'prenomUser', 'imageUser', 'updatedAt'];
+}
+
+    #[ORM\Column(nullable: true)]
+    private ?string $imageUser = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
 
     public function getId(): ?int
     {
@@ -111,10 +129,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->password;
     }
 
-    public function setPassword(string $password): static
+    public function setPassword(string $password): self
     {
         $this->password = $password;
-
+    
         return $this;
     }
 
@@ -151,15 +169,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getImageUser()
+
+
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function getImageUser(): ?string
     {
         return $this->imageUser;
     }
 
-    public function setImageUser($imageUser): static
+    public function setImageUser(?string $imageUser): self
     {
         $this->imageUser = $imageUser;
-
         return $this;
     }
 }
