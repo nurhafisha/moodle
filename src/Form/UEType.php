@@ -9,11 +9,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+
 class UEType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            
+
             ->add('codeUE', TextType::class, [
                 'label' => 'Code UE', // Custom label
                 'attr' => ['class' => 'form-control'], // Add custom classes if needed
@@ -27,6 +30,7 @@ class UEType extends AbstractType
                 'mapped' => false, // Prevent automatic mapping to the entity
                 'required' => false,
                 'attr' => ['class' => 'form-control'],
+                
             ])
         ;
     }

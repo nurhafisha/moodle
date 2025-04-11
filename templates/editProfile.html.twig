@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Gestion du compte
-{% endblock %}
+{% block title %}Gestion du compte{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('styles/editProfile.css') }}" />
@@ -9,45 +8,59 @@
 
 {% block body %}
     <main>
-        <div class="box"> <h3>Accueil/Gestion du compte</h3> </div>
+        <div class="box"><h3>Accueil/Gestion du compte</h3></div>
         <h2>General</h2>
 
         <div>
-            <div class="picture">
-                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="profilePicture">
-                {% if app.user %}
-                    <h1>{{ app.user.nomUser }} {{ app.user.prenomUser }}</h1>
-                {% else %}
-                    <h1>Guest</h1>
-                {% endif %}
+            <div class="profile-header">
+                <div class="picture-container">
+                    <div class="picture">
+                        {% if app.user.imageUser %}
+                            <img src="{{ asset('uploads/images/' ~ app.user.imageUser) }}" 
+                                alt="Current profile picture" class="profile-image">
+                               
+                        {% else %}
+                            <img src="/images/default-profile.png"
+                                alt="Default profile picture" class="profile-image">
+                        {% endif %}
+                    </div>
+                    <div class="name">
+                        <h1>{{ app.user.nomUser }} {{ app.user.prenomUser }}</h1>
+                    </div>
                 </div>
-             <div class="form-group"  >
-            <form method="POST" >
-                <div class="form-item">
-                    <label>Prénom :</label>
-                    <input type="text"  id="Fname"  name="Fname" value="{{ app.user.prenomUser }}"><br>
-                </div>
+            </div>
 
-                <div class="form-item">
-                    <label> Nom : </label>
-                    <input type="text"  id="Lname"  name="Lname" value="{{ app.user.nomUser }}"><br>
-                </div>
-
-                <div class="form-item">
-                    <label>Email :</label>
-                    <input type="email"  id="Email"  name="Email" value="{{ app.user.email }}"><br>
+            {{ form_start(form, {'attr': {'class': 'profile-form'}}) }}
+                <div class="form-group">
+                    {{ form_row(form.imageFile) }}
                 </div>
 
-                <div class="form-item">
-                <label> Password : </label>
-                <input type="password"  id="Password"  name="Password" placeholder="Leave blank to keep current password"><br>
-
+                <div class="form-group">
+                    {{ form_row(form.prenomUser, {
+                        'label': 'Prénom',
+                        'attr': {'class': 'form-control'}
+                    }) }}
                 </div>
 
-                <button type="submit" value="submit">save</button>
-            </form>
-             </div>
+                <div class="form-group">
+                    {{ form_row(form.nomUser, {
+                        'label': 'Nom',
+                        'attr': {'class': 'form-control'}
+                    }) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_row(form.password, {
+                        'label': 'Mot de passe',
+                        'attr': {
+                            'class': 'form-control',
+                            'placeholder': 'Leave blank to keep current password'
+                        }
+                    }) }}
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save</button>
+            {{ form_end(form) }}
         </div>
     </main>
 {% endblock %}
-

@@ -116,7 +116,18 @@
                 </li>
                 <li>
                     <a href="{{ path('edit_profile') }}">
-                    <img src="{{ asset('Images/moodle-icon.png') }}" id="navbar-pic"></a>
+                        {% if app.user and app.user.imageUser %}
+                        <img src="{{ asset('uploads/images/' ~ app.user.imageUser) }}" 
+                             id="navbar-pic" 
+                             alt="Profile picture"
+                             class="profile-pic">
+                    {% else %}
+                        <img src="{{ asset('Images/moodle-icon.png') }}" 
+                             id="navbar-pic" 
+                             alt="Default profile"
+                             class="profile-pic">
+                    {% endif %}
+                    </a>
                 </li>
             </ul>
         </nav>
