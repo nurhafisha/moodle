@@ -29,8 +29,9 @@ class ProfileEditType extends AbstractType
             ])
             ->add('password', PasswordType::class, [
                 'label' => 'Mot de passe',
+                'mapped' => false,
                 'required' => false,
-                'empty_data' => '',
+                
             ])
 
             ->add('imageFile', VichImageType::class, [

@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/png" href="{{ asset('Images/moodle-icon.png') }}">
+        <!-- <link rel="icon" type="image/png" href="{{ asset('Images/moodle-icon.png') }}"> -->
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="stylesheet" href="{{ asset('styles/style-base.css') }}" />
         <link
@@ -122,7 +122,7 @@
                              alt="Profile picture"
                              class="profile-pic">
                     {% else %}
-                        <img src="{{ asset('Images/moodle-icon.png') }}" 
+                        <img src="/images/default-profile.png" 
                              id="navbar-pic" 
                              alt="Default profile"
                              class="profile-pic">
