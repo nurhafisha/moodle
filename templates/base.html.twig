@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/png" href="{{ asset('Images/moodle-icon.png') }}">
+        <!-- <link rel="icon" type="image/png" href="{{ asset('Images/moodle-icon.png') }}"> -->
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="stylesheet" href="{{ asset('styles/style-base.css') }}" />
         <link
@@ -116,7 +116,18 @@
                 </li>
                 <li>
                     <a href="{{ path('edit_profile') }}">
-                    <img src="{{ asset('Images/moodle-icon.png') }}" id="navbar-pic"></a>
+                        {% if app.user and app.user.imageUser %}
+                        <img src="{{ asset('uploads/images/' ~ app.user.imageUser) }}" 
+                             id="navbar-pic" 
+                             alt="Profile picture"
+                             class="profile-pic">
+                    {% else %}
+                        <img src="/images/default-profile.png" 
+                             id="navbar-pic" 
+                             alt="Default profile"
+                             class="profile-pic">
+                    {% endif %}
+                    </a>
                 </li>
             </ul>
         </nav>

@@ -6,6 +6,11 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Form\UserType;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
+
+
 
 class Controller extends AbstractController
 {
@@ -72,12 +77,5 @@ class Controller extends AbstractController
     public function edit_profile(): Response
     {
         return $this->render('editProfile.html.twig');
-    }
-
-    //Test twig
-    #[Route('/test', name: 'test')]
-    public function logintest(): Response
-    {
-        return $this->render('test.html.twig');
     }
 }

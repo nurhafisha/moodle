@@ -50,6 +50,7 @@ php bin/console doctrine:migrations:migrate
 
 6. **Lancer le serveur Symfony**
 ```bash
+php bin/console make:migration
 symfony server:start
 ```
 Accédez à votre application via `http://localhost:8000`
@@ -62,6 +63,13 @@ Accédez à votre application via `http://localhost:8000`
 - Création et gestion des utilisateurs (professeurs, étudiants, autres admins).
 - Gestion des UE.
 - Attribution des UE aux professeurs et étudiants.
+
+### 👨‍🏫 Prof-Admin
+- Dispose de toutes les permissions d’un professeur.
+- Peut créer et modifier des UE.
+- Peut attribuer des UE à des professeurs uniquement.
+- Ne peut pas créer ou gérer les comptes utilisateurs.
+- Accès à des statistiques avancées sur la participation dans ses UE.
 
 ### 👨‍🏫 Professeur
 - Création, modification et suppression de posts (messages et fichiers).
@@ -82,6 +90,7 @@ symfony server:start
 ```
 - Appliquer les migrations :
 ```bash
+php bin/console make:migration
 php bin/console doctrine:migrations:migrate
 ```
 - Créer un administrateur par défaut :
