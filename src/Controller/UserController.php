@@ -69,7 +69,7 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Check if a new password is provided
-            $plainPassword = $form->get('password')->getData();
+            $plainPassword = $form->get('plainPassword')->getData();
             if ($plainPassword) {
                 // Hash the new password
                 $hashedPassword = $passwordHasher->hashPassword($user, $plainPassword);
