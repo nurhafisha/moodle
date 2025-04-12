@@ -1,49 +1,61 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {% block title %}User index{% endblock %} {%
+block stylesheets %}
+<link rel="stylesheet" href="{{ asset('styles/style-admin.css') }}" />
+{% endblock %} {% block body %}
 
-{% block title %}User index{% endblock %}
+<div id="onglet-user" class="onglet-user">
+  <div class="add-user">
+    <h2>Liste des Utilisateurs</h2>
+    <a href="{{ path('app_register') }}" class="btn btn-add"
+      >Ajouter un utilisateur</a
+    >
+  </div>
 
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/style-admin.css') }}" />
-{% endblock %}
-
-{% block body %}
-    <h1>User index</h1>
-
+  <div class="table-container">
     <table class="styled-table">
-        <thead>
-            <tr>
-                <th>IdUser</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>Password</th>
-                <th>NomUser</th>
-                <th>PrenomUser</th>
-                <th>ImageUser</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+      <thead>
+        <tr>
+          <th>IdUser</th>
+          <th>Email</th>
+          <th>Roles</th>
+          <th>Password</th>
+          <th>NomUser</th>
+          <th>PrenomUser</th>
+          <!-- <th>ImageUser</th> -->
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
         {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
-                <td>{{ user.nomUser }}</td>
-                <td>{{ user.prenomUser }}</td>
-                <td>{{ user.imageUser }}</td>
-                <td>
-                    <a href="{{ path('app_user_show', { 'id': user.id }) }}">Consulter les utilisateurs</a>
-                    <a href="{{ path('app_user_edit', { 'id': user.id}) }}">Editer</a>
-                </td>
-            </tr>
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+          <td>{{ user.password }}</td>
+          <td>{{ user.nomUser }}</td>
+          <td>{{ user.prenomUser }}</td>
+          <!-- <td>{{ user.imageUser }}</td> -->
+          <td>
+            <a
+              href="{{ path('app_user_show', { id: user.id }) }}"
+              class="btn btn-mod"
+              >Consulter</a
+            >
+            <a
+              href="{{ path('app_user_edit', { id: user.id }) }}"
+              class="btn btn-mod"
+              >Editer</a
+            >
+            {{ include("user/_delete_form.html.twig", { user: user }) }}
+          </td>
+        </tr>
         {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
+        <tr>
+          <td colspan="8">No records found</td>
+        </tr>
         {% endfor %}
-        </tbody>
+      </tbody>
     </table>
-
-    <a href="path('app_register')">Créer nouveau</a>
+  </div>
+</div>
 {% endblock %}

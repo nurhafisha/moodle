@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+
 #[Route('/ue')]
 final class UEController extends AbstractController
 {
@@ -20,7 +21,7 @@ final class UEController extends AbstractController
     public function index(UERepository $uERepository): Response
     {
         return $this->render('ue/index.html.twig', [
-            'u_es' => $uERepository->findAll(),
+            'ues' => $uERepository->findAll(),
         ]);
     }
 
@@ -32,27 +33,6 @@ final class UEController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            // Handle the uploaded file
-            $imageFile = $form->get('imageUE')->getData();
-
-            if ($imageFile) {
-                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
-
-                try {
-                    $imageFile->move(
-                        $this->getParameter('images_directory'), // Directory where images will be stored
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // Handle exception if something happens during file upload
-                }
-
-                // Update the 'imageUE' property to store the image file name
-                $uE->setImageUE($newFilename);
-            }
             $entityManager->persist($uE);
             $entityManager->flush();
 
@@ -91,7 +71,7 @@ final class UEController extends AbstractController
         ]);
     }
 
-    #[Route('/{idUE}', name: 'app_u_e_delete', methods: ['POST'])]
+    #[Route('/{idUE}/delete', name: 'app_u_e_delete', methods: ['POST'])]
     public function delete(Request $request, UE $uE, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $uE->getIdUE(), $request->getPayload()->getString('_token'))) {

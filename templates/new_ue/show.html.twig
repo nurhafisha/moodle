@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %} {% block title %}NewUe{% endblock %} {% block
+stylesheets %}
+<link rel="stylesheet" href="{{ asset('styles/style-admin.css') }}" />
+{% endblock %} {% block body %}
+
+<main>
+  <div class="main-container">
+    <h2 class="page-title">Profile UE</h2>
+
+    <div class="table-container">
+      <table class="styled-table">
+        <tbody>
+          <tr>
+            <th>Id</th>
+            <td>{{ new_ue.id }}</td>
+          </tr>
+          <tr>
+            <th>Code_ue</th>
+            <td>{{ new_ue.codeUe }}</td>
+          </tr>
+          <tr>
+            <th>Nom_ue</th>
+            <td>{{ new_ue.nomUe }}</td>
+          </tr>
+          <tr>
+            <th>Image_ue</th>
+            <td>{{ new_ue.imageUe }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="action-buttons">
+      <a href="{{ path('admin_catalogue') }}" class="btn btn-back">Retourner</a>
+      <a
+        href="{{ path('app_new_ue_edit', { id: new_ue.id }) }}"
+        class="btn btn-mod"
+        >Modifier</a
+      >
+
+      {{ include("new_ue/_delete_form.html.twig") }}
+    </div>
+  </div>
+</main>
+
+{% endblock %}

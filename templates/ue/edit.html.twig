@@ -1,9 +1,10 @@
-{% extends 'base.html.twig' %} {% block stylesheets %}
-<link rel="stylesheet" href="{{ asset('styles/style-admin.css') }}" />
-{% endblock %} {% block title %}Edit UE{% endblock %} {% block body %}
-<h1>Edit UE</h1>
+{% extends 'base.html.twig' %} {% block title %}Edit Ue{% endblock %} {% block
+body %}
+<h1>Edit Ue</h1>
 
 {{ include("ue/_form.html.twig", { button_label: "Update" }) }}
+
+<a href="{{ path('app_u_e_index') }}">back to list</a>
 
 {{ include("ue/_delete_form.html.twig") }}
 {% endblock %}

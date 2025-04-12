@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\NewUeRepository;
 use App\Repository\UserRepository;
 use App\Repository\UERepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,10 +12,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends AbstractController
 {
     #[Route('/admin/catalogue', name: 'admin_catalogue')]
-    public function catalogue(UserRepository $userRepository, UERepository $ueRepository): Response
+    public function catalogue(UserRepository $userRepository, NewUeRepository $NewUeRepos): Response
     {
         $users = $userRepository->findAll();
-        $ues = $ueRepository->findAll();
+
+        $new_ues = $NewUeRepos->findAll();
 
         // Encode user images in base64
         // foreach ($users as $user) {
@@ -27,7 +29,8 @@ class AdminController extends AbstractController
 
         return $this->render('admin_catalogue.html.twig', [
             'users' => $users,
-            'ues' => $ues,
+
+            'new_ues' => $new_ues
         ]);
     }
 }

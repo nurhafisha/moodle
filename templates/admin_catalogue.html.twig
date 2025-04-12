@@ -1,105 +1,132 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {% block title %}Catalogue{% endblock %} {% block
+stylesheets %}
+<link rel="stylesheet" href="{{ asset('styles/style-admin.css') }}" />
+{% endblock %} {% block body %}
+<main>
+  <div class="main-container">
+    <div class="header">
+      <h1>Catalogue</h1>
+    </div>
 
-{% block title %}Catalogue{% endblock %}
+    <div class="content">
+      <ul id="navbar-dashboard">
+        <a id="selected" onclick="showOngletUser()" href="#">
+          <li>
+            <span class="material-icons-sharp"> group </span>
+            <b>Gestion des Utilisateurs</b>
+          </li>
+        </a>
+        <a onclick="showOngletUE()" href="#">
+          <li>
+            <span class="material-icons-sharp">app_registration</span>
+            Gestion des UEs
+          </li>
+        </a>
+      </ul>
 
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/style-admin.css') }}" />
-{% endblock %}
-
-{% block body %}
-    <main>
-      <div class="main-container">
-        <div class="header">
-          <h1>Catalogue</h1>
+      <div id="onglet-user" class="onglet-user">
+        <div class="add-user">
+          <h2>Liste des Utilisateurs</h2>
+          <a href="{{ path('app_register') }}" class="btn btn-add"
+            >Ajouter un utilisateur</a
+          >
         </div>
 
-        <div class="content">
-          <ul id="navbar-dashboard">
-            <a id="selected" onclick="showOngletUser()" href="#">
-              <li>
-                <span class="material-icons-sharp"> group </span
-                ><b>Gestion des Utilisateurs</b>
-              </li>
-            </a>
-            <a onclick="showOngletUE()" href="#">
-              <li>
-                <span class="material-icons-sharp">app_registration</span>
-                Gestion des UEs
-              </li>
-            </a>
-          </ul>
-          <div id="onglet-user" class="onglet-user">
-                <div class=add-user>
-                    <h2>Liste des Utilisateurs</h2>
-                    <a href="{{ path('app_register') }}" class="btn btn-add">Ajouter un utilisateur</a>
-                    
-                </div>
-
-                <div class="table-container">
-                    <table class="styled-table">
-                        <thead>
-                            <tr>
-                                <th>ID User</th>
-                                <th>Nom</th>
-                                <th>Prénom</th>
-                                <th>Email</th>
-                                <th>Role</th>
-                                <th>Profile Image</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for user in users %}
-                            <tr>
-                                <td>{{ user.id }}</td>
-                                <td>{{ user.nomUser }}</td>
-                                <td>{{ user.prenomUser }}</td>
-                                <td>{{ user.email }}</td>
-                                <td>{{ user.roles|join(', ') }}</td>
-                                <td>{{ user.imageUser }}</td>
-                                <td>
-                                    <a href="{{ path('app_user_edit', { 'id': user.id}) }}" class="btn btn-mod">Modifier</a>
-                                    {{ include('user/_delete_form.html.twig', { 'user': user }) }}
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div id="onglet-ue" class="onglet-ue" style="display: none;">
-                <div class=add-ue>
-                    <h2>Liste de UEs</h2>
-                    <a href="{{ path('app_u_e_new') }}" class="btn btn-add">Ajouter une UE</a>
-                </div>
-                
-                <div class="table-container">
-                    <table class="styled-table">
-                        <thead>
-                            <tr>
-                                <th>Code UE</th>
-                                <th>Nom UE</th>
-                                <th>ImageUE</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for ue in ues %}
-                            <tr>
-                                <td>{{ ue.codeUE }}</td>
-                                <td>{{ ue.nomUE }}</td>
-                                <td>{{ ue.imageUE }}</td>
-                                <td>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+        <div class="table-container">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>ID User</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for user in users %}
+              <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.nomUser }}</td>
+                <td>{{ user.prenomUser }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles|join(', ') }}</td>
+                <td>
+                  <div title="action-btn">
+                    <a
+                      href="{{ path('app_user_show', { id: user.id }) }}"
+                      class="btn btn-aff"
+                      >Consulter</a
+                    >
+                    <a
+                      href="{{ path('app_user_edit', { id: user.id }) }}"
+                      class="btn btn-mod"
+                      >Modifier</a
+                    >
+                    {{ include("user/_delete_form.html.twig", { user: user }) }}
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
       </div>
-    </main>
-    <script src="{{ asset('admin.js') }}"></script>
+
+      <div id="onglet-ue" class="onglet-ue" style="display: none">
+        <div class="add-ue">
+          <h2>Liste de UEs</h2>
+          <a href="{{ path('app_new_ue_new') }}" class="btn btn-add"
+            >Ajouter une UE</a
+          >
+        </div>
+
+        <div class="table-container">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>Code UE</th>
+                <th>Nom UE</th>
+                <th>ImageUE</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for new_ue in new_ues %}
+              <tr>
+                <td>{{ new_ue.codeUe }}</td>
+                <td>{{ new_ue.nomUe }}</td>
+                <td>{{ new_ue.imageUe }}</td>
+                <td>
+                  <a
+                    href="{{ path('app_new_ue_show', { id: new_ue.id }) }}"
+                    class="btn btn-aff"
+                    >Consulter</a
+                  >
+                  <a
+                    href="{{ path('app_new_ue_edit', { id: new_ue.id }) }}"
+                    class="btn btn-mod"
+                    >Modifier</a
+                  >
+                  {{
+                    include("new_ue/_delete_form.html.twig", { new_ue: new_ue })
+                  }}
+                </td>
+              </tr>
+              {% else %}
+              <tr>
+                <td colspan="4">no records found</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        {#{{ include("new_ue/index.html.twig") }}#}
+      </div>
+    </div>
+  </div>
+</main>
+<script src="{{ asset('admin.js') }}"></script>
 {% endblock %}

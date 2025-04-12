@@ -4,7 +4,7 @@ stylesheets %}
 {% endblock %} {% block body %}
 <main>
   <div class="main-container">
-    <h2 id="title-register">Créer un nouveau utilisateur</h2>
+    <h2 class="title">Créer un nouveau utilisateur</h2>
 
     {{ form_errors(registrationForm) }}
 
@@ -46,7 +46,8 @@ stylesheets %}
       }}
     </div>
 
-    <button type="submit" class="btn btn-register">Registre</button>
+    <button type="submit" class="btn btn-register">Enregistrer</button>
+    <a href="{{ path('admin_catalogue') }}" class="btn btn-back">Retourner</a>
     {{ form_end(registrationForm) }}
   </div>
 </main>

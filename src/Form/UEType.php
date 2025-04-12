@@ -14,20 +14,9 @@ class UEType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('codeUE', TextType::class, [
-                'label' => 'Code UE', // Custom label
-                'attr' => ['class' => 'form-control'], // Add custom classes if needed
-            ])
-            ->add('nomUE', TextType::class, [
-                'label' => 'Nom UE', // Custom label
-                'attr' => ['class' => 'form-control'],
-            ])
-            ->add('imageUE', FileType::class, [
-                'label' => 'Upload Image',
-                'mapped' => false, // Prevent automatic mapping to the entity
-                'required' => false,
-                'attr' => ['class' => 'form-control'],
-            ])
+            ->add('codeUE')
+            ->add('nomUE')
+            ->add('imageUE')
         ;
     }
 

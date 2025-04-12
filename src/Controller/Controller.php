@@ -21,24 +21,22 @@ class Controller extends AbstractController
         return $this->render('profile.html.twig');
     }
 
-    #[Route('/UE', name:'choixUE-etu')]
-    public function choixUE_etu() : Response
+    #[Route('/UE', name: 'choixUE-etu')]
+    public function choixUE_etu(): Response
     {
         return $this->render('choixUE-etu.html.twig');
     }
 
-    #[Route('/choixUE-prof', name:'choixUE-prof')]
-    public function choixUE_prof() : Response
+    #[Route('/choixUE-prof', name: 'choixUE-prof')]
+    public function choixUE_prof(): Response
     {
         return $this->render('choixUE-prof.html.twig');
-
     }
     //Choix UE
     #[Route('/choixUE', name: 'choixUE')]
     public function choixUE(): Response
     {
         return $this->render('choixUE-etu.html.twig');
-
     }
 
     #[Route('/UE/contenu', name: 'contenu_UE')]
@@ -70,17 +68,16 @@ class Controller extends AbstractController
         return $this->render('participants.html.twig');
     }
 
-    #[Route('/edit' , name:'edit_profile')]
-    public function edit_profile():Response
+    #[Route('/edit', name: 'edit_profile')]
+    public function edit_profile(): Response
     {
         return $this->render('editProfile.html.twig');
     }
 
-
-}   
-
-
-
-
-
-
+    //Test twig
+    #[Route('/test', name: 'test')]
+    public function logintest(): Response
+    {
+        return $this->render('test.html.twig');
+    }
+}

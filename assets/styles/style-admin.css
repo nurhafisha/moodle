@@ -28,7 +28,7 @@ a {
   margin: 20px;
 }
 
-#title-register {
+.title {
   /* background-color: #4caf50; */
   margin-top: 0;
   margin-bottom: 1em;
@@ -53,7 +53,7 @@ a {
 
 .styled-table {
   width: 100%;
-  table-layout: fixed;
+  table-layout: auto;
   border-collapse: collapse;
   margin: 20px 0;
   font-size: 12px;
@@ -70,7 +70,7 @@ a {
 }
 
 .styled-table thead tr {
-  background-color: #0288d1;
+  background-color: #89e5c9;
   color: #ffffff;
   text-align: left;
 }
@@ -85,6 +85,36 @@ a {
 
 .styled-table tbody tr:hover {
   background-color: #d1f0f7;
+}
+
+.styled-table th:nth-child(1),
+.styled-table td:nth-child(1) {
+  width: 50px; /* ID column */
+}
+
+.styled-table th:nth-child(2),
+.styled-table td:nth-child(2) {
+  width: 150px; /* Nom column */
+}
+
+.styled-table th:nth-child(3),
+.styled-table td:nth-child(3) {
+  width: 150px; /* Prénom column */
+}
+
+.styled-table th:nth-child(4),
+.styled-table td:nth-child(4) {
+  width: 200px; /* Email column */
+}
+
+.styled-table th:nth-child(5),
+.styled-table td:nth-child(5) {
+  width: 200px; /* Role column */
+}
+
+.styled-table th:nth-child(6),
+.styled-table td:nth-child(6) {
+  width: 150px; /* Action column */
 }
 
 .content {
@@ -164,20 +194,20 @@ a {
 }
 
 .btn-aff {
-  background-color: #026aa7;
+  background-color: #0d6efd;
 }
 .btn-mod {
-  background-color: orange;
+  background-color: #ffc107;
 }
 .btn-update {
-  background-color: #026aa7;
+  background-color: #198754;
 }
 .btn-back {
-  background-color: seagreen;
+  background-color: #6c757d;
 }
 
 .btn-del {
-  background-color: red;
+  background-color: #dc3545;
 }
 /* .btn-mod:hover {
   background-color: orange;
@@ -205,6 +235,11 @@ a {
 
 .btn-register {
   background-color: #010101;
+}
+
+action-btn {
+  display: flex;
+  flex-direction: row;
 }
 
 /* Profile Image */

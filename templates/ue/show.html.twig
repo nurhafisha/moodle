@@ -1,34 +1,31 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {% block title %}UE{% endblock %} {% block body
+%}
+<h1>UE</h1>
 
-{% block title %}UE{% endblock %}
+<table class="table">
+  <tbody>
+    <tr>
+      <th>IdUE</th>
+      <td>{{ ue.idUE }}</td>
+    </tr>
+    <tr>
+      <th>CodeUE</th>
+      <td>{{ ue.codeUE }}</td>
+    </tr>
+    <tr>
+      <th>NomUE</th>
+      <td>{{ ue.nomUE }}</td>
+    </tr>
+    <tr>
+      <th>ImageUE</th>
+      <td>{{ ue.imageUE }}</td>
+    </tr>
+  </tbody>
+</table>
 
-{% block body %}
-    <h1>UE</h1>
+<a href="{{ path('app_u_e_index') }}">back to list</a>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>IdUE</th>
-                <td>{{ u_e.idUE }}</td>
-            </tr>
-            <tr>
-                <th>CodeUE</th>
-                <td>{{ u_e.codeUE }}</td>
-            </tr>
-            <tr>
-                <th>NomUE</th>
-                <td>{{ u_e.nomUE }}</td>
-            </tr>
-            <tr>
-                <th>ImageUE</th>
-                <td>{{ u_e.imageUE }}</td>
-            </tr>
-        </tbody>
-    </table>
+<a href="{{ path('app_u_e_edit', { idUE: ue.idUE }) }}">edit</a>
 
-    <a href="{{ path('app_u_e_index') }}">back to list</a>
-
-    <a href="{{ path('app_u_e_edit', {'idUE': u_e.idUE}) }}">edit</a>
-
-    {{ include('ue/_delete_form.html.twig') }}
+{{ include("ue/_delete_form.html.twig") }}
 {% endblock %}
