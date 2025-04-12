@@ -13,7 +13,9 @@
 </div>
 <div class="action-buttons">
   <a href="{{ path('admin_catalogue') }}" class="btn btn-back">Retourner</a>
-  <button class="btn btn-update">{{ button_label|default('Save') }}</button>
+  <button class="btn btn-register">
+    {{ button_label|default('Enregistre') }}
+  </button>
 </div>
 
 {{ form_end(form) }}
