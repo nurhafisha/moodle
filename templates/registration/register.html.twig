@@ -45,9 +45,11 @@ stylesheets %}
         form_widget(registrationForm.roles, { attr: { class: "form-control" } })
       }}
     </div>
+    <div class="action-buttons">
+      <a href="{{ path('admin_catalogue') }}" class="btn btn-back">Retourner</a>
+      <button type="submit" class="btn btn-register">Enregistrer</button>
+    </div>
 
-    <button type="submit" class="btn btn-register">Enregistrer</button>
-    <a href="{{ path('admin_catalogue') }}" class="btn btn-back">Retourner</a>
     {{ form_end(registrationForm) }}
   </div>
 </main>
