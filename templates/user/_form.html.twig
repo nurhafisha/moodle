@@ -24,10 +24,10 @@
   }}
 </div>
 <div class="action-buttons">
-  <button class="btn btn-update">
+  <a href="{{ path('admin_catalogue') }}" class="btn btn-back">Retourner</a
+  ><button class="btn btn-update">
     {{ button_label|default('Enregistre') }}
   </button>
-  <a href="{{ path('admin_catalogue') }}" class="btn btn-back">Retourner</a>
 </div>
 
 {{ form_end(form) }}

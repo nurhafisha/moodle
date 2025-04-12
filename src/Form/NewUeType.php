@@ -25,7 +25,7 @@ class NewUeType extends AbstractType
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('image_ue', FileType::class, [
-                'label' => 'Code UE',
+                'label' => 'Image UE',
                 'required' => false,
                 'attr' => ['class' => 'form-control'],
             ])
