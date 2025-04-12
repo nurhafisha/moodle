@@ -19,7 +19,7 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            
+
             ->add('nomUser', TextType::class, [
                 'label' => 'registrationForm.nomUser', // Translation key
                 'attr' => ['class' => 'form-control'],
@@ -28,10 +28,10 @@ class RegistrationFormType extends AbstractType
                 'label' => 'registrationForm.prenomUser', // Translation key
                 'attr' => ['class' => 'form-control'],
             ])
-            ->add('email', EmailType::class, [
-                'label' => 'registrationForm.email', // Translation key
-                'attr' => ['class' => 'form-control'],
-            ])
+            // ->add('email', EmailType::class, [
+            //     'label' => 'registrationForm.email', // Translation key
+            //     'attr' => ['class' => 'form-control'],
+            // ])
             ->add('plainPassword', PasswordType::class, [
                 'label' => 'registrationForm.password', // Translation key
                 'mapped' => false, // Not mapped to the User entity

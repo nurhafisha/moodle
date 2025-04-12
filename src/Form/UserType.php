@@ -19,7 +19,7 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            
+
             ->add('nomUser', TextType::class, [
                 'label' => 'Nom',
                 'required' => false,
@@ -30,11 +30,11 @@ class UserType extends AbstractType
                 'required' => false,
                 'attr' => ['class' => 'form-control'],
             ])
-            ->add('email', EmailType::class, [
-                'label' => 'Email',
-                'required' => false,
-                'attr' => ['class' => 'form-control'],
-            ])
+            // ->add('email', EmailType::class, [
+            //     'label' => 'Email',
+            //     'required' => false,
+            //     'attr' => ['class' => 'form-control'],
+            // ])
             ->add('plainPassword', PasswordType::class, [
                 'label' => 'New Password',
                 'mapped' => false, // Not mapped to the User entity
