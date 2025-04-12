@@ -237,11 +237,6 @@ a {
   background-color: #010101;
 }
 
-action-btn {
-  display: flex;
-  flex-direction: row;
-}
-
 /* Profile Image */
 .profile-image {
   max-width: 100px;
@@ -259,8 +254,8 @@ action-btn {
 }
 
 .action-buttons .btn {
-  padding: 10px 20px;
-  font-size: 14px;
+  padding: 10px auto;
+  font-size: 10px;
   font-weight: bold;
   color: #ffffff;
   border: none;

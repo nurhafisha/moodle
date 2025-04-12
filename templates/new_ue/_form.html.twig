@@ -11,6 +11,9 @@
   {{ form_label(form.image_ue) }}
   {{ form_widget(form.image_ue, { attr: { class: "form-control" } }) }}
 </div>
-<button class="btn btn-update">{{ button_label|default('Save') }}</button>
-<a href="{{ path('admin_catalogue') }}" class="btn btn-back">Retourner</a>
+<div class="action-buttons">
+  <a href="{{ path('admin_catalogue') }}" class="btn btn-back">Retourner</a>
+  <button class="btn btn-update">{{ button_label|default('Save') }}</button>
+</div>
+
 {{ form_end(form) }}
