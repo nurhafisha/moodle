@@ -74,7 +74,7 @@ final class UEController extends AbstractController
     #[Route('/{id}', name: 'app_u_e_delete', methods: ['POST'])]
     public function delete(Request $request, UE $uE, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $uE->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $uE->getCodeUE(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($uE);
             $entityManager->flush();
         }
