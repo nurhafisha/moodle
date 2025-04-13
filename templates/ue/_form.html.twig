@@ -1,4 +1,21 @@
-{{ form_start(form) }}
-{{ form_widget(form) }}
-<button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, { attr: { class: "form-container" } }) }}
+<div class="form-group">
+  {{ form_label(form.code_ue) }}
+  {{ form_widget(form.code_ue, { attr: { class: "form-control" } }) }}
+</div>
+<div class="form-group">
+  {{ form_label(form.nom_ue) }}
+  {{ form_widget(form.nom_ue, { attr: { class: "form-control" } }) }}
+</div>
+<div class="form-group">
+  {{ form_label(form.image_ue) }}
+  {{ form_widget(form.image_ue, { attr: { class: "form-control" } }) }}
+</div>
+<div class="action-buttons">
+  <a href="{{ path('admin_catalogue') }}" class="btn btn-back">Retourner</a>
+  <button class="btn btn-update">
+    {{ button_label|default('Enregistre') }}
+  </button>
+</div>
+
 {{ form_end(form) }}

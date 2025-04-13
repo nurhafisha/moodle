@@ -77,7 +77,7 @@ stylesheets %}
       <div id="onglet-ue" class="onglet-ue" style="display: none">
         <div class="add-ue">
           <h2>Liste de UEs</h2>
-          <a href="{{ path('app_new_ue_new') }}" class="btn btn-add"
+          <a href="{{ path('app_u_e_new') }}" class="btn btn-add"
             >Ajouter une UE</a
           >
         </div>
@@ -93,24 +93,24 @@ stylesheets %}
               </tr>
             </thead>
             <tbody>
-              {% for new_ue in new_ues %}
+              {% for ue in ues %}
               <tr>
-                <td>{{ new_ue.codeUe }}</td>
-                <td>{{ new_ue.nomUe }}</td>
-                <td>{{ new_ue.imageUe }}</td>
+                <td>{{ ue.codeUe }}</td>
+                <td>{{ ue.nomUe }}</td>
+                <td>{{ ue.imageUe }}</td>
                 <td>
                   <a
-                    href="{{ path('app_new_ue_show', { id: new_ue.id }) }}"
+                    href="{{ path('app_u_e_show', { id: ue.codeUe }) }}"
                     class="btn btn-aff"
                     >Consulter</a
                   >
                   <a
-                    href="{{ path('app_new_ue_edit', { id: new_ue.id }) }}"
+                    href="{{ path('app_u_e_edit', { id: ue.codeUe }) }}"
                     class="btn btn-mod"
                     >Modifier</a
                   >
                   {{
-                    include("new_ue/_delete_form.html.twig", { new_ue: new_ue })
+                    include("ue/_delete_form.html.twig", { ue: ue })
                   }}
                 </td>
               </tr>
@@ -123,7 +123,7 @@ stylesheets %}
           </table>
         </div>
 
-        {#{{ include("new_ue/index.html.twig") }}#}
+        {#{{ include("ue/index.html.twig") }}#}
       </div>
     </div>
   </div>

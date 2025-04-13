@@ -1,31 +1,42 @@
-{% extends 'base.html.twig' %} {% block title %}UE{% endblock %} {% block body
-%}
-<h1>UE</h1>
+{% extends 'base.html.twig' %} {% block title %}UE{% endblock %} {% block
+stylesheets %}
+<link rel="stylesheet" href="{{ asset('styles/style-admin.css') }}" />
+{% endblock %} {% block body %}
 
-<table class="table">
-  <tbody>
-    <tr>
-      <th>IdUE</th>
-      <td>{{ ue.idUE }}</td>
-    </tr>
-    <tr>
-      <th>CodeUE</th>
-      <td>{{ ue.codeUE }}</td>
-    </tr>
-    <tr>
-      <th>NomUE</th>
-      <td>{{ ue.nomUE }}</td>
-    </tr>
-    <tr>
-      <th>ImageUE</th>
-      <td>{{ ue.imageUE }}</td>
-    </tr>
-  </tbody>
-</table>
+<main>
+  <div class="main-container">
+    <h2 class="page-title">Profile UE</h2>
 
-<a href="{{ path('app_u_e_index') }}">back to list</a>
+    <div class="table-container">
+      <table class="styled-table">
+        <tbody>
+          <tr>
+            <th>Code_ue</th>
+            <td>{{ ue.codeUe }}</td>
+          </tr>
+          <tr>
+            <th>Nom_ue</th>
+            <td>{{ ue.nomUe }}</td>
+          </tr>
+          <tr>
+            <th>Image_ue</th>
+            <td>{{ ue.imageUe }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-<a href="{{ path('app_u_e_edit', { idUE: ue.idUE }) }}">edit</a>
+    <div class="action-buttons">
+      <a href="{{ path('admin_catalogue') }}" class="btn btn-back">Retourner</a>
+      <a
+        href="{{ path('app_u_e_edit', { id: ue.codeUE }) }}"
+        class="btn btn-mod"
+        >Modifier</a
+      >
 
-{{ include("ue/_delete_form.html.twig") }}
+      {{ include("ue/_delete_form.html.twig") }}
+    </div>
+  </div>
+</main>
+
 {% endblock %}

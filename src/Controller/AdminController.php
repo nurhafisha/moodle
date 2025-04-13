@@ -12,11 +12,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends AbstractController
 {
     #[Route('/admin/catalogue', name: 'admin_catalogue')]
-    public function catalogue(UserRepository $userRepository, NewUeRepository $NewUeRepos): Response
+    public function catalogue(UserRepository $userRepository, UeRepository $UeRepos): Response
     {
         $users = $userRepository->findAll();
 
-        $new_ues = $NewUeRepos->findAll();
+        $ues = $UeRepos->findAll();
 
         // Encode user images in base64
         // foreach ($users as $user) {
@@ -30,7 +30,7 @@ class AdminController extends AbstractController
         return $this->render('admin_catalogue.html.twig', [
             'users' => $users,
 
-            'new_ues' => $new_ues
+            'ues' => $ues
         ]);
     }
 }
