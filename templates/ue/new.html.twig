@@ -1,8 +1,13 @@
-{% extends 'base.html.twig' %} {% block title %}New Ue{% endblock %} {% block
-body %}
-<h1>Create new Ue</h1>
+{% extends 'base.html.twig' %} {% block title %}New UE{% endblock %} {% block
+stylesheets %}
+<link rel="stylesheet" href="{{ asset('styles/style-admin.css') }}" />
+{% endblock %} {% block body %}
+<main>
+  <div class="main-container">
+    <h2 class="title">Créer UE</h2>
 
-{{ include("ue/_form.html.twig") }}
+    {{ include("ue/_form.html.twig") }}
+  </div>
+</main>
 
-<a href="{{ path('app_u_e_index') }}">back to list</a>
 {% endblock %}

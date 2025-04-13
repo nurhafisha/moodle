@@ -1,47 +1,34 @@
-{% extends 'base.html.twig' %} {% block title %}Gestion des UEs{% endblock %} {%
+{% extends 'base.html.twig' %} {% block title %}Ue index{% endblock %} {%
 block body %}
+<h1>Ue index</h1>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Code</th>
-      <th>Nom</th>
-      {#
-      <th>Image</th>
-      #}
-      <th>Actions</th>
+      <th>Code_ue</th>
+      <th>Nom_ue</th>
+      <th>Image_ue</th>
+      <th>actions</th>
     </tr>
   </thead>
   <tbody>
     {% for ue in ues %}
     <tr>
-      <td>{{ ue.codeUE }}</td>
-      <td>{{ ue.nomUE }}</td>
-      {#
+      <td>{{ ue.codeUe }}</td>
+      <td>{{ ue.nomUe }}</td>
+      <td>{{ ue.imageUe }}</td>
       <td>
-        {% if ue.imageUE %}
-        <img
-          src="data:image/png;base64,{{ ue.imageUE | base64_encode }}"
-          alt="UE Image"
-          class="ue-image"
-        />
-        {% else %} No Image {% endif %}
+        <a href="{{ path('app_new_ue_show', { id: ue.codeUE }) }}">show</a>
+        <a href="{{ path('app_new_ue_edit', { id: ue.codeUE }) }}">edit</a>
       </td>
-
-      <td>
-        <a href="{{ path('app_u_e_show', { id: new_ue.id }) }}">show</a>
-        <a href="{{ path('app_u_e_edit', { id: new_ue.id }) }}">edit</a>
-      </td>
-      #}
     </tr>
     {% else %}
     <tr>
-      <td colspan="4">Aucune UE trouvée.</td>
+      <td colspan="5">no records found</td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
 
-<a href="{{ path('app_u_e_new') }}">Create new</a>
-
+<a href="{{ path('app_new_ue_new') }}">Create new</a>
 {% endblock %}

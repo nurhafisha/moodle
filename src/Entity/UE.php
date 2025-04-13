@@ -32,11 +32,6 @@ class UE
         $this->users = new ArrayCollection();
     }
 
-    public function getIdUE(): ?int
-    {
-        return $this->idUE;
-    }
-
     public function getCodeUE(): ?string
     {
         return $this->codeUE;
