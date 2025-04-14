@@ -14,36 +14,28 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class Controller extends AbstractController
 {
+    // Route Par Defaut
     #[Route('/', name: 'index')]
     public function index(): Response
     {
         return $this->redirectToRoute('app_login');
     }
 
+    // Profile
     #[Route('/profile', name: 'profile')]
     public function login(): Response
     {
         return $this->render('profile.html.twig');
     }
 
-    #[Route('/UE', name: 'choixUE-etu')]
-    public function choixUE_etu(): Response
-    {
-        return $this->render('choixUE-etu.html.twig');
-    }
-
-    #[Route('/choixUE-prof', name: 'choixUE-prof')]
-    public function choixUE_prof(): Response
-    {
-        return $this->render('choixUE-prof.html.twig');
-    }
-    //Choix UE
-    #[Route('/choixUE', name: 'choixUE')]
+    // Mes Cours
+    #[Route('/mes-cours', name: 'choixUE')]
     public function choixUE(): Response
     {
-        return $this->render('choixUE-etu.html.twig');
+        return $this->render('choixUE.html.twig');
     }
 
+    // Contenu d'une UE
     #[Route('/UE/contenu', name: 'contenu_UE')]
     public function contenu_UE(): Response
     {
@@ -73,6 +65,7 @@ class Controller extends AbstractController
         return $this->render('participants.html.twig');
     }
 
+    // Editer Profile
     #[Route('/edit', name: 'edit_profile')]
     public function edit_profile(): Response
     {
