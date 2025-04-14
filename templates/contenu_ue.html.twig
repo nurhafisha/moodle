@@ -14,7 +14,7 @@
       <a href="{{ path('participants_UE') }}"><li><span class="material-icons-sharp">group</span>Participants</li></a>
     </ul>
 
-    {% if is_granted('ROLE_ADMIN') %}
+    {% if is_granted('ROLE_ADMIN') or is_granted ('ROLE_PROF_ADMIN') %}
     <a href="{{ path('new_post', { 'slug': 'new' }) }}" id="btn-add-post">
       <span class="material-icons-sharp">add</span>
       <b>ajouter nouveau post</b>
@@ -28,7 +28,7 @@
             <span class="material-icons-sharp">mail</span>
             <span><h3>Information Examen</h3></span>
 
-            {% if is_granted('ROLE_PROF') %}
+            {% if is_granted('ROLE_PROF') or is_granted ('ROLE_PROF_ADMIN') %}
             <a href="{{ path('edit_post', { 'id': 3, 'slug': 'edit' }) }}"><span class="material-icons-sharp btn-edit-post">edit_note</span></a>
             <a href="#"><span class="material-icons-sharp btn-edit-post delete-btn" onclick="openModal()">delete</span></a>
             {% endif %}
@@ -55,7 +55,7 @@
             <span class="material-icons-sharp">priority_high</span>
             <span><h3>Rappel Rendu</h3></span>
 
-            {% if is_granted('ROLE_PROF') %}
+            {% if is_granted('ROLE_PROF') or is_granted ('ROLE_PROF_ADMIN')%}
             <a href="{{ path('edit_post', { 'id': 2, 'slug': 'edit' }) }}"><span class="material-icons-sharp btn-edit-post">edit_note</span></a>
             <a href="#"><span class="material-icons-sharp btn-edit-post delete-btn" onclick="openModal()">delete</span></a>
             {% endif %}
@@ -82,7 +82,7 @@
             <span class="material-icons-sharp">description</span>
             <span><h3>Diaporama Cours 1</h3></span>
 
-            {% if is_granted('ROLE_PROF') %}
+            {% if is_granted('ROLE_PROF') or is_granted ('ROLE_PROF_ADMIN')%}
             <a href="{{ path('edit_post', { 'id': 1, 'slug': 'edit' }) }}"><span class="material-icons-sharp btn-edit-post">edit_note</span></a>
             <a href="#"><span class="material-icons-sharp btn-edit-post delete-btn" onclick="openModal()">delete</span></a>
             {% endif %}
