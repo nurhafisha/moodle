@@ -30,6 +30,10 @@ class Post
     #[ORM\Column(type: Types::BLOB, nullable: true)]
     private $depotPost = null;
 
+    #[ORM\ManyToOne(targetEntity: UE::class, inversedBy: 'posts')]
+    #[ORM\JoinColumn(name: 'code_ue', referencedColumnName: 'code_ue', onDelete: 'CASCADE', nullable: false)]
+    private ?UE $codeUE = null;
+
     public function getId(): ?int
     {
         return $this->idPost;
@@ -92,6 +96,18 @@ class Post
     public function setDepotPost($depotPost): static
     {
         $this->depotPost = $depotPost;
+
+        return $this;
+    }
+
+    public function getCodeUE(): ?UE
+    {
+        return $this->codeUE;
+    }
+
+    public function setCodeUE(?UE $codeUE): static
+    {
+        $this->codeUE = $codeUE;
 
         return $this;
     }
