@@ -54,7 +54,7 @@ security:
   # Note: Only the *first* access control that matches will be used
   access_control:
      - { path: ^/admin/catalogue, roles: [ROLE_ADMIN, ROLE_PROF_ADMIN] }
-     - { path: ^/UE, roles: ROLE_USER }
+     - { path: ^/mes-cours, roles: ROLE_USER }
      - { path: ^/UE/contenu, roles: [ROLE_PROF_ADMIN , ROLE_PROF]}
     # - { path: ^/ue, roles: ROLE_ADMIN }
 

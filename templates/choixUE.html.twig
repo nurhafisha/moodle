@@ -68,42 +68,15 @@
   <hr class="divider">
 
   <nav class="course-navigation" aria-label="Course navigation">
-    <a href="{{ path('contenu_UE') }}" class="boxUE" style="background-image: url('{{ asset('Images/box1.jpg') }}');">
-      <div class="codeUE">
-        <h4>WE4A: Technologies et programmation WEB</h4>
-      </div>
-    </a>
-
-    <a href="{{ path('contenu_UE') }}" class="boxUE" style="background-image: url('{{ asset('Images/box2.jpg') }}');">
-      <div class="codeUE">
-        <h4>SY43: Android development</h4>
-      </div>
-    </a>
-
-    <a href="{{ path('contenu_UE') }}" class="boxUE" style="background-image: url('{{ asset('Images/box3.jpg') }}');">
-      <div class="codeUE">
-        <h4>SI40: Systemes d'information</h4>
-      </div>
-    </a>
-
-    <a href="{{ path('contenu_UE') }}" class="boxUE" style="background-image: url('{{ asset('Images/box4.jpg') }}');">
-      <div class="codeUE">
-        <h4>PH03: Theories du cinema et theories des jeux video</h4>
-      </div>
-    </a>
-
-    <a href="{{ path('contenu_UE') }}" class="boxUE" style="background-image: url('{{ asset('Images/box5.jpg') }}');">
-      <div class="codeUE">
-        <h4>Reinscription administrative</h4>
-      </div>
-    </a>
-
-    <a href="{{ path('contenu_UE') }}" class="boxUE" style="background-image: url('{{ asset('Images/imageUE.jpg') }}');">
-      <div class="codeUE">
-        <h4>WE4B: Technologies WEB avancees</h4>
-      </div>
-    </a>
-    
+    {% for ue in ues %}
+        <a href="{{ path('contenu_UE', { 'code_ue': ue.getCodeUE() }) }}" class="boxUE" style="background-image: url('{{ asset('Images/box1.jpg') }}');">
+          <div class="codeUE">
+            <h4>{{ ue.getCodeUE() }}: {{ ue.nomUE }}</h4>
+          </div>
+        </a>
+    {% else %}
+        <li>Vous n'êtes inscrit à aucune UE.</li>
+    {% endfor %}
   </nav>
 </div>
 

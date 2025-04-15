@@ -16,7 +16,7 @@ class LoginController extends AbstractController
             if ($this->isGranted('ROLE_ADMIN')) {
                 return $this->redirectToRoute('admin_catalogue'); // Change to your admin route
             }
-            return $this->redirectToRoute('contenu_UE'); // Change to your student route
+            return $this->redirectToRoute('choixUE'); // Change to your student route
         }
 
 

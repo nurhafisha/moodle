@@ -10,69 +10,93 @@ use App\Form\UserType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 
-
+use App\Repository\UserRepository;
+use App\Repository\UERepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class Controller extends AbstractController
 {
+    // Route Par Defaut
     #[Route('/', name: 'index')]
     public function index(): Response
     {
         return $this->redirectToRoute('app_login');
     }
 
+    // Profile
     #[Route('/profile', name: 'profile')]
     public function login(): Response
     {
         return $this->render('profile.html.twig');
     }
 
-    #[Route('/UE', name: 'choixUE-etu')]
-    public function choixUE_etu(): Response
+    // Mes Cours
+    #[Route('/mes-cours', name: 'choixUE')]
+    public function choixUE(UserRepository $userRepository): Response
     {
-        return $this->render('choixUE-etu.html.twig');
+        $user = $this->getUser();
+        if (!$user) {
+            throw $this->createAccessDeniedException('User not logged in.');
+        }
+        $ues = $user->getListeUe(); // returns Collection<UE>
+        return $this->render('choixUE.html.twig', [
+            'ues' => $ues,
+        ]);
     }
 
-    #[Route('/choixUE-prof', name: 'choixUE-prof')]
-    public function choixUE_prof(): Response
+    // Contenu d'une UE
+    #[Route('/mes-cours/{code_ue}', name: 'contenu_UE')]
+    public function contenu_UE(string $code_ue, UERepository $ueRepository): Response
     {
-        return $this->render('choixUE-prof.html.twig');
-    }
-    //Choix UE
-    #[Route('/choixUE', name: 'choixUE')]
-    public function choixUE(): Response
-    {
-        return $this->render('choixUE-etu.html.twig');
-    }
-
-    #[Route('/UE/contenu', name: 'contenu_UE')]
-    public function contenu_UE(): Response
-    {
-        return $this->render('contenu_ue.html.twig');
+        $ue = $ueRepository->find($code_ue);
+        if (!$ue) {
+            throw $this->createNotFoundException('UE not found for code: ' . $code_ue);
+        }
+        return $this->render('contenu_ue.html.twig', [
+            'ue' => $ue,
+        ]);
     }
 
-    #[Route('/UE/contenu/post/{slug}', name: 'new_post')]
-    public function new_post(string $slug): Response
+    #[Route('/mes-cours/{code_ue}/post/{slug}', name: 'new_post')]
+    public function new_post(string $code_ue, string $slug, UERepository $ueRepository): Response
     {
+        $ue = $ueRepository->find($code_ue);
+        if (!$ue) {
+            throw $this->createNotFoundException('UE not found for code: ' . $code_ue);
+        }
         return $this->render('post.html.twig', [
+            'ue' => $ue,
             'slug' => $slug
         ]);
     }
 
-    #[Route('/UE/contenu/post/{slug}/{id?}', name: 'edit_post')]
-    public function edit_post(int $id, string $slug): Response
+    #[Route('/mes-cours/{code_ue}/post/{slug}/{id?}', name: 'edit_post')]
+    public function edit_post(string $code_ue, int $id, string $slug, UERepository $ueRepository): Response
     {
+        $ue = $ueRepository->find($code_ue);
+        if (!$ue) {
+            throw $this->createNotFoundException('UE not found for code: ' . $code_ue);
+        }
         return $this->render('post.html.twig', [
+            'ue' => $ue,
             'id' => $id,
             'slug' => $slug
         ]);
     }
 
-    #[Route('/UE/contenu/participants', name: 'participants_UE')]
-    public function participants_UE(): Response
+    #[Route('/mes-cours/{code_ue}/participants', name: 'participants_UE')]
+    public function participants_UE(string $code_ue, UERepository $ueRepository): Response
     {
-        return $this->render('participants.html.twig');
+        $ue = $ueRepository->find($code_ue);
+        if (!$ue) {
+            throw $this->createNotFoundException('UE not found for code: ' . $code_ue);
+        }
+        return $this->render('participants.html.twig', [
+            'ue' => $ue,
+        ]);
     }
 
+    // Editer Profile
     #[Route('/edit', name: 'edit_profile')]
     public function edit_profile(): Response
     {

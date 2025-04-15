@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contenu UE - WE4A{% endblock %}
+{% block title %}{{ ue.getCodeUE() }} - {{ ue.getNomUE() }}{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('styles/style-contenu-ue.css') }}" />
@@ -8,14 +8,14 @@
 
 {% block body %}
   <main>
-    <h1>WE4A Technologies et programmation WEB</h1>
+    <h1>{{ ue.getCodeUE() }} {{ ue.getNomUE() }}</h1>
     <ul id="navbar-ue">
-      <a href="{{ path('contenu_UE') }}" id="selected"><li><span class="material-icons-sharp">school</span><b>Course</b></li></a>
-      <a href="{{ path('participants_UE') }}"><li><span class="material-icons-sharp">group</span>Participants</li></a>
+      <a href="{{ path('contenu_UE', { 'code_ue': ue.getCodeUE() }) }}" id="selected"><li><span class="material-icons-sharp">school</span><b>Course</b></li></a>
+      <a href="{{ path('participants_UE', { 'code_ue': ue.getCodeUE() }) }}"><li><span class="material-icons-sharp">group</span>Participants</li></a>
     </ul>
 
     {% if is_granted('ROLE_ADMIN') or is_granted ('ROLE_PROF_ADMIN') %}
-    <a href="{{ path('new_post', { 'slug': 'new' }) }}" id="btn-add-post">
+    <a href="{{ path('new_post', { 'slug': 'new' ,'code_ue': ue.getCodeUE() }) }}" id="btn-add-post">
       <span class="material-icons-sharp">add</span>
       <b>ajouter nouveau post</b>
     </a>
@@ -29,7 +29,7 @@
             <span><h3>Information Examen</h3></span>
 
             {% if is_granted('ROLE_PROF') or is_granted ('ROLE_PROF_ADMIN') %}
-            <a href="{{ path('edit_post', { 'id': 3, 'slug': 'edit' }) }}"><span class="material-icons-sharp btn-edit-post">edit_note</span></a>
+            <a href="{{ path('edit_post', { 'id': 3, 'slug': 'edit','code_ue': ue.getCodeUE()}) }}"><span class="material-icons-sharp btn-edit-post">edit_note</span></a>
             <a href="#"><span class="material-icons-sharp btn-edit-post delete-btn" onclick="openModal()">delete</span></a>
             {% endif %}
 
