@@ -33,10 +33,17 @@ class UE
     #[ORM\OneToMany(targetEntity: Post::class, mappedBy: 'codeUE')]
     private Collection $posts;
 
+    /**
+     * @var Collection<int, Actualite>
+     */
+    #[ORM\OneToMany(targetEntity: Actualite::class, mappedBy: 'codeUE')]
+    private Collection $actualites;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->posts = new ArrayCollection();
+        $this->actualites = new ArrayCollection();
     }
 
     public function getCodeUE(): ?string
@@ -126,6 +133,36 @@ class UE
             // set the owning side to null (unless already changed)
             if ($post->getCodeUE() === $this) {
                 $post->setCodeUE(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Actualite>
+     */
+    public function getActualites(): Collection
+    {
+        return $this->actualites;
+    }
+
+    public function addActualite(Actualite $actualite): static
+    {
+        if (!$this->actualites->contains($actualite)) {
+            $this->actualites->add($actualite);
+            $actualite->setCodeUE($this);
+        }
+
+        return $this;
+    }
+
+    public function removeActualite(Actualite $actualite): static
+    {
+        if ($this->actualites->removeElement($actualite)) {
+            // set the owning side to null (unless already changed)
+            if ($actualite->getCodeUE() === $this) {
+                $actualite->setCodeUE(null);
             }
         }
 
