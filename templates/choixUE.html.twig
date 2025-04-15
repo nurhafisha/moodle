@@ -69,9 +69,9 @@
 
   <nav class="course-navigation" aria-label="Course navigation">
     {% for ue in ues %}
-        <a href="{{ path('contenu_UE') }}" class="boxUE" style="background-image: url('{{ asset('Images/box1.jpg') }}');">
+        <a href="{{ path('contenu_UE', { 'code_ue': ue.getCodeUE() }) }}" class="boxUE" style="background-image: url('{{ asset('Images/box1.jpg') }}');">
           <div class="codeUE">
-            <h4>{{ ue.codeUe }}: {{ ue.nomUE }}</h4>
+            <h4>{{ ue.getCodeUE() }}: {{ ue.nomUE }}</h4>
           </div>
         </a>
     {% else %}
