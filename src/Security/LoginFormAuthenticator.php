@@ -29,7 +29,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     public function authenticate(Request $request): Passport
     {
         $email = $request->getPayload()->getString('email');
-
+        
         $request->getSession()->set(SecurityRequestAttributes::LAST_USERNAME, $email);
 
         return new Passport(
@@ -53,6 +53,10 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         //tukar sini kalau ada role lain2
         if (in_array('ROLE_ADMIN', $user->getRoles(), true)) {
             return new RedirectResponse($this->urlGenerator->generate('admin_catalogue'));
+        }
+
+        if (in_array('ROLE_PROF_ADMIN', $user->getRoles(), true)) {
+            return new RedirectResponse($this->urlGenerator->generate('choixUE-etu'));
         }
         //default role
         return new RedirectResponse($this->urlGenerator->generate('choixUE-etu'));

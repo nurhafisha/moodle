@@ -39,9 +39,9 @@ block stylesheets %}
           <tr>
             <th>Profile Image</th>
             <td>
-              {% if user.imageUser %}
+              {% if user.imageData %}
               <img
-                src="{{ asset('uploads/' ~ user.imageUser) }}"
+                src="{{ path('user_image', {'id': app.user.id}) }}"
                 alt="Profile Image"
                 class="profile-image"
               />
