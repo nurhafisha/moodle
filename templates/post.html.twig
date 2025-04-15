@@ -16,8 +16,8 @@
   <main>
     <h1>WE4A Technologies et programmation WEB</h1>
     <ul id="navbar-ue">
-      <a href="{{ path('contenu_UE') }}" id="selected"><li><span class="material-icons-sharp">school</span><b>Course</b></li></a>
-      <a href="{{ path('participants_UE') }}"><li><span class="material-icons-sharp">group</span>Participants</li></a>
+      <a href="{{ path('contenu_UE', { 'code_ue': ue.getCodeUE() }) }}" id="selected"><li><span class="material-icons-sharp">school</span><b>Course</b></li></a>
+      <a href="{{ path('participants_UE', { 'code_ue': ue.getCodeUE() }) }}"><li><span class="material-icons-sharp">group</span>Participants</li></a>
     </ul>
     <div id="div-form">
         <div class="post-tabs">
