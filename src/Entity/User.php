@@ -55,21 +55,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     // Removed duplicate declaration of $telephone
 
     /**
-     * @var Collection<int, Actualite>
-     */
-    #[ORM\ManyToMany(targetEntity: Actualite::class, inversedBy: 'users')]
-    #[ORM\JoinTable(
-        name: 'user_actualite',
-        joinColumns: [
-            new ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')
-        ],
-        inverseJoinColumns: [
-            new ORM\JoinColumn(name: 'actualite_id', referencedColumnName: 'id_actualite')
-        ]
-    )]
-    private Collection $actualites;
-
-    /**
      * @var Collection<int, UE>
      */
     #[ORM\ManyToMany(targetEntity: UE::class, inversedBy: 'users')]
@@ -86,7 +71,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-        $this->actualites = new ArrayCollection();
         $this->liste_ue = new ArrayCollection();
     }
 
@@ -227,32 +211,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setImageMimeType(?string $imageMimeType): self
     {
         $this->imageMimeType = $imageMimeType;
-        return $this;
-    }
-    
-   
-
-    /**
-     * @return Collection<int, Actualite>
-     */
-    public function getActualites(): Collection
-    {
-        return $this->actualites;
-    }
-
-    public function addActualite(Actualite $actualite): static
-    {
-        if (!$this->actualites->contains($actualite)) {
-            $this->actualites->add($actualite);
-        }
-
-        return $this;
-    }
-
-    public function removeActualite(Actualite $actualite): static
-    {
-        $this->actualites->removeElement($actualite);
-
         return $this;
     }
 

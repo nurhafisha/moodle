@@ -18,13 +18,13 @@ class Post
     private ?string $titrePost = null;
 
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 20, nullable: false)]
     private ?string $typePost = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: false)]
     private ?\DateTimeInterface $datetimePost = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 2000, nullable: false)]
     private ?string $descriptionPost = null;
 
     #[ORM\Column(type: Types::BLOB, nullable: true)]
@@ -33,6 +33,9 @@ class Post
     #[ORM\ManyToOne(targetEntity: UE::class, inversedBy: 'posts')]
     #[ORM\JoinColumn(name: 'code_ue', referencedColumnName: 'code_ue', onDelete: 'CASCADE', nullable: false)]
     private ?UE $codeUE = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $typeMessage = null;
 
     public function getId(): ?int
     {
@@ -108,6 +111,18 @@ class Post
     public function setCodeUE(?UE $codeUE): static
     {
         $this->codeUE = $codeUE;
+
+        return $this;
+    }
+
+    public function getTypeMessage(): ?string
+    {
+        return $this->typeMessage;
+    }
+
+    public function setTypeMessage(?string $typeMessage): static
+    {
+        $this->typeMessage = $typeMessage;
 
         return $this;
     }
