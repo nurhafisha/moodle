@@ -21,7 +21,7 @@ class Post
     #[ORM\Column(length: 20, nullable: false)]
     private ?string $typePost = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: false)]
+    #[ORM\Column(name: "datetimePost", type: Types::DATETIME_MUTABLE, nullable: false)]
     private ?\DateTimeInterface $datetimePost = null;
 
     #[ORM\Column(length: 2000, nullable: false)]

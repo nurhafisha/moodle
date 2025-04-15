@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 use App\Repository\UserRepository;
 use App\Repository\UERepository;
+use App\Repository\PostRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class Controller extends AbstractController
@@ -46,13 +47,13 @@ class Controller extends AbstractController
 
     // Contenu d'une UE
     #[Route('/mes-cours/{code_ue}', name: 'contenu_UE')]
-    public function contenu_UE(string $code_ue, UERepository $ueRepository): Response
+    public function contenu_UE(string $code_ue, UERepository $ueRepository, PostRepository $postRepository): Response
     {
         $ue = $ueRepository->find($code_ue);
         if (!$ue) {
             throw $this->createNotFoundException('UE not found for code: ' . $code_ue);
         }
-        $posts = $ue->getPosts();
+        $posts = $postRepository->getPostsSorted($code_ue);
         return $this->render('contenu_ue.html.twig', [
             'ue' => $ue,
             'posts' => $posts,

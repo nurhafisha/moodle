@@ -16,6 +16,21 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
+    /**
+     * Get posts for a given UE (code_ue) sorted by the latest post
+     * @param string $codeUe
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function getPostsSorted(string $codeUe)
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.codeUE = :codeUe')
+            ->setParameter('codeUe', $codeUe)
+            ->orderBy('p.datetimePost', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Post[] Returns an array of Post objects
     //     */
