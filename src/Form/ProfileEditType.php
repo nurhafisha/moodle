@@ -9,7 +9,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormBuilderInterface;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\Validator\Constraints\File;
 
 class ProfileEditType extends AbstractType
@@ -34,14 +33,22 @@ class ProfileEditType extends AbstractType
                 
             ])
 
-            ->add('imageFile', VichImageType::class, [
+            ->add('imageFile', FileType::class, [
                 'label' => 'Changer Image',
                 'required' => false,
-                'allow_delete' => true,
-                'delete_label' => "Supprimer",
-                'download_label' => false,
-                'download_uri' => false,
-                'image_uri' => false,
+                'mapped' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'maxSizeMessage' => 'Le fichier est trop volumineux ({{ size }} {{ suffix }}). La taille maximale autorisée est {{ limit }} {{ suffix }}.',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png', 
+                        ],
+                        'mimeTypesMessage' => 'une image valide est requise (jpeg ou png)',
+                    ])
+
+                    ],
             ]);
 
             }

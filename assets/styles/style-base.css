@@ -169,15 +169,43 @@ nav .li:first-child {
 .navbar-right > li:first-child {
   margin-right: 1rem;
 }
+.profile-image-container {
+  position: relative;
+  display: inline-block;
+  margin-right: 2em; 
+}
 
 #navbar-pic {
   width: 45px;
   height: 45px;
   object-fit: cover;
-  margin-right: 2em;
   border-radius: 50%;
+  display: block; 
 }
 
-#navbar-pic:hover {
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
+
+.profile-image-container:hover .overlay {
+  opacity: 1;
+}
+
+.editIcon {
+  color: white;
+  font-size: 20px;
+  margin: 0; 
+  display: flex; 
+}
+

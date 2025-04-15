@@ -22,29 +22,39 @@ class ProfileController extends AbstractController
         $user = $this->getUser(); 
         
         if (!$user instanceof User) {
-            throw $this->createAccessDeniedException('You must be logged in to access this page.');
+            throw $this->createAccessDeniedException('tu n es pas connecté');
         }
     
         $form = $this->createForm(ProfileEditType::class, $user);
+
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            // Handle password change
+            //changer mot de passe:
             $plainPassword = $form->get('password')->getData();
             if ($plainPassword) {
                 $hashedPassword = $passwordHasher->hashPassword($user, $plainPassword);
                 $user->setPassword($hashedPassword);
             }
 
-    
+            //image:
+            $imageFile = $form->get('imageFile')->getData();
+            if ($imageFile) {
+                $user->setImageMimeType($imageFile->getMimeType());
+                $user->setImageData(file_get_contents($imageFile->getPathname()));
+            }
+
+            //update:
             $entityManager->flush();
-            $this->addFlash('success', 'Profile updated!');
+            $this->addFlash('success', 'Votre profil a été mis à jour avec succès.');
             return $this->redirectToRoute('edit_profile');
         }
     
         // Render the form
         return $this->render('editProfile.html.twig', [
+            'user' => $user,
             'form' => $form->createView()
+            
         ]);
     }
 

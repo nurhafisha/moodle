@@ -12,10 +12,10 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[Vich\Uploadable]
+
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[UniqueEntity(fields: ['email'], message: '
 Il existe déjà un compte avec cet email')]
@@ -52,20 +52,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank(message: 'Prenom ne peut pas être vide.')]
     private ?string $prenomUser = null;
 
-    #[Vich\UploadableField(mapping: 'imageUser', fileNameProperty: 'imageUser')]
-    private ?File $imageFile = null;
-
-    public function __sleep()
-{
-    // Return only the properties that should be serialized
-    return ['id', 'email', 'roles', 'password', 'nomUser', 'prenomUser', 'imageUser', 'updatedAt'];
-}
-
-    #[ORM\Column(nullable: true)]
-    private ?string $imageUser = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $updatedAt = null;
 
     /**
      * @var Collection<int, Actualite>
@@ -208,31 +194,39 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
 
+// for images:
+    #[ORM\Column(type: 'blob', nullable: true)]
+    private $imageData;
 
-    public function setImageFile(?File $imageFile = null): void
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $imageMimeType;
+
+    public function getImageData()
     {
-        $this->imageFile = $imageFile;
-
-        if (null !== $imageFile) {
-            $this->updatedAt = new \DateTimeImmutable();
+        if (is_resource($this->imageData)) {
+            return stream_get_contents($this->imageData);
         }
+        return $this->imageData;
     }
 
-    public function getImageFile(): ?File
+    public function setImageData($imageData): self
     {
-        return $this->imageFile;
-    }
-
-    public function getImageUser(): ?string
-    {
-        return $this->imageUser;
-    }
-
-    public function setImageUser(?string $imageUser): self
-    {
-        $this->imageUser = $imageUser;
+        $this->imageData = $imageData;
         return $this;
     }
+
+    public function getImageMimeType(): ?string
+    {
+        return $this->imageMimeType;
+    }
+
+    public function setImageMimeType(?string $imageMimeType): self
+    {
+        $this->imageMimeType = $imageMimeType;
+        return $this;
+    }
+    
+   
 
     /**
      * @return Collection<int, Actualite>

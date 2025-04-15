@@ -9,22 +9,19 @@
   <div>
     <div class="profile-header">
       <div class="picture-container">
-        <div class="picture">
-          {% if app.user.imageUser %}
-          <img
-            src="{{ asset('uploads/images/' ~ app.user.imageUser) }}"
-            alt="Current profile picture"
-            class="profile-image"
-          />
 
-          {% else %}
+        <div class="picture">
+
+        
           <img
-            src="/images/default-profile.png"
-            alt="Default profile picture"
-            class="profile-image"
+            src="{{ path('user_image', {'id': app.user.id})}}"
+            alt="Current profile picture"
+            class="profile-pic"  
           />
-          {% endif %}
-        </div>
+        </div> 
+
+
+
         <div class="name">
           <h1>{{ app.user.nomUser }} {{ app.user.prenomUser }}</h1>
         </div>

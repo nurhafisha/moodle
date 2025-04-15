@@ -41,12 +41,12 @@
           </li>
         </a>
 
-        <li>
+        <!-- <li>
           <a href="#"
             ><span class="material-icons-sharp">dashboard</span>Tableau de
             bord</a
           >
-        </li>
+        </li> -->
 
         {% if not is_granted('ROLE_ADMIN') %}
         <li>
@@ -78,12 +78,13 @@
           </a>
         </li>
 
-        <li class="hideOnMobile">
+        <!-- <li class="hideOnMobile">
           <a href="#"
             ><span class="material-icons-sharp">dashboard</span>Tableau de
             bord</a
           >
-        </li>
+        </li> -->
+
         {% if not is_granted('ROLE_ADMIN') %}
         <li class="hideOnMobile">
           <a href="{{ path('choixUE-etu') }}"
@@ -117,13 +118,17 @@
         </li>
         <li>
           <a href="{{ path('edit_profile') }}">
-            {% if app.user and app.user.imageUser %}
+            <div class="profile-image-container">
+            {% if app.user and app.user.imageData %}
             <img
-              src="{{ asset('uploads/images/' ~ app.user.imageUser) }}"
+              src="{{ path('user_image', {'id': app.user.id})}}"
               id="navbar-pic"
               alt="Profile picture"
               class="profile-pic"
             />
+            <div class="overlay">
+              <span class="material-icons-sharp editIcon">edit</span> 
+            </div>
             {% else %}
             <img
               src="/images/default-profile.png"
@@ -132,6 +137,10 @@
               class="profile-pic"
             />
             {% endif %}
+            <div class="overlay">
+              <span class="material-icons-sharp editIcon">edit</span>
+            </div>
+            </div>
           </a>
         </li>
       </ul>
