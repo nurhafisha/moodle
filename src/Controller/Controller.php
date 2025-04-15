@@ -10,7 +10,8 @@ use App\Form\UserType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 
-
+use App\Repository\UserRepository;
+use Symfony\Component\Security\Core\Security;
 
 class Controller extends AbstractController
 {
@@ -29,17 +30,18 @@ class Controller extends AbstractController
     }
 
     // Mes Cours
-    // #[Route('/mes-cours', name: 'choixUE')]
-    // public function choixUE(UserRepository $userRepository, Security $security): Response
-    // {
-    //     $user = $security->getUser();
-    //     $ues = $user->getListeUe(); // returns Collection<UE>
-    //     return $this->render('choixUE.html.twig');
-    // }
     #[Route('/mes-cours', name: 'choixUE')]
-    public function choixUE(): Response
+    public function choixUE(UserRepository $userRepository): Response
     {
-        return $this->render('choixUE.html.twig');
+        $user = $this->getUser();
+        if (!$user) {
+            throw $this->createAccessDeniedException('User not logged in.');
+        }
+        $user = $userRepository->find($user->getId());
+        $ues = $user->getListeUe(); // returns Collection<UE>
+        return $this->render('choixUE.html.twig', [
+            'ues' => $ues,
+        ]);
     }
 
     // Contenu d'une UE
