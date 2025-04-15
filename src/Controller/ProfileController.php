@@ -44,6 +44,10 @@ class ProfileController extends AbstractController
                 $user->setImageData(file_get_contents($imageFile->getPathname()));
             }
 
+            if($telephone = $form->get('telephone')->getData()){
+                $user->setTelephone($telephone);
+            }
+
             //update:
             $entityManager->flush();
             $this->addFlash('success', 'Votre profil a été mis à jour avec succès.');

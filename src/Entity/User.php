@@ -52,6 +52,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank(message: 'Prenom ne peut pas être vide.')]
     private ?string $prenomUser = null;
 
+    // Removed duplicate declaration of $telephone
 
     /**
      * @var Collection<int, Actualite>
@@ -201,6 +202,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $imageMimeType;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $telephone = null;
+
     public function getImageData()
     {
         if (is_resource($this->imageData)) {
@@ -272,6 +276,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeListeUe(UE $listeUe): static
     {
         $this->liste_ue->removeElement($listeUe);
+
+        return $this;
+    }
+
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(?string $telephone): static
+    {
+        $this->telephone = $telephone;
 
         return $this;
     }

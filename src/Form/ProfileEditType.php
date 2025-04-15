@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use Dom\Text;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -16,6 +17,7 @@ class ProfileEditType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+        
             ->add('nomUser', TextType::class, [
                 'label'      => 'Nom',
                 'required'   => false,
@@ -26,8 +28,16 @@ class ProfileEditType extends AbstractType
                 'required'   => false,
                 'empty_data' => '',
             ])
+
             ->add('password', PasswordType::class, [
                 'label' => 'Mot de passe',
+                'mapped' => false,
+                'required' => false,
+                
+            ])
+
+            ->add('telephone', TextType::class, [
+                'label' => 'Telephone',
                 'mapped' => false,
                 'required' => false,
                 
