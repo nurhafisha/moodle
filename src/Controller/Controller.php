@@ -52,8 +52,10 @@ class Controller extends AbstractController
         if (!$ue) {
             throw $this->createNotFoundException('UE not found for code: ' . $code_ue);
         }
+        $posts = $ue->getPosts();
         return $this->render('contenu_ue.html.twig', [
             'ue' => $ue,
+            'posts' => $posts,
         ]);
     }
 

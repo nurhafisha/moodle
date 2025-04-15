@@ -41,3 +41,23 @@ window.onclick = function(event) {
       closeModal();
   }
 };
+
+document.addEventListener('DOMContentLoaded', function () {
+    const posts = document.querySelectorAll('.post');
+
+    posts.forEach(post => {
+        const desc = post.querySelector('.description');
+        const btn = post.querySelector('.read-more-btn');
+        const textLength = desc.textContent.trim().length;
+
+        // Hide the button if the text is short (e.g., less than 300 characters)
+        if (textLength < 300) {
+            btn.style.display = 'none';
+        }
+
+        btn.addEventListener('click', function () {
+            desc.classList.toggle('expanded');
+            btn.textContent = desc.classList.contains('expanded') ? 'Lire moins' : 'Lire plus';
+        });
+    });
+});

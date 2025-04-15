@@ -43,17 +43,26 @@ main {
   margin-top: 2vh;
   padding: 5px 20px;
   border-radius: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
 #btn-add-post:hover {
   cursor: pointer;
   background-color: grey;
   color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
 .post {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
   list-style-type: none;
   margin: 4vh 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
 .post-title-text {
@@ -252,4 +261,31 @@ main {
   border: none;
   cursor: pointer;
   border-radius: 5px;
+}
+
+.description {
+  max-height: 6em;
+  overflow: hidden;
+  position: relative;
+  line-height: 1.2em;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.description.expanded {
+  max-height: 1000px;
+}
+
+.read-more-btn {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1em;
+  text-decoration: underline;
+}
+
+.read-more-btn:hover {
+  text-decoration: none;
+  color: #0056b3;
 }

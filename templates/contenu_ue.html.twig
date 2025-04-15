@@ -22,65 +22,24 @@
     {% endif %}
     
     <ul id="posts">
+      {% for post in posts %}
       <li class="post">
         <div class="post-title">
           <div class="post-title-text">
-            <span class="material-icons-sharp">mail</span>
-            <span><h3>Information Examen</h3></span>
-
-            {% if is_granted('ROLE_PROF') or is_granted ('ROLE_PROF_ADMIN') %}
-            <a href="{{ path('edit_post', { 'id': 3, 'slug': 'edit','code_ue': ue.getCodeUE()}) }}"><span class="material-icons-sharp btn-edit-post">edit_note</span></a>
-            <a href="#"><span class="material-icons-sharp btn-edit-post delete-btn" onclick="openModal()">delete</span></a>
+          
+            <span class="material-icons-sharp">
+            {% if post.getTypePost() == 'fichier' %}
+            description
+            {% elseif post.getTypeMessage() == 'important' %}
+            priority_high
+            {% elseif post.getTypeMessage() == 'information' %}
+            mail
+            {% elseif post.getTypeMessage() == 'optionnel' %}
+            recommend
             {% endif %}
+            </span>
 
-          </div>
-          <div class="post-time">
-            <p>23/3/2025 17:57</p>
-          </div>
-        </div>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
-          enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-          nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
-          in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
-          nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
-          sunt in culpa qui officia deserunt mollit anim id est laborum
-        </p>
-      </li>
-
-      <li class="post">
-        <div class="post-title">
-          <div class="post-title-text">
-            <span class="material-icons-sharp">priority_high</span>
-            <span><h3>Rappel Rendu</h3></span>
-
-            {% if is_granted('ROLE_PROF') or is_granted ('ROLE_PROF_ADMIN')%}
-            <a href="{{ path('edit_post', { 'id': 2, 'slug': 'edit', 'code_ue': ue.getCodeUE() }) }}"><span class="material-icons-sharp btn-edit-post">edit_note</span></a>
-            <a href="#"><span class="material-icons-sharp btn-edit-post delete-btn" onclick="openModal()">delete</span></a>
-            {% endif %}
-
-          </div>
-          <div class="post-time">
-            <p>23/3/2025 17:57</p>
-          </div>
-        </div>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
-          enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-          nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
-          in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
-          nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
-          sunt in culpa qui officia deserunt mollit anim id est laborum
-        </p>
-      </li>
-
-      <li class="post">
-        <div class="post-title">
-          <div class="post-title-text">
-            <span class="material-icons-sharp">description</span>
-            <span><h3>Diaporama Cours 1</h3></span>
+            <span><h3>{{ post.getTitrePost() }}</h3></span>
 
             {% if is_granted('ROLE_PROF') or is_granted ('ROLE_PROF_ADMIN')%}
             <a href="{{ path('edit_post', { 'id': 1, 'slug': 'edit', 'code_ue': ue.getCodeUE() }) }}"><span class="material-icons-sharp btn-edit-post">edit_note</span></a>
@@ -89,19 +48,16 @@
             
           </div>
           <div class="post-time">
-            <p>23/3/2025 17:57</p>
+            <p>{{ post.getDatetimePost()|date('d/m/Y H:i') }}</p>
           </div>
         </div>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
-          enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-          nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
-          in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
-          nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
-          sunt in culpa qui officia deserunt mollit anim id est laborum
-        </p>
+        <p class="description">{{ post.getDescriptionPost()|nl2br|raw }}</p>
+        <button class="read-more-btn">Lire plus</button>
       </li>
+      {% else %}
+        <li>Aucun post pour cette UE.</li>
+      {% endfor %}
+
     </ul>
 
     <div class="modal" id="deleteModal">
