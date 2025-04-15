@@ -56,7 +56,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         }
 
         if (in_array('ROLE_PROF_ADMIN', $user->getRoles(), true)) {
-            return new RedirectResponse($this->urlGenerator->generate('choixUE-etu'));
+            return new RedirectResponse($this->urlGenerator->generate('choixUE'));
         }
         //default role
         return new RedirectResponse($this->urlGenerator->generate('choixUE'));
