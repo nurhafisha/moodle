@@ -29,6 +29,13 @@ class Controller extends AbstractController
     }
 
     // Mes Cours
+    // #[Route('/mes-cours', name: 'choixUE')]
+    // public function choixUE(UserRepository $userRepository, Security $security): Response
+    // {
+    //     $user = $security->getUser();
+    //     $ues = $user->getListeUe(); // returns Collection<UE>
+    //     return $this->render('choixUE.html.twig');
+    // }
     #[Route('/mes-cours', name: 'choixUE')]
     public function choixUE(): Response
     {

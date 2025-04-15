@@ -55,7 +55,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($this->urlGenerator->generate('admin_catalogue'));
         }
         //default role
-        return new RedirectResponse($this->urlGenerator->generate('choixUE-etu'));
+        return new RedirectResponse($this->urlGenerator->generate('choixUE'));
 
 
 
