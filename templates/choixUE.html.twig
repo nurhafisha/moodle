@@ -5,79 +5,76 @@
 {% endblock %}
 
 {% block body %}
-
-
-
 <div class="main-container">
-  <hr class="divider">
+    <hr class="divider">
 
-  <div class="section">
-    <h1>Fils d'actualité</h1>
-  <div>
+    <div class="section">
+        <h1>Fils d'actualité</h1>
+        <div>
+            <label for="notiCount">Afficher:</label>
+            <select id="notiCount">
+                <option value="2">2</option>
+                <option value="4">4</option>
+                <option value="all">Tous</option>
+            </select>
+        </div>
+    </div>
 
-  <label for ="notiCount">Afficher:</label>
+    <hr class="divider">
 
-  <select id="notiCount">
-    <option value="3">3</option>
-    <option value="6">6</option>
-    <option value="all">Tous</option>
-  </select>
-
-  </div>
-
-</div>
-
-<hr class="divider">
-  <nav class="noti-navigation" aria-label="Notification navigation">
-    <a href="#" class="boxnoti">
-      <div class="messagenoti">
-        <h2>WE4A</h2>
-        <h3>M LITZLER a partagé un nouveau fichier</h3>
-      </div>
-    </a>
-
-    <a href="#" class="boxnoti">
-      <div class="messagenoti">
-        <h2>AP4A</h2>
-        <h3>M CREPUT a envoyé un nouveau message</h3>
-      </div>
-    </a>
-
-    <a href="#" class="boxnoti">
-      <div class="messagenoti">
-        <h2>RS40</h2>
-        <h3>M BOUYEKHF a partagé un nouveau fichier</h3>
-      </div>
-    </a> 
-
-  </nav>
-  <hr class="divider">
-
-  <div class="section">
-    <h1>Mes cours</h1>
-      <div>
-  <label for ="notiCount">Afficher:</label>
-  <select id="notiCount">
-    <option value="3">3</option>
-    <option value="6">6</option>
-    <option value="all">Tous</option>
-  </select>
-      </div>
-  </div>
-
-  <hr class="divider">
-
-  <nav class="course-navigation" aria-label="Course navigation">
-    {% for ue in ues %}
-        <a href="{{ path('contenu_UE', { 'code_ue': ue.getCodeUE() }) }}" class="boxUE" style="background-image: url('{{ asset('Images/box1.jpg') }}');">
-          <div class="codeUE">
-            <h4>{{ ue.getCodeUE() }}: {{ ue.nomUE }}</h4>
-          </div>
+    <nav class="noti-navigation" aria-label="Notification navigation">
+        <a href="#" class="boxnoti">
+            <div class="messagenoti">
+                <h2>WE4A</h2>
+                <h3>M LITZLER a partagé un nouveau fichier</h3>
+            </div>
         </a>
-    {% else %}
-        <li>Vous n'êtes inscrit à aucune UE.</li>
-    {% endfor %}
-  </nav>
-</div>
 
+        <a href="#" class="boxnoti">
+            <div class="messagenoti">
+                <h2>AP4A</h2>
+                <h3>M CREPUT a envoyé un nouveau message</h3>
+            </div>
+        </a>
+
+        <a href="#" class="boxnoti">
+            <div class="messagenoti">
+                <h2>RS40</h2>
+                <h3>M BOUYEKHF a partagé un nouveau fichier</h3>
+            </div>
+        </a>
+    </nav>
+
+    <hr class="divider">
+
+    <div class="section">
+        <h1>Mes cours</h1>
+        <div>
+            <label for="courseCount">Afficher:</label>
+            <select id="courseCount">
+                <option value="2">2</option>
+                <option value="4">4</option>
+                <option value="all">Tous</option>
+            </select>
+        </div>
+    </div>
+
+    <hr class="divider">
+
+    <nav class="course-navigation" aria-label="Course navigation">
+        {% for ue in ues %}
+            <a href="{{ path('contenu_UE', { 'code_ue': ue.getCodeUE() }) }}" class="boxUE" style="background-image: url('{{ asset('Images/box1.jpg') }}');">
+                <div class="codeUE">
+                    <h4>{{ ue.getCodeUE() }}: {{ ue.nomUE }}</h4>
+                </div>
+            </a>
+        {% else %}
+            <li>Vous n'êtes inscrit à aucune UE.</li>
+        {% endfor %}
+    </nav>
+</div>
+{% endblock %}
+
+{% block script %}
+    <script src="{{ asset('choixUE.js') }}"></script>
 {% endblock %}
