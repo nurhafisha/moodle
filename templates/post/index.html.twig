@@ -8,16 +8,16 @@
 
 {% block body %}
   <main>
-    
+    <h1>{{ ue.getCodeUE() }} {{ ue.getNomUE() }}</h1>
     <ul id="navbar-ue">
       <a href="{{ path('contenu_UE', { 'code_ue': ue.getCodeUE() }) }}" id="selected"><li><span class="material-icons-sharp">school</span><b>Course</b></li></a>
       <a href="{{ path('participants_UE', { 'code_ue': ue.getCodeUE() }) }}"><li><span class="material-icons-sharp">group</span>Participants</li></a>
     </ul>
 
     {% if is_granted('ROLE_PROF') or is_granted ('ROLE_PROF_ADMIN') %}
-    <a href="{{ path('new_post', {'code_ue': ue.getCodeUE() }) }}" id="btn-add-post">
+    <a href="{{ path('new_post', { 'slug': 'new' ,'code_ue': ue.getCodeUE() }) }}" id="btn-add-post">
       <span class="material-icons-sharp">add</span>
-      <b>ajouter nouveau post</b>
+      <b>AJOUTER POST</b>
     </a>
     {% endif %}
     

@@ -1,23 +1,24 @@
-function openTab(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-  
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
-  
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-  
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
+function toggleFormView(tabName) {
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  if (tabName === 'msgtxt') {
+      document.getElementById('tab-msgtxt').className += " active";
+      document.getElementById('post_depotPost').style.display = "none";
+      document.getElementById('post_typeMessage').style.display = "flex";
+  } else if (tabName === 'partagefic') {
+      document.getElementById('tab-partagefic').className += " active";
+      document.getElementById('post_depotPost').style.display = "flex";
+      document.getElementById('post_typeMessage').style.display = "none";
+  }
 }
+
+window.onload = function() {
+  toggleFormView('msgtxt');
+};
 
 function openModal() {
   document.getElementById('deleteModal').style.display = 'block';
@@ -43,21 +44,23 @@ window.onclick = function(event) {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-    const posts = document.querySelectorAll('.post');
+  const posts = document.querySelectorAll('.post');
 
-    posts.forEach(post => {
-        const desc = post.querySelector('.description');
-        const btn = post.querySelector('.read-more-btn');
-        const textLength = desc.textContent.trim().length;
+  posts.forEach(post => {
+      const desc = post.querySelector('.description');
+      const btn = post.querySelector('.read-more-btn');
 
-        // Hide the button if the text is short (e.g., less than 300 characters)
-        if (textLength < 300) {
-            btn.style.display = 'none';
-        }
+      // Count number of newlines
+      const lineCount = desc.textContent.split('\n').length;
 
-        btn.addEventListener('click', function () {
-            desc.classList.toggle('expanded');
-            btn.textContent = desc.classList.contains('expanded') ? 'Lire moins' : 'Lire plus';
-        });
-    });
+      // Hide the button if there are fewer than, say, 4 lines
+      if (lineCount < 6) {
+          btn.style.display = 'none';
+      }
+
+      btn.addEventListener('click', function () {
+          desc.classList.toggle('expanded');
+          btn.textContent = desc.classList.contains('expanded') ? 'Lire moins' : 'Lire plus';
+      });
+  });
 });

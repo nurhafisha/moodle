@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\PostRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use DateTime;
+use DateTimeInterface;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
