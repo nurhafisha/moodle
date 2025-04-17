@@ -30,8 +30,7 @@ a {
 
 .title {
   /* background-color: #4caf50; */
-  margin-top: 0;
-  margin-bottom: 1em;
+  margin: 1em auto;
   text-align: center;
 }
 
@@ -40,7 +39,7 @@ a {
   text-align: center;
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin: 1em auto;
   color: #333;
 }
 
@@ -89,22 +88,22 @@ a {
 
 .styled-table th:nth-child(1),
 .styled-table td:nth-child(1) {
-  width: 50px; /* ID column */
+  width: 20px; /* ID column */
 }
 
 .styled-table th:nth-child(2),
 .styled-table td:nth-child(2) {
-  width: 150px; /* Nom column */
+  width: 80px; /* Nom column */
 }
 
 .styled-table th:nth-child(3),
 .styled-table td:nth-child(3) {
-  width: 150px; /* Prénom column */
+  width: 100px; /* Prénom column */
 }
 
 .styled-table th:nth-child(4),
 .styled-table td:nth-child(4) {
-  width: 200px; /* Email column */
+  width: 150px; /* Email column */
 }
 
 .styled-table th:nth-child(5),
@@ -115,6 +114,11 @@ a {
 .styled-table th:nth-child(6),
 .styled-table td:nth-child(6) {
   width: 150px; /* Action column */
+}
+
+.tab-ue th:nth-child(1),
+.tab-ue td:nth-child(1) {
+  width: 20px; /* Code UE column */
 }
 
 .content {
@@ -197,7 +201,7 @@ a {
   background-color: #0d6efd;
 }
 .btn-mod {
-  background-color: #ffc107;
+  background-color: #ffa703;
 }
 .btn-update {
   background-color: #198754;

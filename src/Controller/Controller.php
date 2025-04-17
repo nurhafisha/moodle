@@ -102,4 +102,10 @@ class Controller extends AbstractController
     {
         return $this->render('editProfile.html.twig');
     }
+
+    #[Route('/test', name: 'test_page')]
+    public function test(): Response
+    {
+        return $this->render('test.html.twig');
+    }
 }

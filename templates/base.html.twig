@@ -54,9 +54,8 @@
             ><span class="material-icons-sharp">school</span>Mes Cours</a
           >
         </li>
-        {% endif %}
-        
-        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_PROF_ADMIN')  %}
+        {% endif %} {% if is_granted('ROLE_ADMIN') or
+        is_granted('ROLE_PROF_ADMIN') %}
         <li>
           <a href="{{ path('admin_catalogue') }}">
             <span class="material-icons-sharp">admin_panel_settings </span
@@ -91,9 +90,8 @@
             ><span class="material-icons-sharp">school</span>Mes Cours</a
           >
         </li>
-        {% endif %} 
-        
-        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_PROF_ADMIN') %}
+        {% endif %} {% if is_granted('ROLE_ADMIN') or
+        is_granted('ROLE_PROF_ADMIN') %}
 
         <li class="hideOnMobile">
           <a href="{{ path('admin_catalogue') }}">
