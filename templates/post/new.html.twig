@@ -39,7 +39,8 @@
 
             <div class="form-group" id="post_typeMessage">
                 <label for="post_typeMessageSelect" class="required">Type</label>
-                <select id="post_typeMessageSelect" name="post[typeMessage]">
+                <select id="post_typeMessageSelect" name="post[typeMessage]" required>
+                    <option value="" selected disabled>-- Choisir un type --</option>
                     <option value="important">Important</option>
                     <option value="information">Information</option>
                     <option value="optionnel">Optionnel</option>
@@ -52,8 +53,8 @@
             </div>
 
             <div class="form-group" id="post_depotPost" style="display: none;">
-                <label for="post_depotPostInput"  class="required">Fichier</label>
-                <input type="file" id="post_depotPostInput" name="post[depotPost]">
+                <label for="post_depotPostInput">Fichier</label>
+                <input type="file" id="post_depotPostInput" name="post[depotPost]" accept=".zip">
             </div>
 
             <input type="hidden" id="post_codeUE" name="post[codeUE]" value="{{ ue.getCodeUE() }}">
