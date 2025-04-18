@@ -9,13 +9,15 @@ function toggleFormView(tabName) {
       document.getElementById('tab-msgtxt').className += " active";
       document.getElementById('post_depotPost').style.display = "none";
       document.getElementById('post_typeMessage').style.display = "flex";
-      document.getElementById('post_typeMessageSelect').removeAttribute('required');
+      document.getElementById('post_depotPostInput').removeAttribute('required');
+      document.getElementById('post_typeMessageSelect').setAttribute('required', 'required');
       document.getElementById('post_typePost').value = 'message';
 
   } else if (tabName === 'partagefic') {
       document.getElementById('tab-partagefic').className += " active";
       document.getElementById('post_depotPost').style.display = "flex";
       document.getElementById('post_typeMessage').style.display = "none";
+      document.getElementById('post_typeMessageSelect').removeAttribute('required');
       document.getElementById('post_depotPostInput').setAttribute('required', 'required');
       document.getElementById('post_typePost').value = 'fichier';
   }
@@ -27,15 +29,20 @@ window.onload = function() {
 
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('div-form');
-  const fileInput = document.getElementById('post_depotPost');
+  const fileInput = document.getElementById('post_depotPostInput');
   const typePostInput = document.getElementById('post_typePost');
   const typeMessageSelect = document.getElementById('post_typeMessageSelect');
 
   if (form && fileInput && typePostInput) {
       form.addEventListener('submit', function () {
-          if (fileInput.files.length > 0) {
-              typePostInput.value = 'fichier';
+        if (typePostInput.value === 'message') {
+          const fileWrapper = document.getElementById('post_depotPost');
+          if (fileInput) {
+            fileWrapper.removeChild(fileInput);
           }
+        } else if (typePostInput.value === 'fichier') {
+          typeMessageSelect.value = ''; // Vide la sélection du type de message
+        }
       });
   }
 });

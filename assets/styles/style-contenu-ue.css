@@ -218,6 +218,12 @@ main {
   border-radius: 5px;
 }
 
+/* Titre page creation post */
+#titre-new-post{
+  text-align: center;
+  margin: 2em auto;
+}
+
 /* Modal Background */
 .modal {
   display: none;
