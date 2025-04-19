@@ -209,13 +209,17 @@ main {
   font-weight: bold;
 }
 
-.delete-btn {
+.delete-button {
   background-color: maroon;
   color: #d9d9d9;
   padding: 3px;
   margin-bottom: 2px;
   cursor: pointer;
   border-radius: 5px;
+}
+
+#delete-button{
+  margin: 0;
 }
 
 /* Titre page creation post */

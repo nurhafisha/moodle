@@ -1,3 +1,10 @@
+let pendingDelete = {
+  postId: null,
+  codeUe: null,
+  token: null,
+  button: null
+};
+
 function toggleFormView(tabName) {
   // Get all elements with class="tablinks" and remove the class "active"
   tablinks = document.getElementsByClassName("tablinks");
@@ -58,8 +65,40 @@ function closeModal() {
 
 // Confirm Delete
 function confirmDelete() {
-  alert("Item deleted!");
-  closeModal();
+  const { postId, codeUe, token } = pendingDelete;
+
+  if (!postId || !codeUe || !token) {
+      alert('Missing data');
+      closeModal();
+      return;
+  }
+
+  fetch(`/mes-cours/${codeUe}/delete/${postId}`, {
+      method: 'DELETE',
+      headers: {
+          'X-CSRF-TOKEN': token
+      }
+  })
+  .then(response => {
+    if (response.ok) {
+        return response.json();
+    } else {
+        return response.text().then(text => {
+            throw new Error(`Error: ${text}`);
+        });
+    }
+  })
+  .then(data => {
+      console.log('Supprimer Echoue', data);
+      document.getElementById(`post-${postId}`).remove();
+  })
+  .catch(error => {
+      console.error('Supprime Echoue:', error.message);
+      alert('Supprime Echoue: ' + error.message);
+  })
+  .finally(() => {
+      closeModal();
+  });
 }
 
 // Close modal when clicking outside the modal-content
@@ -80,7 +119,6 @@ document.addEventListener('DOMContentLoaded', function () {
       // Count number of newlines
       const lineCount = desc.textContent.split('\n').length;
 
-      // Hide the button if there are fewer than, say, 4 lines
       if (lineCount < 6) {
           btn.style.display = 'none';
       }
@@ -89,5 +127,20 @@ document.addEventListener('DOMContentLoaded', function () {
           desc.classList.toggle('expanded');
           btn.textContent = desc.classList.contains('expanded') ? 'Lire moins' : 'Lire plus';
       });
+  });
+});
+
+document.querySelectorAll('.delete-button').forEach(button => {
+  button.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      pendingDelete = {
+          postId: button.dataset.id,
+          codeUe: button.dataset.code,
+          token: button.dataset.token,
+          button: button
+      };
+
+      openModal();
   });
 });

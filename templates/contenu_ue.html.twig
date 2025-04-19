@@ -47,7 +47,7 @@
 
             {% if is_granted('ROLE_PROF') or is_granted ('ROLE_PROF_ADMIN')%}
             <a href="{{ path('edit_post', { 'id': 1, 'slug': 'edit', 'code_ue': ue.getCodeUE() }) }}"><span class="material-icons-sharp btn-edit-post">edit_note</span></a>
-            <a href="#"><span class="material-icons-sharp btn-edit-post delete-btn" onclick="openModal()">delete</span></a>
+            <a href="#"><span class="material-icons-sharp btn-edit-post delete-button" onclick="openModal()">delete</span></a>
             {% endif %}
             
           </div>

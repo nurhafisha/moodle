@@ -23,7 +23,7 @@
     
     <ul id="posts">
       {% for post in posts %}
-      <li class="post">
+      <li class="post" id="post-{{ post.id }}">
         <div class="post-title">
           <div class="post-title-text">
           
@@ -56,7 +56,9 @@
 
             {% if is_granted('ROLE_PROF') or is_granted ('ROLE_PROF_ADMIN')%}
             <a href="{{ path('edit_post', { 'id': 1, 'slug': 'edit', 'code_ue': ue.getCodeUE() }) }}"><span class="material-icons-sharp btn-edit-post">edit_note</span></a>
-            <a href="#"><span class="material-icons-sharp btn-edit-post delete-btn" onclick="openModal()">delete</span></a>
+            <button  class="delete-button" data-id="{{ post.id }}" data-code="{{ ue.getCodeUE() }}" data-token="{{ csrf_token('delete-post') }}">
+              <span class="material-icons-sharp" id="delete-button">delete</span>
+            </button>
             {% endif %}
             
           </div>

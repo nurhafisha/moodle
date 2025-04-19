@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\UERepository;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 #[Route('/mes-cours/{code_ue}')]
 final class PostController extends AbstractController
@@ -138,14 +139,23 @@ final class PostController extends AbstractController
     }
 
     // delete post
-    #[Route('/{idPost}', name: 'app_post_delete', methods: ['POST'])]
-    public function delete(Request $request, Post $post, EntityManagerInterface $entityManager): Response
+    #[Route('/delete/{idPost}', name: 'post_delete', methods: ['DELETE'])]
+    public function delete(string $code_ue, int $idPost, EntityManagerInterface $em, Request $request): JsonResponse
     {
-        if ($this->isCsrfTokenValid('delete'.$post->getIdPost(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($post);
-            $entityManager->flush();
+        $post = $em->getRepository(Post::class)->find($idPost);
+
+        if (!$post) {
+            return new JsonResponse(['error' => 'Post not found'], 404);
         }
 
-        return $this->redirectToRoute('app_post_index', [], Response::HTTP_SEE_OTHER);
+        $submittedToken = $request->headers->get('X-CSRF-TOKEN');
+        if (!$this->isCsrfTokenValid('delete-post', $submittedToken)) {
+            return new JsonResponse(['error' => 'Invalid CSRF token'], 403);
+        }
+
+        $em->remove($post);
+        $em->flush();
+
+        return new JsonResponse(['success' => true]);
     }
 }
