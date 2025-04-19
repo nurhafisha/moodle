@@ -15,7 +15,7 @@
     </ul>
 
     {% if is_granted('ROLE_PROF') or is_granted ('ROLE_PROF_ADMIN') %}
-    <a href="{{ path('new_post', { 'slug': 'new' ,'code_ue': ue.getCodeUE() }) }}" id="btn-add-post">
+    <a href="{{ path('new_post', { 'code_ue': ue.getCodeUE() }) }}" id="btn-add-post">
       <span class="material-icons-sharp">add</span>
       <b>AJOUTER POST</b>
     </a>
@@ -39,7 +39,10 @@
             {% endif %}
             </span>
 
-            {% if post.getTypePost() == 'fichier' %}<a href="{{ path('post_download', {'post_id': post.getId()}) }}">{% endif %}
+            {% if post.getTypePost() == 'fichier' %}
+            <a href="{{ path('post_download', {'code_ue': ue.getCodeUE(), 'idPost': post.getId()}) }}"/a>
+            {% endif %}
+            
 
             <span><h3>{{ post.getTitrePost() }}</h3></span>
 

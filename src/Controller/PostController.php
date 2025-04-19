@@ -58,14 +58,30 @@ final class PostController extends AbstractController
         ]);
     }
 
-    // takde
-    // // #[Route('/{idPost}', name: 'app_post_show', methods: ['GET'])]
-    // // public function show(Post $post): Response
-    // // {
-    // //     return $this->render('post/show.html.twig', [
-    // //         'post' => $post,
-    // //     ]);
-    // // }
+    // telechargement fichier depot
+    #[Route('/download/{idPost}', name: 'post_download')]
+    public function download(int $idPost, PostRepository $postRepository): Response
+    {
+        $post = $postRepository->find($idPost);
+        if (!$post || !$post->getDepotPost()) {
+            throw $this->createNotFoundException('Aucun fichier trouvé.');
+        }
+
+        $fileBlob = $post->getDepotPost();
+        // Si le BLOB est de type resource (par exemple en SQLite)
+        if (is_resource($fileBlob)) {
+            $fileBlob = stream_get_contents($fileBlob);
+        }
+
+        return new Response(
+            $fileBlob,
+            200,
+            [
+                'Content-Type' => 'application/octet-stream',
+                'Content-Disposition' => 'attachment; filename="fichier.zip"',
+            ]
+        );
+    }
 
     // edit post
     #[Route('/{idPost}/edit', name: 'app_post_edit', methods: ['GET', 'POST'])]
