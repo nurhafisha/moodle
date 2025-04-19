@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Post;
 use App\Entity\UE;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,7 +21,10 @@ class PostType extends AbstractType
                 'widget' => 'single_text',
             ])
             ->add('descriptionPost')
-            ->add('depotPost')
+            ->add('depotPostBlob', FileType::class, [
+                'mapped' => false,
+                'required' => false,
+            ])
             ->add('typeMessage')
             ->add('codeUE', EntityType::class, [
                 'class' => UE::class,

@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\UERepository;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 #[Route('/mes-cours/{code_ue}')]
 final class PostController extends AbstractController
@@ -40,6 +41,13 @@ final class PostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $uploadedFile = $request->files->get('post')['depotPostBlob'] ?? null;
+
+            if ($uploadedFile) {
+                $post->setDepotPostName($uploadedFile->getClientOriginalName());
+                $post->setDepotPostBlob(file_get_contents($uploadedFile->getPathname()));
+            }
+
             $post->setDatetimePost(new \DateTime());
             $entityManager->persist($post);
             $entityManager->flush();
@@ -63,12 +71,15 @@ final class PostController extends AbstractController
     public function download(int $idPost, PostRepository $postRepository): Response
     {
         $post = $postRepository->find($idPost);
-        if (!$post || !$post->getDepotPost()) {
+
+        if (!$post || !$post->getDepotPostBlob()) {
             throw $this->createNotFoundException('Aucun fichier trouvé.');
         }
 
-        $fileBlob = $post->getDepotPost();
-        // Si le BLOB est de type resource (par exemple en SQLite)
+        $fileBlob = $post->getDepotPostBlob();
+        $fileName = $post->getDepotPostName() ?? 'fichier.zip';
+
+        // Handle resource type (e.g., SQLite blob)
         if (is_resource($fileBlob)) {
             $fileBlob = stream_get_contents($fileBlob);
         }
@@ -78,7 +89,7 @@ final class PostController extends AbstractController
             200,
             [
                 'Content-Type' => 'application/octet-stream',
-                'Content-Disposition' => 'attachment; filename="fichier.zip"',
+                'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
             ]
         );
     }

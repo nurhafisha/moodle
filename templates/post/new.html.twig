@@ -14,7 +14,7 @@
       <a href="{{ path('participants_UE', { 'code_ue': ue.getCodeUE() }) }}"><li><span class="material-icons-sharp">group</span>Participants</li></a>
     </ul>
     <h2 id="titre-new-post"><b>Créer Nouveau Post</b></h2>
-    <form name="post" method="post" id="div-form">
+    <form action="{{ path('new_post', {'code_ue': ue.getCodeUE()}) }}" name="post" method="POST" id="div-form" enctype="multipart/form-data">
         <div class="post-tabs">
             <!-- Un seul bouton pour basculer entre les options -->
             <button type="button" id="tab-msgtxt" class="tablinks active" onclick="toggleFormView('msgtxt')">Message Texte</button>
@@ -54,14 +54,14 @@
 
             <div class="form-group" id="post_depotPost" style="display: none;">
                 <label for="post_depotPostInput">Fichier</label>
-                <input type="file" id="post_depotPostInput" name="post[depotPost]" accept=".zip">
+                <input type="file" id="post_depotPostInput" name="post[depotPostBlob]" accept=".zip">
             </div>
 
             <input type="hidden" id="post_codeUE" name="post[codeUE]" value="{{ ue.getCodeUE() }}">
             <input type="hidden" id="post__token" name="post[_token]" data-controller="csrf-protection" value="csrf-token">
 
             <div class="form-actions">
-                <button class="btn">Créer</button>
+                <button class="btn" type="submit">Créer</button>
             </div>
         </div>
     </form>

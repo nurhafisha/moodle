@@ -30,7 +30,10 @@ class Post
     private ?string $descriptionPost = null;
 
     #[ORM\Column(type: Types::BLOB, nullable: true)]
-    private $depotPost = null;
+    private $depotPostBlob = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $depotPostName = null;
 
     #[ORM\ManyToOne(targetEntity: UE::class, inversedBy: 'posts')]
     #[ORM\JoinColumn(name: 'code_ue', referencedColumnName: 'code_ue', onDelete: 'CASCADE', nullable: false)]
@@ -93,14 +96,26 @@ class Post
         return $this;
     }
 
-    public function getDepotPost()
+    public function getDepotPostBlob()
     {
-        return $this->depotPost;
+        return $this->depotPostBlob;
     }
 
-    public function setDepotPost($depotPost): static
+    public function setDepotPostBlob($depotPostBlob): static
     {
-        $this->depotPost = $depotPost;
+        $this->depotPostBlob = $depotPostBlob;
+
+        return $this;
+    }
+
+    public function getDepotPostName()
+    {
+        return $this->depotPostName;
+    }
+
+    public function setDepotPostName($depotPostName): static
+    {
+        $this->depotPostName = $depotPostName;
 
         return $this;
     }
