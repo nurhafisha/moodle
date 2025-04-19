@@ -53,8 +53,8 @@
             </div>
 
             <div class="form-group" id="post_depotPost" style="display: none;">
-                <label for="post_depotPostInput">Fichier</label>
-                <input type="file" id="post_depotPostInput" name="post[depotPostBlob]" accept=".zip">
+                <label for="post_depotPostInput">Fichier (formats acceptés : .zip, .pdf)</label>
+                <input type="file" id="post_depotPostInput" name="post[depotPostBlob]" accept=".zip,.pdf">
             </div>
 
             <input type="hidden" id="post_codeUE" name="post[codeUE]" value="{{ ue.getCodeUE() }}">
