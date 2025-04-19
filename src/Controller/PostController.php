@@ -94,6 +94,30 @@ final class PostController extends AbstractController
         );
     }
 
+    // view pdf
+    #[Route('/view/{idPost}', name: 'pdf_view')]
+    public function viewPdf(int $idPost, PostRepository $postRepository): Response
+    {
+        $post = $postRepository->find($idPost);
+        if (!$post || !$post->getDepotPostBlob()) {
+            throw $this->createNotFoundException('Aucun fichier trouvé.');
+        }
+
+        $blob = $post->getDepotPostBlob();
+        if (is_resource($blob)) {
+            $blob = stream_get_contents($blob);
+        }
+
+        return new Response(
+            $blob,
+            200,
+            [
+                'Content-Type'        => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="' . $post->getDepotPostName() . '"',
+            ]
+        );
+    }
+
     // edit post
     #[Route('/{idPost}/edit', name: 'app_post_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Post $post, EntityManagerInterface $entityManager): Response

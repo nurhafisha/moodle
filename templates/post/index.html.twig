@@ -40,7 +40,13 @@
             </span>
 
             {% if post.getTypePost() == 'fichier' %}
-            <a href="{{ path('post_download', {'code_ue': ue.getCodeUE(), 'idPost': post.getId()}) }}"/a>
+              {% if post.getDepotPostBlob() and post.getDepotPostName() ends with '.pdf' %}
+              <a href="{{ path('pdf_view', {'code_ue': ue.getCodeUE(), 'idPost': post.getId()}) }}" 
+                target="_blank"
+                rel="noopener noreferrer">
+              {% else %}
+                <a href="{{ path('post_download', {'code_ue': ue.getCodeUE(), 'idPost': post.getId()}) }}">
+              {% endif %}
             {% endif %}
             
 
