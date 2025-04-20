@@ -11,9 +11,14 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin-bottom: 20px;
 }
 
-.box h3 {
-    margin: 0;
-    color: #333;
+.box h3 a {
+    text-decoration: none; /* Removes the underline from the link */
+    color: inherit; /* Inherits the color from the h3 */
+}
+
+.box h3 a:hover {
+    color: #3498db;
+    cursor: pointer;
 }
 
 h2 {

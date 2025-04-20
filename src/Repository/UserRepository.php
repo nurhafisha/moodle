@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\User;
+use App\Entity\UE;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
@@ -51,6 +52,19 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
                 ->getQuery()
                 ->getSingleScalarResult(),
         ];
+    }
+
+    //filter users by UE and role
+    public function findByUEandRole(UE $ue , string $role): array
+    {
+        return $this->createQueryBuilder('u')
+            ->innerJoin('u.liste_ue', 'ue')
+            ->andWhere('ue.codeUE = :codeUE')
+            ->andWhere('u.roles LIKE :role')
+            ->setParameter('codeUE', $ue->getCodeUE())
+            ->setParameter('role', '%'.$role.'%')
+            ->getQuery()
+            ->getResult();
     }
 
     //    /**
