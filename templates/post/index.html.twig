@@ -27,7 +27,18 @@
         <div class="post-title">
           <div class="post-title-text">
           
-            <span class="material-icons-sharp">
+            <span class="material-icons-sharp"
+            title="
+            {% if post.getTypePost() == 'fichier' %}
+                Fichier
+            {% elseif post.getTypeMessage() == 'important' %}
+                Important
+            {% elseif post.getTypeMessage() == 'information' %}
+                Information
+            {% elseif post.getTypeMessage() == 'optionnel' %}
+                Optionnel
+            {% endif %}
+            " style="cursor: pointer;">
             {% if post.getTypePost() == 'fichier' %}
             description
             {% elseif post.getTypeMessage() == 'important' %}

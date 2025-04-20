@@ -1,3 +1,4 @@
+// variables globaux pour supprimer post (ajax)
 let pendingDelete = {
   postId: null,
   codeUe: null,
@@ -5,8 +6,8 @@ let pendingDelete = {
   button: null
 };
 
+// tabulation de deux types de formes (types de post message et fichier)
 function toggleFormView(tabName) {
-  // Get all elements with class="tablinks" and remove the class "active"
   tablinks = document.getElementsByClassName("tablinks");
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -30,10 +31,7 @@ function toggleFormView(tabName) {
   }
 }
 
-// window.onload = function() {
-//   toggleFormView('msgtxt');
-// };
-
+// supprimer post avec ajax sans changer de page
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('div-form');
   const fileInput = document.getElementById('post_depotPostInput');
@@ -54,11 +52,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+// Gestion de pop-up de confirmation
 function openModal() {
   document.getElementById('deleteModal').style.display = 'block';
 }
-
-// Close Modal
 function closeModal() {
   document.getElementById('deleteModal').style.display = 'none';
 }
@@ -101,7 +98,7 @@ function confirmDelete() {
   });
 }
 
-// Close modal when clicking outside the modal-content
+// Fermer pop-up confirmation quand click ailleurs
 window.onclick = function(event) {
   let modal = document.getElementById('deleteModal');
   if (event.target === modal) {
@@ -109,6 +106,7 @@ window.onclick = function(event) {
   }
 };
 
+// Bouton lire plus pour les posts
 document.addEventListener('DOMContentLoaded', function () {
   const posts = document.querySelectorAll('.post');
 
@@ -124,12 +122,22 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       btn.addEventListener('click', function () {
+          posts.forEach(otherPost => {
+              const otherDesc = otherPost.querySelector('.description');
+              const otherBtn = otherPost.querySelector('.read-more-btn');
+              if (otherPost !== post) {
+                  otherDesc.classList.remove('expanded');
+                  otherBtn.textContent = 'Lire plus';
+              }
+          });
+
           desc.classList.toggle('expanded');
           btn.textContent = desc.classList.contains('expanded') ? 'Lire moins' : 'Lire plus';
       });
   });
 });
 
+// action event listener bouton supprimer post
 document.querySelectorAll('.delete-button').forEach(button => {
   button.addEventListener('click', (e) => {
       e.preventDefault();
@@ -160,14 +168,14 @@ window.addEventListener('DOMContentLoaded', function () {
   autoResize(textarea);
 });
 
-// enlever lien ancien fichier quand nouveau fichier existe
+// enlever lien ancien fichier quand nouveau fichier existe (modifier post)
 document.addEventListener('DOMContentLoaded', function () {
   const fileInput = document.getElementById('post_depotPostInput');
   const fileLink = document.getElementById('existingFileLink');
 
   fileInput.addEventListener('change', function () {
       if (fileInput.files.length > 0 && fileLink) {
-          fileLink.remove(); // remove the existing file link
+          fileLink.remove();
       }
   });
 });
