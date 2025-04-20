@@ -120,21 +120,34 @@ final class PostController extends AbstractController
     }
 
     // edit post
-    #[Route('/{idPost}/edit', name: 'app_post_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Post $post, EntityManagerInterface $entityManager): Response
+    #[Route('/edit/{idPost}', name: 'post_edit', methods: ['GET', 'POST'])]
+    public function edit(string $code_ue, Request $request, int $idPost, EntityManagerInterface $em, UERepository $ueRepository): Response
     {
+        $post = $em->getRepository(Post::class)->find($idPost);
+
+        if (!$post) {
+            return new JsonResponse(['error' => 'Post not found'], 404);
+        }
+
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            $uploadedFile = $request->files->get('post')['depotPostBlob'] ?? null;
 
-            return $this->redirectToRoute('app_post_index', [], Response::HTTP_SEE_OTHER);
+            if ($uploadedFile) {
+                $post->setDepotPostName($uploadedFile->getClientOriginalName());
+                $post->setDepotPostBlob(file_get_contents($uploadedFile->getPathname()));
+            }
+            $em->flush();
+
+            return $this->redirectToRoute('contenu_UE', ['code_ue' => $code_ue], Response::HTTP_SEE_OTHER);
         }
-
+        $ue = $ueRepository->find($code_ue);
         return $this->render('post/edit.html.twig', [
             'post' => $post,
             'form' => $form,
+            'ue' => $ue
         ]);
     }
 

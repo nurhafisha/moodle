@@ -45,23 +45,8 @@ class Controller extends AbstractController
         ]);
     }
 
-    // Contenu d'une UE
-    // #[Route('/mes-cours/{code_ue}', name: 'contenu_UE')]
-    // public function contenu_UE(string $code_ue, UERepository $ueRepository, PostRepository $postRepository): Response
-    // {
-    //     $ue = $ueRepository->find($code_ue);
-    //     if (!$ue) {
-    //         throw $this->createNotFoundException('UE not found for code: ' . $code_ue);
-    //     }
-    //     $posts = $postRepository->getPostsSorted($code_ue);
-    //     return $this->render('contenu_ue.html.twig', [
-    //         'ue' => $ue,
-    //         'posts' => $posts,
-    //     ]);
-    // }
-
-    // #[Route('/mes-cours/{code_ue}/post/{slug}', name: 'new_post')]
-    // public function new_post(string $code_ue, string $slug, UERepository $ueRepository): Response
+    // #[Route('/mes-cours/{code_ue}/post/{slug}/{id?}', name: 'edit_post')]
+    // public function edit_post(string $code_ue, int $id, string $slug, UERepository $ueRepository): Response
     // {
     //     $ue = $ueRepository->find($code_ue);
     //     if (!$ue) {
@@ -69,23 +54,10 @@ class Controller extends AbstractController
     //     }
     //     return $this->render('post.html.twig', [
     //         'ue' => $ue,
+    //         'id' => $id,
     //         'slug' => $slug
     //     ]);
     // }
-
-    #[Route('/mes-cours/{code_ue}/post/{slug}/{id?}', name: 'edit_post')]
-    public function edit_post(string $code_ue, int $id, string $slug, UERepository $ueRepository): Response
-    {
-        $ue = $ueRepository->find($code_ue);
-        if (!$ue) {
-            throw $this->createNotFoundException('UE not found for code: ' . $code_ue);
-        }
-        return $this->render('post.html.twig', [
-            'ue' => $ue,
-            'id' => $id,
-            'slug' => $slug
-        ]);
-    }
 
     #[Route('/mes-cours/{code_ue}/participants', name: 'participants_UE')]
     public function participants_UE(string $code_ue, UERepository $ueRepository): Response
@@ -96,23 +68,6 @@ class Controller extends AbstractController
         }
         return $this->render('participants.html.twig', [
             'ue' => $ue,
-        ]);
-    }
-
-    #[Route('/post/{post_id}/download', name: 'post_download')]
-    public function downloadFile(int $post_id, EntityManagerInterface $entityManager): Response
-    {
-        $post = $entityManager->getRepository(Post::class)->find($post_id);
-        
-        if (!$post || !$post->getDepotPost()) {
-            throw $this->createNotFoundException('Aucun fichier disponible.');
-        }
-
-        $fileData = $post->getDepotPost();
-        
-        return new Response($fileData, Response::HTTP_OK, [
-            'Content-Type' => 'application/octet-stream',
-            'Content-Disposition' => 'attachment; filename="' . $post->getTitrePost() . '"',
         ]);
     }
 

@@ -49,7 +49,8 @@
 
             <div class="form-group">
                 <label for="post_descriptionPost" class="required">Texte</label>
-                <textarea id="post_descriptionPost" name="post[descriptionPost]" required="required" maxlength="2000"></textarea>
+                <textarea oninput="this.style.height = 'auto'; this.style.height = (this.scrollHeight) + 'px';"
+                id="post_descriptionPost" name="post[descriptionPost]" required="required" maxlength="2000"></textarea>
             </div>
 
             <div class="form-group" id="post_depotPost" style="display: none;">

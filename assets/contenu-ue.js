@@ -30,9 +30,9 @@ function toggleFormView(tabName) {
   }
 }
 
-window.onload = function() {
-  toggleFormView('msgtxt');
-};
+// window.onload = function() {
+//   toggleFormView('msgtxt');
+// };
 
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('div-form');
@@ -63,7 +63,7 @@ function closeModal() {
   document.getElementById('deleteModal').style.display = 'none';
 }
 
-// Confirm Delete
+// Confirm Delete (AJAX)
 function confirmDelete() {
   const { postId, codeUe, token } = pendingDelete;
 
@@ -142,5 +142,32 @@ document.querySelectorAll('.delete-button').forEach(button => {
       };
 
       openModal();
+  });
+});
+
+// auto resize appel au chargement de page
+function autoResize(textarea) {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+  textarea.style.height = 'auto';
+  textarea.style.height = textarea.scrollHeight + 'px';
+
+  window.scrollTo({ top: scrollTop });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  const textarea = document.getElementById('post_descriptionPost');
+  autoResize(textarea);
+});
+
+// enlever lien ancien fichier quand nouveau fichier existe
+document.addEventListener('DOMContentLoaded', function () {
+  const fileInput = document.getElementById('post_depotPostInput');
+  const fileLink = document.getElementById('existingFileLink');
+
+  fileInput.addEventListener('change', function () {
+      if (fileInput.files.length > 0 && fileLink) {
+          fileLink.remove(); // remove the existing file link
+      }
   });
 });
