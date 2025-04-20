@@ -1,15 +1,11 @@
 <?php
-
 namespace App\Controller;
-
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use App\Form\UserType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
-
 use App\Repository\UserRepository;
 use App\Repository\UERepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -85,16 +81,24 @@ class Controller extends AbstractController
     }
 
     #[Route('/mes-cours/{code_ue}/participants', name: 'participants_UE')]
-    public function participants_UE(string $code_ue, UERepository $ueRepository): Response
+    public function showParticipants(string $code_ue, UERepository $ueRepository, UserRepository $userRepository): Response
     {
-        $ue = $ueRepository->find($code_ue);
+        $ue = $ueRepository->findOneBy(['codeUE' => $code_ue]);
+        
         if (!$ue) {
-            throw $this->createNotFoundException('UE not found for code: ' . $code_ue);
+            throw $this->createNotFoundException('UE not found');
         }
+
+        $students = $userRepository->findByUeAndRole($ue, 'ROLE_ETUDIANT');
+        $professors = $userRepository->findByUeAndRole($ue, 'ROLE_PROF');
+
         return $this->render('participants.html.twig', [
             'ue' => $ue,
+            'students' => $students,
+            'professors' => $professors,
         ]);
     }
+    
 
     // Editer Profile
     #[Route('/edit', name: 'edit_profile')]
@@ -103,3 +107,4 @@ class Controller extends AbstractController
         return $this->render('editProfile.html.twig');
     }
 }
+

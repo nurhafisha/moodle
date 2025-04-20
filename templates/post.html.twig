@@ -14,7 +14,7 @@
 
 {% block body %}
   <main>
-    <h1>WE4A Technologies et programmation WEB</h1>
+    <h1>{{ue.codeUe}} - {{ ue.nomUe }}</h1>
     <ul id="navbar-ue">
       <a href="{{ path('contenu_UE', { 'code_ue': ue.getCodeUE() }) }}" id="selected"><li><span class="material-icons-sharp">school</span><b>Course</b></li></a>
       <a href="{{ path('participants_UE', { 'code_ue': ue.getCodeUE() }) }}"><li><span class="material-icons-sharp">group</span>Participants</li></a>

@@ -3,7 +3,12 @@
 <link rel="stylesheet" href="{{ asset('styles/editProfile.css') }}" />
 {% endblock %} {% block body %}
 <main>
-  <div class="box"><h3>Accueil/Gestion du compte</h3></div>
+  <div class="box">
+    <h3>
+      <a href="{{ path('choixUE') }}">Accueil</a>
+      /Gestion du compte
+  </h3>
+  </div>
   <h2>General</h2>
 
   <div>

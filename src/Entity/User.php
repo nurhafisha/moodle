@@ -52,8 +52,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank(message: 'Prenom ne peut pas être vide.')]
     private ?string $prenomUser = null;
 
-    // Removed duplicate declaration of $telephone
-
     /**
      * @var Collection<int, UE>
      */
@@ -217,6 +215,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, UE>
      */
+
     public function getListeUe(): Collection
     {
         return $this->liste_ue;
