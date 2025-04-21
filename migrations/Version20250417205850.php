@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250415163314 extends AbstractMigration
+final class Version20250417205850 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,12 +20,16 @@ final class Version20250415163314 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE post ADD type_message VARCHAR(20) DEFAULT NULL, CHANGE type_post type_post VARCHAR(20) NOT NULL');
+        $this->addSql('ALTER TABLE post ADD code_ue VARCHAR(4) NOT NULL');
+        $this->addSql('ALTER TABLE post ADD CONSTRAINT FK_5A8A6C8DB6AA93DC FOREIGN KEY (code_ue) REFERENCES ue (code_ue) ON DELETE CASCADE');
+        $this->addSql('CREATE INDEX IDX_5A8A6C8DB6AA93DC ON post (code_ue)');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE post DROP type_message, CHANGE type_post type_post VARCHAR(255) NOT NULL');
+        $this->addSql('ALTER TABLE post DROP FOREIGN KEY FK_5A8A6C8DB6AA93DC');
+        $this->addSql('DROP INDEX IDX_5A8A6C8DB6AA93DC ON post');
+        $this->addSql('ALTER TABLE post DROP code_ue');
     }
 }

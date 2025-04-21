@@ -23,6 +23,14 @@
     form_widget(form.roles, { attr: { class: "form-control roles-checkbox" } })
   }}
 </div>
+<div class="mb-3">
+  {{
+    form_label(form.liste_ue, "Associated UEs", {
+      attr: { class: "form-label" }
+    })
+  }}
+  {{ form_widget(form.liste_ue, { attr: { class: "form-check-input" } }) }}
+</div>
 <div class="action-buttons">
   <a href="{{ path('admin_catalogue') }}" class="btn btn-back">Annuler</a
   ><button class="btn btn-update">

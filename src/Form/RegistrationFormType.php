@@ -3,8 +3,9 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Entity\UE;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -59,7 +60,14 @@ class RegistrationFormType extends AbstractType
                 'multiple' => true, // Allows multiple selections
                 'required' => true,
                 'attr' => ['class' => 'form-control'],
-            ]);
+            ])
+            ->add('liste_ue', EntityType::class, [
+                'class' => UE::class,
+                'choice_label' => 'nomUe', // Display the UE name
+                'multiple' => true, // Allow selecting multiple UEs
+                'expanded' => true, // Display as checkboxes
+                'attr' => ['class' => 'form-control'],
+            ]);;;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

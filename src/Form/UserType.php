@@ -3,8 +3,10 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Entity\UE;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -54,7 +56,14 @@ class UserType extends AbstractType
                 ],
                 'expanded' => true, // Renders as checkboxes
                 'multiple' => true, // Allows multiple selections
-            ]);
+            ])
+
+            ->add('liste_ue', EntityType::class, [
+                'class' => UE::class,
+                'choice_label' => 'nomUe', // Display the UE name
+                'multiple' => true, // Allow selecting multiple UEs
+                'expanded' => true, // Display as checkboxes
+            ]);;
         // ->add('save', SubmitType::class, [
         //     'label' => 'Save',
         //     'attr' => ['class' => 'btn btn-primary'],
