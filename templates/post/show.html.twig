@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Post{% endblock %}
+
+{% block body %}
+    <h1>Post</h1>
+
+    <table class="table">
+        {% for post in posts %}
+        <tbody>
+            <tr>
+                <th>IdPost</th>
+                <td>{{ post.id }}</td>
+            </tr>
+            <tr>
+                <th>TitrePost</th>
+                <td>{{ post.titrePost }}</td>
+            </tr>
+            <tr>
+                <th>TypePost</th>
+                <td>{{ post.typePost }}</td>
+            </tr>
+            <tr>
+                <th>DatetimePost</th>
+                <td>{{ post.datetimePost ? post.datetimePost|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DescriptionPost</th>
+                <td>{{ post.descriptionPost }}</td>
+            </tr>
+            <tr>
+                <th>DepotPost</th>
+                <td>{{ post.depotPost }}</td>
+            </tr>
+            <tr>
+                <th>TypeMessage</th>
+                <td>{{ post.typeMessage }}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+    <a href="{{ path('contenu_UE', { 'code_ue': ue.getCodeUE() }) }}">back to list</a>
+{% endblock %}

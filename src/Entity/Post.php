@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\PostRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use DateTime;
+use DateTimeInterface;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
@@ -21,14 +23,17 @@ class Post
     #[ORM\Column(length: 20, nullable: false)]
     private ?string $typePost = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: false)]
+    #[ORM\Column(name: "datetimePost", type: Types::DATETIME_MUTABLE, nullable: false)]
     private ?\DateTimeInterface $datetimePost = null;
 
     #[ORM\Column(length: 2000, nullable: false)]
     private ?string $descriptionPost = null;
 
     #[ORM\Column(type: Types::BLOB, nullable: true)]
-    private $depotPost = null;
+    private $depotPostBlob = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $depotPostName = null;
 
     #[ORM\ManyToOne(targetEntity: UE::class, inversedBy: 'posts')]
     #[ORM\JoinColumn(name: 'code_ue', referencedColumnName: 'code_ue', onDelete: 'CASCADE', nullable: false)]
@@ -91,14 +96,26 @@ class Post
         return $this;
     }
 
-    public function getDepotPost()
+    public function getDepotPostBlob()
     {
-        return $this->depotPost;
+        return $this->depotPostBlob;
     }
 
-    public function setDepotPost($depotPost): static
+    public function setDepotPostBlob($depotPostBlob): static
     {
-        $this->depotPost = $depotPost;
+        $this->depotPostBlob = $depotPostBlob;
+
+        return $this;
+    }
+
+    public function getDepotPostName()
+    {
+        return $this->depotPostName;
+    }
+
+    public function setDepotPostName($depotPostName): static
+    {
+        $this->depotPostName = $depotPostName;
 
         return $this;
     }

@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Editer Post {{ ue.getCodeUE() }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/style-contenu-ue.css') }}" />
+{% endblock %}
+
+{% block body %}
+  <main>
+    <h1>{{ ue.getCodeUE() }} {{ ue.getNomUE() }}</h1>
+    <ul id="navbar-ue">
+      <a href="{{ path('contenu_UE', { 'code_ue': ue.getCodeUE() }) }}" id="selected"><li><span class="material-icons-sharp">school</span><b>Course</b></li></a>
+      <a href="{{ path('participants_UE', { 'code_ue': ue.getCodeUE() }) }}"><li><span class="material-icons-sharp">group</span>Participants</li></a>
+    </ul>
+    <h2 id="titre-new-post"><b>Editer Post "{{ post.getTitrePost() }}"</b></h2>
+    <form action="{{ path('post_edit', {'code_ue': ue.getCodeUE(), idPost: post.getId() }) }}" name="post" method="POST" id="div-form" enctype="multipart/form-data">
+        <div class="post-tabs">
+            {% if post.getTypePost() == 'message' %}
+            <button type="button" id="tab-msgtxt" class="tablinks active">Message Texte</button>
+            {% elseif post.getTypePost() == 'fichier' %}
+            <button type="button" id="tab-partagefic" class="tablinks active">Partage Fichier</button>
+            {% endif %}
+        </div>
+
+        <div class="form-container">
+            <div class="form-group">
+                <label for="post_titrePost" class="required">Titre</label>
+                <input type="text" id="post_titrePost" name="post[titrePost]" required="required" maxlength="255"
+                value="{{ post.getTitrePost() }}">
+            </div>
+
+            <input type="hidden" id="post_typePost" name="post[typePost]" value="{{ post.getTypePost() }}">
+
+            <input
+                type="hidden"
+                id="post_datetimePost"
+                name="post[datetimePost]"
+                required="required"
+                value="{{ post.getDatetimePost()|date('Y-m-d\\TH:i:s') }}"
+            >
+
+            {% if post.getTypePost() == 'message' %}
+            <div class="form-group" id="post_typeMessage">
+                <label for="post_typeMessageSelect" class="required">Type</label>
+                <select id="post_typeMessageSelect" name="post[typeMessage]" required>
+                    <option value="" selected disabled>-- Choisir un type --</option>
+                    {% for value, label in {
+                        'important': 'Important',
+                        'information': 'Information',
+                        'optionnel': 'Optionnel'
+                    } %}
+                        <option value="{{ value }}"
+                            {% if post.getTypeMessage() == value %}selected{% endif %}>
+                            {{ label }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            {% endif %}
+
+            <div class="form-group">
+                <label for="post_descriptionPost" class="required">Texte</label>
+                <textarea  oninput="autoResize(this)"
+                id="post_descriptionPost" name="post[descriptionPost]" required="required" maxlength="2000">{{ post.getDescriptionPost() }}</textarea>
+            </div>
+
+            {% if post.getTypePost() == 'fichier' %}
+            <div class="form-group" id="post_depotPost">
+                <label for="post_depotPostInput">Fichier (formats acceptés : .zip, .pdf)</label>
+                <input type="file" id="post_depotPostInput" name="post[depotPostBlob]" accept=".zip,.pdf">
+
+                {% if post.getDepotPostBlob() and post.getDepotPostName() ends with '.pdf' %}
+                    <a href="{{ path('pdf_view', {'code_ue': ue.getCodeUE(), 'idPost': post.getId()}) }}" 
+                    target="_blank" rel="noopener noreferrer" id="existingFileLink">
+                    {{ post.getDepotPostName() }}</a>
+                {% elseif post.getDepotPostBlob() %}
+                    <a href="{{ path('post_download', {'code_ue': ue.getCodeUE(), 'idPost': post.getId()}) }}" 
+                    id="existingFileLink">
+                    {{ post.getDepotPostName() }}</a>
+                {% endif %}
+
+            </div>
+            {% endif %}
+
+            <input type="hidden" id="post_codeUE" name="post[codeUE]" value="{{ ue.getCodeUE() }}">
+            <input type="hidden" id="post__token" name="post[_token]" data-controller="csrf-protection" value="csrf-token">
+
+            <div class="form-actions">
+                <button class="btn" type="submit">Sauvegarder</button>
+            </div>
+        </div>
+    </form>
+  </main>
+{% endblock %}
+
+{% block script %}
+    <script src="{{ asset('contenu-ue.js') }}"></script>
+{% endblock %}

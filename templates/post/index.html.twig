@@ -8,26 +8,37 @@
 
 {% block body %}
   <main>
-    
+    <h1>{{ ue.getCodeUE() }} {{ ue.getNomUE() }}</h1>
     <ul id="navbar-ue">
       <a href="{{ path('contenu_UE', { 'code_ue': ue.getCodeUE() }) }}" id="selected"><li><span class="material-icons-sharp">school</span><b>Course</b></li></a>
       <a href="{{ path('participants_UE', { 'code_ue': ue.getCodeUE() }) }}"><li><span class="material-icons-sharp">group</span>Participants</li></a>
     </ul>
 
     {% if is_granted('ROLE_PROF') or is_granted ('ROLE_PROF_ADMIN') %}
-    <a href="{{ path('new_post', {'code_ue': ue.getCodeUE() }) }}" id="btn-add-post">
+    <a href="{{ path('new_post', { 'code_ue': ue.getCodeUE() }) }}" id="btn-add-post">
       <span class="material-icons-sharp">add</span>
-      <b>ajouter nouveau post</b>
+      <b>AJOUTER POST</b>
     </a>
     {% endif %}
     
     <ul id="posts">
       {% for post in posts %}
-      <li class="post">
+      <li class="post" id="post-{{ post.id }}">
         <div class="post-title">
           <div class="post-title-text">
           
-            <span class="material-icons-sharp">
+            <span class="material-icons-sharp"
+            title="
+            {% if post.getTypePost() == 'fichier' %}
+                Fichier
+            {% elseif post.getTypeMessage() == 'important' %}
+                Important
+            {% elseif post.getTypeMessage() == 'information' %}
+                Information
+            {% elseif post.getTypeMessage() == 'optionnel' %}
+                Optionnel
+            {% endif %}
+            " style="cursor: pointer;">
             {% if post.getTypePost() == 'fichier' %}
             description
             {% elseif post.getTypeMessage() == 'important' %}
@@ -39,15 +50,26 @@
             {% endif %}
             </span>
 
-            {% if post.getTypePost() == 'fichier' %}<a href="{{ path('post_download', {'post_id': post.getId()}) }}">{% endif %}
+            {% if post.getTypePost() == 'fichier' %}
+              {% if post.getDepotPostBlob() and post.getDepotPostName() ends with '.pdf' %}
+              <a href="{{ path('pdf_view', {'code_ue': ue.getCodeUE(), 'idPost': post.getId()}) }}" 
+                target="_blank"
+                rel="noopener noreferrer">
+              {% else %}
+                <a href="{{ path('post_download', {'code_ue': ue.getCodeUE(), 'idPost': post.getId()}) }}">
+              {% endif %}
+            {% endif %}
+            
 
             <span><h3>{{ post.getTitrePost() }}</h3></span>
 
             {% if post.getTypePost() == 'fichier' %}</a>{% endif %}
 
             {% if is_granted('ROLE_PROF') or is_granted ('ROLE_PROF_ADMIN')%}
-            <a href="{{ path('edit_post', { 'id': 1, 'slug': 'edit', 'code_ue': ue.getCodeUE() }) }}"><span class="material-icons-sharp btn-edit-post">edit_note</span></a>
-            <a href="#"><span class="material-icons-sharp btn-edit-post delete-button" onclick="openModal()">delete</span></a>
+            <a href="{{ path('post_edit', { 'post': post, 'idPost': post.getId(), 'code_ue': ue.getCodeUE() }) }}"><span class="material-icons-sharp btn-edit-post">edit_note</span></a>
+            <button class="delete-button" data-id="{{ post.id }}" data-code="{{ ue.getCodeUE() }}" data-token="{{ csrf_token('delete-post') }}">
+              <span class="material-icons-sharp" id="delete-button">delete</span>
+            </button>
             {% endif %}
             
           </div>
@@ -59,7 +81,7 @@
         <button class="read-more-btn">Lire plus</button>
       </li>
       {% else %}
-        <li>Aucun post pour cette UE.</li>
+        <li class="post">Aucun post pour cette UE.</li>
       {% endfor %}
 
     </ul>
@@ -68,8 +90,8 @@
         <div class="modal-content">
             <p>Voulez-vous vraiment supprimer ce post?</p>
             <div class="modal-buttons">
-                <button class="confirm-btn" onclick="confirmDelete()">Yes</button>
-                <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+                <button class="confirm-btn" onclick="confirmDelete()">Oui</button>
+                <button class="cancel-btn" onclick="closeModal()">Annuler</button>
             </div>
         </div>
     </div>

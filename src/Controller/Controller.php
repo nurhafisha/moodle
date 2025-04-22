@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\UserRepository;
 use App\Repository\UERepository;
+use App\Repository\PostRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class Controller extends AbstractController
@@ -40,45 +41,19 @@ class Controller extends AbstractController
         ]);
     }
 
-    // Contenu d'une UE
-    #[Route('/mes-cours/{code_ue}', name: 'contenu_UE')]
-    public function contenu_UE(string $code_ue, UERepository $ueRepository): Response
-    {
-        $ue = $ueRepository->find($code_ue);
-        if (!$ue) {
-            throw $this->createNotFoundException('UE not found for code: ' . $code_ue);
-        }
-        return $this->render('contenu_ue.html.twig', [
-            'ue' => $ue,
-        ]);
-    }
-
-    #[Route('/mes-cours/{code_ue}/post/{slug}', name: 'new_post')]
-    public function new_post(string $code_ue, string $slug, UERepository $ueRepository): Response
-    {
-        $ue = $ueRepository->find($code_ue);
-        if (!$ue) {
-            throw $this->createNotFoundException('UE not found for code: ' . $code_ue);
-        }
-        return $this->render('post.html.twig', [
-            'ue' => $ue,
-            'slug' => $slug
-        ]);
-    }
-
-    #[Route('/mes-cours/{code_ue}/post/{slug}/{id?}', name: 'edit_post')]
-    public function edit_post(string $code_ue, int $id, string $slug, UERepository $ueRepository): Response
-    {
-        $ue = $ueRepository->find($code_ue);
-        if (!$ue) {
-            throw $this->createNotFoundException('UE not found for code: ' . $code_ue);
-        }
-        return $this->render('post.html.twig', [
-            'ue' => $ue,
-            'id' => $id,
-            'slug' => $slug
-        ]);
-    }
+    // #[Route('/mes-cours/{code_ue}/post/{slug}/{id?}', name: 'edit_post')]
+    // public function edit_post(string $code_ue, int $id, string $slug, UERepository $ueRepository): Response
+    // {
+    //     $ue = $ueRepository->find($code_ue);
+    //     if (!$ue) {
+    //         throw $this->createNotFoundException('UE not found for code: ' . $code_ue);
+    //     }
+    //     return $this->render('post.html.twig', [
+    //         'ue' => $ue,
+    //         'id' => $id,
+    //         'slug' => $slug
+    //     ]);
+    // }
 
     #[Route('/mes-cours/{code_ue}/participants', name: 'participants_UE')]
     public function showParticipants(string $code_ue, UERepository $ueRepository, UserRepository $userRepository): Response
