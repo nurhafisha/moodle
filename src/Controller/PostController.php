@@ -50,6 +50,18 @@ final class PostController extends AbstractController
             }
 
             $post->setDatetimePost(new \DateTime());
+
+            // INSERT INTO post(titre_post, type_post, datetimePost, description_post, depot_post_blob, code_ue, type_message, depot_post_name)
+            // VALUES (
+            //      $post->getTitrePost(),
+            //      $post->getTypePost(),
+            //      $post->getDatetimePost(),
+            //      $post->getDescriptionPost(),
+            //      $post->getDepotPostBlob(),
+            //      $post->getCodeUE(),
+            //      $post->getTypeMessage(),
+            //      $post->getDepotPostName()
+            // );
             $entityManager->persist($post);
             $entityManager->flush();
 
@@ -139,6 +151,17 @@ final class PostController extends AbstractController
                 $post->setDepotPostName($uploadedFile->getClientOriginalName());
                 $post->setDepotPostBlob(file_get_contents($uploadedFile->getPathname()));
             }
+            // UPDATE post
+            // SET
+            //     titre_post = $post->getTitrePost(),
+            //     type_post = $post->getTypePost(),
+            //     datetimePost = $post->getDatetimePost(),
+            //     description_post = $post->getDescriptionPost(),
+            //     depot_post_blob = $post->getDepotPostBlob(),
+            //     code_ue = $post->getCodeUE(),
+            //     type_message = $post->getTypeMessage(),
+            //     depot_post_name = $post->getDepotPostName()
+            // WHERE id_post = $post->getId();
             $em->flush();
 
             return $this->redirectToRoute('contenu_UE', ['code_ue' => $code_ue], Response::HTTP_SEE_OTHER);
@@ -166,6 +189,7 @@ final class PostController extends AbstractController
             return new JsonResponse(['error' => 'Invalid CSRF token'], 403);
         }
 
+        // DELETE FROM post WHERE id_post = $post->getId();
         $em->remove($post);
         $em->flush();
 
