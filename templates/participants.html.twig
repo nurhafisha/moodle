@@ -1,83 +1,90 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Participants{% endblock %}
-
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/style-contenu-ue.css') }}" />
-{% endblock %}
-
-{% block body %}
-  <main>
-    <h1>{{ue.codeUe}} - {{ ue.nomUe }}</h1>
-    <ul id="navbar-ue">
-      <a href="{{ path('contenu_UE', { 'code_ue': ue.getCodeUE() }) }}"><li><span class="material-icons-sharp">school</span>Course</li></a>
-      <a href="{{ path('participants_UE', { 'code_ue': ue.getCodeUE() }) }}" id="selected"><li><span class="material-icons-sharp">group</span><b>Participants</b>
-      </li></a>
-    </ul>
-<div class="participants-container">
-
+{% extends 'base.html.twig' %} {% block title %}Participants{% endblock %} {%
+block stylesheets %}
+<link rel="stylesheet" href="{{ asset('styles/style-contenu-ue.css') }}" />
+{% endblock %} {% block body %}
+<main>
+  <h1>{{ ue.codeUe }} {{ ue.nomUe }}</h1>
+  <ul id="navbar-ue">
+    <a href="{{ path('contenu_UE', { code_ue: ue.getCodeUE() }) }}"
+      ><li><span class="material-icons-sharp">school</span>Course</li></a
+    >
+    <a
+      href="{{ path('participants_UE', { code_ue: ue.getCodeUE() }) }}"
+      id="selected"
+      ><li>
+        <span class="material-icons-sharp">group</span><b>Participants</b>
+      </li></a
+    >
+  </ul>
+  <div class="participants-container">
     <div class="participants-section">
-        <table id="liste-participants">
-            <thead>
-                <tr>
-                    <th>Prénom/Nom</th>
-                    <th>Email</th>
-                    <th>Rôles</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for user in professors %}
-                    <tr>
-                        <td>{{ user.prenomUser }} {{ user.nomUser }}</td>
-                        <td>
-                            <a href="mailto:{{ user.prenomUser }}.{{ user.nomUser }}@utbm.fr">{{ user.email }}</a>
-                        </td>
-                        <td>
-                            {{  user.roles |filter(role => role != 'ROLE_USER')
+      <table id="liste-participants">
+        <thead>
+          <tr>
+            <th>Prénom/Nom</th>
+            <th>Email</th>
+            <th>Rôles</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in professors %}
+          <tr>
+            <td>{{ user.prenomUser }} {{ user.nomUser }}</td>
+            <td>
+              <a
+                href="mailto:{{ user.prenomUser }}.{{ user.nomUser }}@utbm.fr"
+                >{{ user.email }}</a
+              >
+            </td>
+            <td>
+              {{  user.roles |filter(role => role != 'ROLE_USER')
                                     |map(role => role == 'ROLE_PROF_ADMIN' ? 'Enseignant' : 
                                         role == 'ROLE_PROF' ? 'Enseignant' : 
                                         role|replace({'ROLE_': '' })|lower|capitalize
                                         )
                                         |join(', ') 
 
-                            }}
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody >
-        </table>
+              }}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
 
     <div class="participants-section">
-        <table id="liste-participants">
-            <thead>
-                <tr>
-                    <th>Prénom/Nom</th>
-                    <th>Email</th>
-                    <th>Rôles</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for user in students %}
-                    <tr>
-                        <td>{{ user.prenomUser }} {{ user.nomUser }}</td>
-                        <td>
-                            <a href="mailto:{{ user.prenomUser }}.{{ user.nomUser }}@utbm.fr">{{ user.email }}</a>
-                        </td>
-                        <td>
-                            {{  user.roles |filter(role => role != 'ROLE_USER')
+      <table id="liste-participants">
+        <thead>
+          <tr>
+            <th>Prénom/Nom</th>
+            <th>Email</th>
+            <th>Rôles</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in students %}
+          <tr>
+            <td>{{ user.prenomUser }} {{ user.nomUser }}</td>
+            <td>
+              <a
+                href="mailto:{{ user.prenomUser }}.{{ user.nomUser }}@utbm.fr"
+                >{{ user.email }}</a
+              >
+            </td>
+            <td>
+              {{  user.roles |filter(role => role != 'ROLE_USER')
                             |map(role => role == 'ROLE_ETUDIANT' ? 'Étudiant' : 
                                 role|replace({'ROLE_': '' })|lower|capitalize
                                 )
                                 |join(', ') 
 
-                    }}
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+              }}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
-</div>
+  </div>
 </main>
 {% endblock %}

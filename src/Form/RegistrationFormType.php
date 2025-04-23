@@ -67,7 +67,7 @@ class RegistrationFormType extends AbstractType
                 'multiple' => true, // Allow selecting multiple UEs
                 'expanded' => true, // Display as checkboxes
                 'attr' => ['class' => 'form-control'],
-            ]);;;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

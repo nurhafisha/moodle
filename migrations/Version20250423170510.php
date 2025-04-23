@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250419102826 extends AbstractMigration
+final class Version20250423170510 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,12 +20,12 @@ final class Version20250419102826 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE post ADD depot_post_name VARCHAR(255) DEFAULT NULL, CHANGE depot_post depot_post_blob LONGBLOB DEFAULT NULL');
+        $this->addSql('ALTER TABLE post CHANGE datetime_post datetimePost DATETIME NOT NULL');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE post DROP depot_post_name, CHANGE depot_post_blob depot_post LONGBLOB DEFAULT NULL');
+        $this->addSql('ALTER TABLE post CHANGE datetimePost datetime_post DATETIME NOT NULL');
     }
 }
