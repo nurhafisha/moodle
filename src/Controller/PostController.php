@@ -34,7 +34,7 @@ final class PostController extends AbstractController
 
     // new post
     #[Route('/new', name: 'new_post', methods: ['GET', 'POST'])]
-    public function new(string $code_ue, UERepository $ueRepository, Request $request, EntityManagerInterface $entityManager): Response
+    public function new(string $code_ue, UERepository $ueRepository, Request $request, EntityManagerInterface $entityManager, PostRepository $postRepository): Response
     {
         $post = new Post();
         $post->setDatetimePost(new \DateTime());    // definir date temps au moment
@@ -72,10 +72,13 @@ final class PostController extends AbstractController
         if (!$ue) {
             throw $this->createNotFoundException('UE not found for code: ' . $code_ue);
         }
-        return $this->render('post/new.html.twig', [
-            'post' => $post,
+
+        $posts = $postRepository->getPostsSorted($code_ue);
+
+        return $this->render('post/index.html.twig', [
             'form' => $form,
-            'ue' => $ue
+            'posts' => $posts,
+            'ue' => $ue,
         ]);
     }
 

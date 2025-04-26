@@ -367,3 +367,19 @@ main {
   text-decoration: none;
   color: #0056b3;
 }
+
+/* Create Post and Edit Post Modal */
+#post-modal-content{
+  padding: 1em;
+  background-color: white;
+  width: 50vw;
+  margin: 10vh auto;
+  border-radius: 10px;
+}
+
+#post_descriptionPost {
+  width: 300px;
+  min-height: 150px;
+  max-height: 40vh;
+  overflow: auto;
+}

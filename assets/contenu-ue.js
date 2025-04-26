@@ -101,8 +101,10 @@ function confirmDelete() {
 // Fermer pop-up confirmation quand click ailleurs
 window.onclick = function(event) {
   let modal = document.getElementById('deleteModal');
-  if (event.target === modal) {
+  let modalCreate = document.getElementById('post-modal');
+  if (event.target === modal || event.target === modalCreate) {
       closeModal();
+      closeModalNewPost();
   }
 };
 
@@ -179,3 +181,11 @@ document.addEventListener('DOMContentLoaded', function () {
       }
   });
 });
+
+// Gestion de pop-up de l'ajout Post
+function openModalNewPost() {
+  document.getElementById('post-modal').style.display = 'block';
+}
+function closeModalNewPost() {
+  document.getElementById('post-modal').style.display = 'none';
+}
