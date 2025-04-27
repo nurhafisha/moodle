@@ -1,12 +1,15 @@
 main{
-margin-left: 30px;
-font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 3em 5vw;
+    padding: 3em;
+    background-color: white;
+    border: 0.5px solid lightgray;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 
 .box {
-    background-color: #f8f9fa;
-    padding: 15px;
+    /*background-color: #f8f9fa;*/
+    /*padding: 15px;*/
     border-radius: 5px;
     margin-bottom: 20px;
 }
