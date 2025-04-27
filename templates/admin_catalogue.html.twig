@@ -3,140 +3,138 @@ stylesheets %}
 <link rel="stylesheet" href="{{ asset('styles/style-admin.css') }}" />
 {% endblock %} {% block body %}
 <main>
-  <div class="main-container">
-    <div class="header">
-      <h1>Catalogue</h1>
-    </div>
+  <div class="header">
+    <h1>Catalogue</h1>
+  </div>
 
-    <div class="content">
-      <ul id="navbar-dashboard">
-        <a id="tab-user" class="tab active" onclick="showOngletUser()" href="#">
-          <li>
-            <span class="material-icons-sharp"> group </span>
-            <b>Gestion des Utilisateurs</b>
-          </li>
-        </a>
-        <a id="tab-ue" class="tab" onclick="showOngletUE()" href="#">
-          <li>
-            <span class="material-icons-sharp">app_registration</span>
-            Gestion des UEs
-          </li>
-        </a>
-      </ul>
+  <div class="content">
+    <ul id="navbar-dashboard">
+      <a id="tab-user" class="tab active" onclick="showOngletUser()" href="#">
+        <li>
+          <span class="material-icons-sharp"> group </span>
+          Gestion des Utilisateurs
+        </li>
+      </a>
+      <a id="tab-ue" class="tab" onclick="showOngletUE()" href="#">
+        <li>
+          <span class="material-icons-sharp">app_registration</span>
+          Gestion des UEs
+        </li>
+      </a>
+    </ul>
 
-      <div id="onglet-user" class="onglet-user">
-        <div class="add-user">
-          <h2>Liste des Utilisateurs</h2>
-          <a href="{{ path('app_register') }}" class="btn btn-add"
-            >Ajouter un utilisateur</a
-          >
-        </div>
-
-        <div class="table-container">
-          <table class="styled-table">
-            <thead>
-              <tr>
-                <th>ID User</th>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for user in users %}
-              <tr data-user-id="{{ user.id }}">
-                <td>{{ user.id }}</td>
-                <td>{{ user.nomUser }}</td>
-                <td>{{ user.prenomUser }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.roles|join(', ') }}</td>
-                <td>
-                  <div title="action-btn">
-                    <a
-                      href="{{ path('app_user_show', { id: user.id }) }}"
-                      class="btn btn-aff"
-                      >Consulter</a
-                    >
-                    <a
-                      href="{{ path('app_user_edit', { id: user.id }) }}"
-                      class="btn btn-mod"
-                      >Modifier</a
-                    >
-                    <button
-                      class="btn btn-del"
-                      data-url="{{ path('app_user_delete', { id: user.id }) }}"
-                      data-row-selector="tr[data-user-id='{{ user.id }}']"
-                      onclick="confirmAndDeleteFromButton(this)"
-                    >
-                      Supprimer
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
+    <div id="onglet-user" class="onglet-user">
+      <div class="add-user">
+        <h2>Liste des Utilisateurs</h2>
+        <a href="{{ path('app_register') }}" class="btn btn-add"
+          >Ajouter un utilisateur</a
+        >
       </div>
 
-      <div id="onglet-ue" class="onglet-ue" style="display: none">
-        <div class="add-ue">
-          <h2>Liste de UEs</h2>
-          <a href="{{ path('app_u_e_new') }}" class="btn btn-add"
-            >Ajouter une UE</a
-          >
-        </div>
-
-        <div class="table-container">
-          <table class="styled-table">
-            <thead>
-              <tr>
-                <th>Code UE</th>
-                <th>Nom UE</th>
-                <th>ImageUE</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for ue in ues %}
-              <tr data-ue-id="{{ ue.codeUe }}">
-                <td>{{ ue.codeUe }}</td>
-                <td>{{ ue.nomUe }}</td>
-                <td>{{ ue.imageUe }}</td>
-                <td>
+      <div class="table-container">
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>ID User</th>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+            <tr data-user-id="{{ user.id }}">
+              <td>{{ user.id }}</td>
+              <td>{{ user.nomUser }}</td>
+              <td>{{ user.prenomUser }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.roles|join(', ') }}</td>
+              <td>
+                <div title="action-btn">
                   <a
-                    href="{{ path('app_u_e_show', { id: ue.codeUe }) }}"
+                    href="{{ path('app_user_show', { id: user.id }) }}"
                     class="btn btn-aff"
                     >Consulter</a
                   >
                   <a
-                    href="{{ path('app_u_e_edit', { id: ue.codeUe }) }}"
+                    href="{{ path('app_user_edit', { id: user.id }) }}"
                     class="btn btn-mod"
                     >Modifier</a
                   >
                   <button
                     class="btn btn-del"
-                    data-url="{{ path('app_u_e_delete', { id: ue.codeUe }) }}"
-                    data-row-selector="tr[data-ue-id='{{ ue.codeUe }}']"
+                    data-url="{{ path('app_user_delete', { id: user.id }) }}"
+                    data-row-selector="tr[data-user-id='{{ user.id }}']"
                     onclick="confirmAndDeleteFromButton(this)"
                   >
                     Supprimer
                   </button>
-                </td>
-              </tr>
-              {% else %}
-              <tr>
-                <td colspan="4">no records found</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-
-        {#{{ include("ue/index.html.twig") }}#}
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
+    </div>
+
+    <div id="onglet-ue" class="onglet-ue" style="display: none">
+      <div class="add-ue">
+        <h2>Liste de UEs</h2>
+        <a href="{{ path('app_u_e_new') }}" class="btn btn-add"
+          >Ajouter une UE</a
+        >
+      </div>
+
+      <div class="table-container">
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>Code UE</th>
+              <th>Nom UE</th>
+              <th>ImageUE</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ue in ues %}
+            <tr data-ue-id="{{ ue.codeUe }}">
+              <td>{{ ue.codeUe }}</td>
+              <td>{{ ue.nomUe }}</td>
+              <td>{{ ue.imageUe }}</td>
+              <td>
+                <a
+                  href="{{ path('app_u_e_show', { id: ue.codeUe }) }}"
+                  class="btn btn-aff"
+                  >Consulter</a
+                >
+                <a
+                  href="{{ path('app_u_e_edit', { id: ue.codeUe }) }}"
+                  class="btn btn-mod"
+                  >Modifier</a
+                >
+                <button
+                  class="btn btn-del"
+                  data-url="{{ path('app_u_e_delete', { id: ue.codeUe }) }}"
+                  data-row-selector="tr[data-ue-id='{{ ue.codeUe }}']"
+                  onclick="confirmAndDeleteFromButton(this)"
+                >
+                  Supprimer
+                </button>
+              </td>
+            </tr>
+            {% else %}
+            <tr>
+              <td colspan="4">no records found</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      {#{{ include("ue/index.html.twig") }}#}
     </div>
   </div>
 </main>

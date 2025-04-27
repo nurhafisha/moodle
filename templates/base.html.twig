@@ -117,34 +117,35 @@
         <li>
           <a href="{{ path('edit_profile') }}">
             <div class="profile-image-container">
-            {% if app.user and app.user.imageData %}
-            <img
-              src="{{ path('user_image', {'id': app.user.id})}}"
-              id="navbar-pic"
-              alt="Profile picture"
-              class="profile-pic"
-            />
-            <div class="overlay">
-              <span class="material-icons-sharp editIcon">edit</span> 
-            </div>
-            {% else %}
-            <img
-              src="/images/default-profile.png"
-              id="navbar-pic"
-              alt="Default profile"
-              class="profile-pic"
-            />
-            {% endif %}
-            <div class="overlay">
-              <span class="material-icons-sharp editIcon">edit</span>
-            </div>
+              {% if app.user and app.user.imageData %}
+              <img
+                src="{{ path('user_image', { id: app.user.id }) }}"
+                id="navbar-pic"
+                alt="Profile picture"
+                class="profile-pic"
+              />
+              <div class="overlay">
+                <span class="material-icons-sharp editIcon">edit</span>
+              </div>
+              {% else %}
+              <img
+                src="/images/default-profile.png"
+                id="navbar-pic"
+                alt="Default profile"
+                class="profile-pic"
+              />
+              {% endif %}
+              <div class="overlay">
+                <span class="material-icons-sharp editIcon">edit</span>
+              </div>
             </div>
           </a>
         </li>
       </ul>
     </nav>
-    {% block body %}{% endblock %}
+
+    {% block body %}{% endblock %} {% block script %}
     <script src="{{ asset('sidebar.js') }}"></script>
-    {% block script %}{% endblock %}
+    {% endblock %}
   </body>
 </html>
