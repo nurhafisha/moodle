@@ -35,7 +35,9 @@ stylesheets %}
         <table class="styled-table">
           <thead>
             <tr>
+              {#
               <th>ID User</th>
+              #}
               <th>Nom</th>
               <th>Prénom</th>
               <th>Email</th>
@@ -46,7 +48,9 @@ stylesheets %}
           <tbody>
             {% for user in users %}
             <tr data-user-id="{{ user.id }}">
+              {#
               <td>{{ user.id }}</td>
+              #}
               <td>{{ user.nomUser }}</td>
               <td>{{ user.prenomUser }}</td>
               <td>{{ user.email }}</td>
