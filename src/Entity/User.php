@@ -70,6 +70,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->liste_ue = new ArrayCollection();
+        $this->postsEpingle = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -187,6 +188,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $telephone = null;
 
+    /**
+     * @var Collection<int, Post>
+     */
+    #[ORM\OneToMany(targetEntity: Post::class, mappedBy: 'epingleur')]
+    private Collection $postsEpingle;
+
     public function getImageData()
     {
         if (is_resource($this->imageData)) {
@@ -245,6 +252,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setTelephone(?string $telephone): static
     {
         $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Post>
+     */
+    public function getPostsEpingle(): Collection
+    {
+        return $this->postsEpingle;
+    }
+
+    public function addPostsEpingle(Post $postsEpingle): static
+    {
+        if (!$this->postsEpingle->contains($postsEpingle)) {
+            $this->postsEpingle->add($postsEpingle);
+            $postsEpingle->setEpingleur($this);
+        }
+
+        return $this;
+    }
+
+    public function removePostsEpingle(Post $postsEpingle): static
+    {
+        if ($this->postsEpingle->removeElement($postsEpingle)) {
+            // set the owning side to null (unless already changed)
+            if ($postsEpingle->getEpingleur() === $this) {
+                $postsEpingle->setEpingleur(null);
+            }
+        }
 
         return $this;
     }

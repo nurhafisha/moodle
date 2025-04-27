@@ -42,6 +42,9 @@ class Post
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $typeMessage = null;
 
+    #[ORM\ManyToOne(inversedBy: 'postsEpingle')]
+    private ?User $epingleur = null;
+
     public function getId(): ?int
     {
         return $this->idPost;
@@ -140,6 +143,18 @@ class Post
     public function setTypeMessage(?string $typeMessage): static
     {
         $this->typeMessage = $typeMessage;
+
+        return $this;
+    }
+
+    public function getEpingleur(): ?User
+    {
+        return $this->epingleur;
+    }
+
+    public function setEpingleur(?User $epingleur): static
+    {
+        $this->epingleur = $epingleur;
 
         return $this;
     }

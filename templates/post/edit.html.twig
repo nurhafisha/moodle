@@ -46,6 +46,11 @@
                 <p id="post_depotPostName"></p>
             </div>
 
+            <div id="form-epingle">
+                <label for="epingle">Épinglé</label>
+                <input type="checkbox" id="epingle" name="epingle" value="yes" class="checkbox-input">
+            </div>
+
             <input type="hidden" id="post_codeUE" name="post[codeUE]" value="{{ ue.getCodeUE() }}">
             <input type="hidden" id="post__token" name="post[_token]" data-controller="csrf-protection" value="csrf-token">
 

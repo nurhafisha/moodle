@@ -45,6 +45,11 @@
                 <input type="file" id="post_depotPostInput" name="post[depotPostBlob]" accept=".zip,.pdf">
             </div>
 
+            <div id="form-epingle">
+                <label for="post_epingle">Épinglé ce post ?</label>
+                <input type="checkbox" id="post_epingleur" name="post[epingleur]" value="{{ user_id }}" class="checkbox-input">
+            </div>
+
             <input type="hidden" id="post_codeUE" name="post[codeUE]" value="{{ ue.getCodeUE() }}">
             <input type="hidden" id="post__token" name="post[_token]" data-controller="csrf-protection" value="csrf-token">
 
