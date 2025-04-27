@@ -1,82 +1,86 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('styles/choixUE-etu.css') }}" />
+{% endblock %} {% block body %}
+<main>
+  <div class="header">
+    <h1>Tableau de bord</h1>
+    <h2>Bienvenue {{ app.user.prenomUser }}</h2>
+  </div>
 
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/choixUE-etu.css') }}" />
-{% endblock %}
+  <hr class="divider" />
 
-{% block body %}
-<div class="main-container">
-    <hr class="divider">
-
-    <div class="section">
-        <h1>Fils d'actualité</h1>
-        <div>
-            <label for="notiCount">Afficher:</label>
-            <select id="notiCount">
-                <option value="3">3</option>
-                <option value="5">5</option>
-                <option value="all">Tous</option>
-            </select>
-        </div>
+  <div class="section">
+    <h1>Fils d'actualité</h1>
+    <div>
+      <label for="notiCount">Afficher:</label>
+      <select id="notiCount">
+        <option value="3">3</option>
+        <option value="5">5</option>
+        <option value="all">Tous</option>
+      </select>
     </div>
+  </div>
 
-    <hr class="divider">
+  <hr class="divider" />
 
-    <nav class="noti-navigation" aria-label="Notification navigation">
-        <a href="#" class="boxnoti">
-            <div class="messagenoti">
-                <h2>WE4A</h2>
-                <h3>M LITZLER a partagé un nouveau fichier</h3>
-            </div>
-        </a>
+  <nav class="noti-navigation" aria-label="Notification navigation">
+    <a href="#" class="boxnoti">
+      <div class="messagenoti">
+        <h2>WE4A</h2>
+        <h3>M LITZLER a partagé un nouveau fichier</h3>
+      </div>
+    </a>
 
-        <a href="#" class="boxnoti">
-            <div class="messagenoti">
-                <h2>AP4A</h2>
-                <h3>M CREPUT a envoyé un nouveau message</h3>
-            </div>
-        </a>
+    <a href="#" class="boxnoti">
+      <div class="messagenoti">
+        <h2>AP4A</h2>
+        <h3>M CREPUT a envoyé un nouveau message</h3>
+      </div>
+    </a>
 
-        <a href="#" class="boxnoti">
-            <div class="messagenoti">
-                <h2>RS40</h2>
-                <h3>M BOUYEKHF a partagé un nouveau fichier</h3>
-            </div>
-        </a>
-    </nav>
+    <a href="#" class="boxnoti">
+      <div class="messagenoti">
+        <h2>RS40</h2>
+        <h3>M BOUYEKHF a partagé un nouveau fichier</h3>
+      </div>
+    </a>
+  </nav>
 
-    <hr class="divider">
+  <hr class="divider" />
 
-    <div class="section">
-        <h1>Mes cours</h1>
-        <div>
-            <label for="courseCount">Afficher:</label>
-            <select id="courseCount">
-                <option value="3">3</option>
-                <option value="5">5</option>
-                <option value="all">Tous</option>
-            </select>
-        </div>
+  <div class="section">
+    <h1>Mes cours</h1>
+    <div>
+      <label for="courseCount">Afficher:</label>
+      <select id="courseCount">
+        <option value="3">3</option>
+        <option value="5">5</option>
+        <option value="all">Tous</option>
+      </select>
     </div>
+  </div>
 
-    <hr class="divider">
+  <hr class="divider" />
 
-    <nav class="course-navigation" aria-label="Course navigation">
-        {% for ue in ues %}
-            <a href="{{ path('contenu_UE', { 'code_ue': ue.getCodeUE() }) }}" 
-            class="boxUE" 
-            style="background-image: url('{% if ue.getImageUE() and ue.getImageMimeTypeUE() %}{{ path('ue_image', {'code_ue': ue.getCodeUE()}) }}{% else %}{{ asset('images/box2.jpg') }}{% endif %}');">
-                <div class="codeUE">
-                    <h4>{{ ue.getCodeUE() }}: {{ ue.nomUE }}</h4>
-                </div>
-            </a>
-        {% else %}
-            <li>Vous n'êtes inscrit à aucune UE.</li>
-        {% endfor %}
-    </nav>
-</div>
-{% endblock %}
+  <nav class="course-navigation" aria-label="Course navigation">
+    {% for ue in ues %}
+    <a
+      href="{{ path('contenu_UE', { code_ue: ue.getCodeUE() }) }}"
+      class="boxUE"
+      style="background-image: url('{% if ue.getImageUE() and ue.getImageMimeTypeUE() %}{{
+        path('ue_image', { code_ue: ue.getCodeUE() })
+      }}{% else %}{{ asset('images/box2.jpg') }}{% endif %}');"
+    >
+      <div class="codeUE">
+        <h4>{{ ue.getCodeUE() }}: {{ ue.nomUE }}</h4>
+      </div>
+    </a>
+    {% else %}
+    <li>Vous n'êtes inscrit à aucune UE.</li>
+    {% endfor %}
+  </nav>
+</main>
 
-{% block script %}
-    <script src="{{ asset('choixUE.js') }}"></script>
+{% endblock %} {% block script %}
+<script src="{{ asset('choixUE.js') }}"></script>
 {% endblock %}
