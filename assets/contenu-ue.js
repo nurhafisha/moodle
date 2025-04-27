@@ -101,8 +101,12 @@ function confirmDelete() {
 // Fermer pop-up confirmation quand click ailleurs
 window.onclick = function(event) {
   let modal = document.getElementById('deleteModal');
-  if (event.target === modal) {
+  let modalCreate = document.getElementById('post-modal');
+  let modalEdit = document.getElementById('edit-post-modal');
+  if (event.target === modal || event.target === modalCreate || event.target === modalEdit) {
       closeModal();
+      closeModalNewPost();
+      closeModalEditPost();
   }
 };
 
@@ -179,3 +183,66 @@ document.addEventListener('DOMContentLoaded', function () {
       }
   });
 });
+
+// Gestion de pop-up de l'ajout Post
+function openModalNewPost() {
+  document.getElementById('post-modal').style.display = 'block';
+}
+function closeModalNewPost() {
+  document.getElementById('post-modal').style.display = 'none';
+}
+
+// Gestion de pop-up de edit Post
+function openModalEditPost(button) {
+  const postId = button.getAttribute('data-post-id');
+
+  const modal = document.getElementById('edit-post-modal');
+
+  const codeUe = modal.querySelector('#post_codeUE').value;
+
+  fetch(`/mes-cours/${codeUe}/data/${postId}`)
+    .then(response => response.json())
+    .then(data => {
+      const form = modal.querySelector('#div-form');
+      form.action = `/mes-cours/${codeUe}/edit/${postId}`;
+
+      modal.querySelector('#titre-new-post').innerHTML = `Editer Post: ${data.titrePost}`;
+
+      modal.querySelector('#post_titrePost').value = data.titrePost || '';
+      modal.querySelector('#post_descriptionPost').value = data.descriptionPost || '';
+      modal.querySelector('#post_typePost').value = data.typePost || 'message';
+      modal.querySelector('#post_datetimePost').value = data.datetimePost || new Date().toISOString().slice(0, 16);
+      modal.querySelector('#post_codeUE').value = data.codeUE || '';
+      modal.querySelector('#post_typeMessage').value = data.typeMessage || '';
+      modal.querySelector('#post_depotPostName').textContent = data.depotPostName || '';
+
+      if (data.typePost === 'message') {
+        modal.querySelector('#post_typeMessageSelect').value = data.typeMessage || '';
+        modal.querySelector('#post_typeMessage').style.display = 'block';
+        modal.querySelector('#post_depotPost').style.display = 'none';
+
+        modal.querySelector('#tab-msgtxt').style.display = 'inline-block';
+        modal.querySelector('#tab-partagefic').style.display = 'none';
+      } else if (data.typePost === 'fichier') {
+        modal.querySelector('#post_depotPostInput').value = '';
+        modal.querySelector('#post_depotPost').style.display = 'block';
+        modal.querySelector('#post_typeMessage').style.display = 'none';
+
+        modal.querySelector('#tab-msgtxt').style.display = 'none';
+        modal.querySelector('#tab-partagefic').style.display = 'inline-block';
+      } else {
+        modal.querySelector('#post_typeMessage').style.display = 'none';
+        modal.querySelector('#post_depotPost').style.display = 'none';
+      }
+
+      modal.style.display = 'block';
+    })
+    .catch(error => {
+      console.error('Erreur lors de la récupération du post :', error);
+      alert('Erreur lors de la récupération du post.');
+    });
+}
+
+function closeModalEditPost() {
+  document.getElementById('edit-post-modal').style.display = 'none';
+}

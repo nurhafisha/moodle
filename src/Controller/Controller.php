@@ -41,20 +41,6 @@ class Controller extends AbstractController
         ]);
     }
 
-    // #[Route('/mes-cours/{code_ue}/post/{slug}/{id?}', name: 'edit_post')]
-    // public function edit_post(string $code_ue, int $id, string $slug, UERepository $ueRepository): Response
-    // {
-    //     $ue = $ueRepository->find($code_ue);
-    //     if (!$ue) {
-    //         throw $this->createNotFoundException('UE not found for code: ' . $code_ue);
-    //     }
-    //     return $this->render('post.html.twig', [
-    //         'ue' => $ue,
-    //         'id' => $id,
-    //         'slug' => $slug
-    //     ]);
-    // }
-
     #[Route('/mes-cours/{code_ue}/participants', name: 'participants_UE')]
     public function showParticipants(string $code_ue, UERepository $ueRepository, UserRepository $userRepository): Response
     {

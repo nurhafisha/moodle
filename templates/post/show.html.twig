@@ -1,44 +1,58 @@
-{% extends 'base.html.twig' %}
+<div class="post-title">
+    <div class="post-title-text">
+    
+    <span class="material-icons-sharp"
+    title="
+    {% if post.getTypePost() == 'fichier' %}
+        Fichier
+    {% elseif post.getTypeMessage() == 'important' %}
+        Important
+    {% elseif post.getTypeMessage() == 'information' %}
+        Information
+    {% elseif post.getTypeMessage() == 'optionnel' %}
+        Optionnel
+    {% endif %}
+    " style="cursor: pointer;">
+    {% if post.getTypePost() == 'fichier' %}
+    description
+    {% elseif post.getTypeMessage() == 'important' %}
+    priority_high
+    {% elseif post.getTypeMessage() == 'information' %}
+    mail
+    {% elseif post.getTypeMessage() == 'optionnel' %}
+    recommend
+    {% endif %}
+    </span>
 
-{% block title %}Post{% endblock %}
+    {% if post.getTypePost() == 'fichier' %}
+        {% if post.getDepotPostBlob() and post.getDepotPostName() ends with '.pdf' %}
+        <a href="{{ path('pdf_view', {'code_ue': ue.getCodeUE(), 'idPost': post.getId()}) }}" 
+        target="_blank"
+        rel="noopener noreferrer">
+        {% else %}
+        <a href="{{ path('post_download', {'code_ue': ue.getCodeUE(), 'idPost': post.getId()}) }}">
+        {% endif %}
+    {% endif %}
+    
 
-{% block body %}
-    <h1>Post</h1>
+    <span><h3>{{ post.getTitrePost() }}</h3></span>
 
-    <table class="table">
-        {% for post in posts %}
-        <tbody>
-            <tr>
-                <th>IdPost</th>
-                <td>{{ post.id }}</td>
-            </tr>
-            <tr>
-                <th>TitrePost</th>
-                <td>{{ post.titrePost }}</td>
-            </tr>
-            <tr>
-                <th>TypePost</th>
-                <td>{{ post.typePost }}</td>
-            </tr>
-            <tr>
-                <th>DatetimePost</th>
-                <td>{{ post.datetimePost ? post.datetimePost|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>DescriptionPost</th>
-                <td>{{ post.descriptionPost }}</td>
-            </tr>
-            <tr>
-                <th>DepotPost</th>
-                <td>{{ post.depotPost }}</td>
-            </tr>
-            <tr>
-                <th>TypeMessage</th>
-                <td>{{ post.typeMessage }}</td>
-            </tr>
-        </tbody>
-        {% endfor %}
-    </table>
+    {% if post.getTypePost() == 'fichier' %}</a>{% endif %}
 
-    <a href="{{ path('contenu_UE', { 'code_ue': ue.getCodeUE() }) }}">back to list</a>
-{% endblock %}
+    {% if is_granted('ROLE_PROF') or is_granted ('ROLE_PROF_ADMIN')%}
+    
+    <button class="edit-button" onclick="openModalEditPost(this)" data-post-id="{{ post.id }}">
+    <span class="material-icons-sharp btn-edit-post">edit_note</span></button>
+    
+    <button class="delete-button" data-id="{{ post.id }}" data-code="{{ ue.getCodeUE() }}" data-token="{{ csrf_token('delete-post') }}">
+        <span class="material-icons-sharp" id="delete-button">delete</span>
+    </button>
+    {% endif %}
+    
+    </div>
+    <div class="post-time">
+    <p>{{ post.getDatetimePost()|date('d/m/Y H:i') }}</p>
+    </div>
+</div>
+<p class="description">{{ post.getDescriptionPost()|nl2br|raw }}</p>
+<button class="read-more-btn">Lire plus</button>

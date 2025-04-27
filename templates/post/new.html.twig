@@ -1,20 +1,7 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Créer Nouveau Post {{ ue.getCodeUE() }}{% endblock %}
-
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/style-contenu-ue.css') }}" />
-{% endblock %}
-
-{% block body %}
-  <main>
-    <h1>{{ ue.getCodeUE() }} {{ ue.getNomUE() }}</h1>
-    <ul id="navbar-ue">
-      <a href="{{ path('contenu_UE', { 'code_ue': ue.getCodeUE() }) }}" id="selected"><li><span class="material-icons-sharp">school</span><b>Course</b></li></a>
-      <a href="{{ path('participants_UE', { 'code_ue': ue.getCodeUE() }) }}"><li><span class="material-icons-sharp">group</span>Participants</li></a>
-    </ul>
-    <h2 id="titre-new-post"><b>Créer Nouveau Post</b></h2>
-    <form action="{{ path('new_post', {'code_ue': ue.getCodeUE()}) }}" name="post" method="POST" id="div-form" enctype="multipart/form-data">
+<div class="modal" id="post-modal">
+    <div id="post-modal-content">
+      <h2 id="titre-new-post"><b>Créer Nouveau Post</b></h2>
+      <form action="{{ path('new_post', {'code_ue': ue.getCodeUE()}) }}" name="post" method="POST" id="div-form" enctype="multipart/form-data">
         <div class="post-tabs">
             <!-- Un seul bouton pour basculer entre les options -->
             <button type="button" id="tab-msgtxt" class="tablinks active" onclick="toggleFormView('msgtxt')">Message Texte</button>
@@ -65,10 +52,6 @@
                 <button class="btn" type="submit">Créer</button>
             </div>
         </div>
-    </form>
-  </main>
-{% endblock %}
-
-{% block script %}
-    <script src="{{ asset('contenu-ue.js') }}"></script>
-{% endblock %}
+      </form>
+    </div>
+</div>

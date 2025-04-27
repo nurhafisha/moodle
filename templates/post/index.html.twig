@@ -15,70 +15,16 @@
     </ul>
 
     {% if is_granted('ROLE_PROF') or is_granted ('ROLE_PROF_ADMIN') %}
-    <a href="{{ path('new_post', { 'code_ue': ue.getCodeUE() }) }}" id="btn-add-post">
+    <button id="btn-add-post" onclick="openModalNewPost()">
       <span class="material-icons-sharp">add</span>
       <b>AJOUTER POST</b>
-    </a>
+    </button>
     {% endif %}
     
     <ul id="posts">
       {% for post in posts %}
       <li class="post" id="post-{{ post.id }}">
-        <div class="post-title">
-          <div class="post-title-text">
-          
-            <span class="material-icons-sharp"
-            title="
-            {% if post.getTypePost() == 'fichier' %}
-                Fichier
-            {% elseif post.getTypeMessage() == 'important' %}
-                Important
-            {% elseif post.getTypeMessage() == 'information' %}
-                Information
-            {% elseif post.getTypeMessage() == 'optionnel' %}
-                Optionnel
-            {% endif %}
-            " style="cursor: pointer;">
-            {% if post.getTypePost() == 'fichier' %}
-            description
-            {% elseif post.getTypeMessage() == 'important' %}
-            priority_high
-            {% elseif post.getTypeMessage() == 'information' %}
-            mail
-            {% elseif post.getTypeMessage() == 'optionnel' %}
-            recommend
-            {% endif %}
-            </span>
-
-            {% if post.getTypePost() == 'fichier' %}
-              {% if post.getDepotPostBlob() and post.getDepotPostName() ends with '.pdf' %}
-              <a href="{{ path('pdf_view', {'code_ue': ue.getCodeUE(), 'idPost': post.getId()}) }}" 
-                target="_blank"
-                rel="noopener noreferrer">
-              {% else %}
-                <a href="{{ path('post_download', {'code_ue': ue.getCodeUE(), 'idPost': post.getId()}) }}">
-              {% endif %}
-            {% endif %}
-            
-
-            <span><h3>{{ post.getTitrePost() }}</h3></span>
-
-            {% if post.getTypePost() == 'fichier' %}</a>{% endif %}
-
-            {% if is_granted('ROLE_PROF') or is_granted ('ROLE_PROF_ADMIN')%}
-            <a href="{{ path('post_edit', { 'post': post, 'idPost': post.getId(), 'code_ue': ue.getCodeUE() }) }}"><span class="material-icons-sharp btn-edit-post">edit_note</span></a>
-            <button class="delete-button" data-id="{{ post.id }}" data-code="{{ ue.getCodeUE() }}" data-token="{{ csrf_token('delete-post') }}">
-              <span class="material-icons-sharp" id="delete-button">delete</span>
-            </button>
-            {% endif %}
-            
-          </div>
-          <div class="post-time">
-            <p>{{ post.getDatetimePost()|date('d/m/Y H:i') }}</p>
-          </div>
-        </div>
-        <p class="description">{{ post.getDescriptionPost()|nl2br|raw }}</p>
-        <button class="read-more-btn">Lire plus</button>
+        {% include 'post/show.html.twig' %}
       </li>
       {% else %}
         <li class="post">Aucun post pour cette UE.</li>
@@ -86,15 +32,12 @@
 
     </ul>
 
-    <div class="modal" id="deleteModal">
-        <div class="modal-content">
-            <p>Voulez-vous vraiment supprimer ce post?</p>
-            <div class="modal-buttons">
-                <button class="confirm-btn" onclick="confirmDelete()">Oui</button>
-                <button class="cancel-btn" onclick="closeModal()">Annuler</button>
-            </div>
-        </div>
-    </div>
+    {% include 'post/delete.html.twig' %}
+
+    {% include 'post/new.html.twig' %}
+
+    {% include 'post/edit.html.twig' %}
+
   </main>
 {% endblock %}
 
