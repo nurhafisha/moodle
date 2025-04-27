@@ -286,6 +286,11 @@ main {
   border-radius: 5px;
 }
 
+.edit-button {
+  background-color: transparent;
+  border: none;
+}
+
 #delete-button{
   margin: 0;
 }

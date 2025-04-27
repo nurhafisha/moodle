@@ -170,10 +170,11 @@ final class PostController extends AbstractController
             return $this->redirectToRoute('contenu_UE', ['code_ue' => $code_ue], Response::HTTP_SEE_OTHER);
         }
         $ue = $ueRepository->find($code_ue);
-        return $this->render('post/edit.html.twig', [
-            'post' => $post,
+        $posts = $postRepository->getPostsSorted($code_ue);
+        return $this->render('post/index.html.twig', [
             'form' => $form,
-            'ue' => $ue
+            'posts' => $posts,
+            'ue' => $ue,
         ]);
     }
 
@@ -198,4 +199,25 @@ final class PostController extends AbstractController
 
         return new JsonResponse(['success' => true]);
     }
+
+    #[Route('/data/{id}', name: 'post_data')]
+    public function postData(PostRepository $postRepository, int $id): JsonResponse
+    {
+        $post = $postRepository->find($id);
+
+        if (!$post) {
+            return new JsonResponse(['error' => 'Post not found'], 404);
+        }
+
+        return new JsonResponse([
+            'titrePost' => $post->getTitrePost(),
+            'descriptionPost' => $post->getDescriptionPost(),
+            'typePost' => $post->getTypePost(),
+            'datetimePost' => $post->getDatetimePost()?->format('Y-m-d\TH:i:s'),
+            'codeUE' => $post->getCodeUE()?->getCodeUE(),
+            'typeMessage' => $post->getTypeMessage(),
+            'depotPostName' => $post->getDepotPostName(),
+        ]);
+    }
+
 }

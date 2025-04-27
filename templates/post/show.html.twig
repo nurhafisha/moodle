@@ -40,9 +40,8 @@
     {% if post.getTypePost() == 'fichier' %}</a>{% endif %}
 
     {% if is_granted('ROLE_PROF') or is_granted ('ROLE_PROF_ADMIN')%}
-    <a href="{{ path('post_edit', { 'post': post, 'idPost': post.getId(), 'code_ue': ue.getCodeUE() }) }}"><span class="material-icons-sharp btn-edit-post">edit_note</span></a>
     
-    <button onclick="openEditForm(this)" data-post-id="{{ post.id }}">
+    <button class="edit-button" onclick="openModalEditPost(this)" data-post-id="{{ post.id }}">
     <span class="material-icons-sharp btn-edit-post">edit_note</span></button>
     
     <button class="delete-button" data-id="{{ post.id }}" data-code="{{ ue.getCodeUE() }}" data-token="{{ csrf_token('delete-post') }}">
