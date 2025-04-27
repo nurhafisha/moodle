@@ -8,16 +8,15 @@ stylesheets %}
       <h1>Catalogue</h1>
     </div>
 
-
     <div class="content">
       <ul id="navbar-dashboard">
-        <a id="selected" onclick="showOngletUser()" href="#">
+        <a id="tab-user" class="tab active" onclick="showOngletUser()" href="#">
           <li>
             <span class="material-icons-sharp"> group </span>
             <b>Gestion des Utilisateurs</b>
           </li>
         </a>
-        <a onclick="showOngletUE()" href="#">
+        <a id="tab-ue" class="tab" onclick="showOngletUE()" href="#">
           <li>
             <span class="material-icons-sharp">app_registration</span>
             Gestion des UEs
@@ -47,7 +46,7 @@ stylesheets %}
             </thead>
             <tbody>
               {% for user in users %}
-              <tr>
+              <tr data-user-id="{{ user.id }}">
                 <td>{{ user.id }}</td>
                 <td>{{ user.nomUser }}</td>
                 <td>{{ user.prenomUser }}</td>
@@ -65,7 +64,14 @@ stylesheets %}
                       class="btn btn-mod"
                       >Modifier</a
                     >
-                    {{ include("user/_delete_form.html.twig", { user: user }) }}
+                    <button
+                      class="btn btn-del"
+                      data-url="{{ path('app_user_delete', { id: user.id }) }}"
+                      data-row-selector="tr[data-user-id='{{ user.id }}']"
+                      onclick="confirmAndDeleteFromButton(this)"
+                    >
+                      Supprimer
+                    </button>
                   </div>
                 </td>
               </tr>
@@ -95,7 +101,7 @@ stylesheets %}
             </thead>
             <tbody>
               {% for ue in ues %}
-              <tr>
+              <tr data-ue-id="{{ ue.codeUe }}">
                 <td>{{ ue.codeUe }}</td>
                 <td>{{ ue.nomUe }}</td>
                 <td>{{ ue.imageUe }}</td>
@@ -110,9 +116,14 @@ stylesheets %}
                     class="btn btn-mod"
                     >Modifier</a
                   >
-                  {{
-                    include("ue/_delete_form.html.twig", { ue: ue })
-                  }}
+                  <button
+                    class="btn btn-del"
+                    data-url="{{ path('app_u_e_delete', { id: ue.codeUe }) }}"
+                    data-row-selector="tr[data-ue-id='{{ ue.codeUe }}']"
+                    onclick="confirmAndDeleteFromButton(this)"
+                  >
+                    Supprimer
+                  </button>
                 </td>
               </tr>
               {% else %}
