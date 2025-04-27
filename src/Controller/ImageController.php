@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Entity\User; 
+use App\Entity\UE;
+use App\Repository\UERepository;
 use App\Form\ProfileEditType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -34,6 +36,30 @@ class ImageController extends AbstractController
 
         return new Response($imageData, 200, [
             'Content-Type' => $mimeType,
+            'Cache-Control' => 'no-cache'
+        ]);
+    }
+
+    #[Route('/ue/image/{code_ue}', name: 'ue_image')]
+    public function ueImage(string $code_ue, UERepository $ueRepository): Response
+    {
+        $ue = $ueRepository->findOneBy(['codeUE' => $code_ue]);
+        
+        if (!$ue || !$ue->getImageMimeTypeUE()) {
+            $defaultImage = file_get_contents($this->getParameter('kernel.project_dir').'/public/images/default-ue.png');
+            return new Response($defaultImage, 200, [
+                'Content-Type' => 'image/png',
+                'Cache-Control' => 'no-cache'
+            ]);
+        }
+    
+        $imageData = $ue->getImageUE();
+        if (is_resource($imageData)) {
+            $imageData = stream_get_contents($imageData);
+        }
+    
+        return new Response($imageData, 200, [
+            'Content-Type' => $ue->getImageMimeTypeUE(),
             'Cache-Control' => 'no-cache'
         ]);
     }

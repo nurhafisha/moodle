@@ -13,8 +13,8 @@
         <div>
             <label for="notiCount">Afficher:</label>
             <select id="notiCount">
-                <option value="2">2</option>
-                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
                 <option value="all">Tous</option>
             </select>
         </div>
@@ -52,8 +52,8 @@
         <div>
             <label for="courseCount">Afficher:</label>
             <select id="courseCount">
-                <option value="2">2</option>
-                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
                 <option value="all">Tous</option>
             </select>
         </div>
@@ -63,7 +63,9 @@
 
     <nav class="course-navigation" aria-label="Course navigation">
         {% for ue in ues %}
-            <a href="{{ path('contenu_UE', { 'code_ue': ue.getCodeUE() }) }}" class="boxUE" style="background-image: url('{{ asset('Images/box1.jpg') }}');">
+            <a href="{{ path('contenu_UE', { 'code_ue': ue.getCodeUE() }) }}" 
+            class="boxUE" 
+            style="background-image: url('{% if ue.getImageUE() and ue.getImageMimeTypeUE() %}{{ path('ue_image', {'code_ue': ue.getCodeUE()}) }}{% else %}{{ asset('images/box2.jpg') }}{% endif %}');">
                 <div class="codeUE">
                     <h4>{{ ue.getCodeUE() }}: {{ ue.nomUE }}</h4>
                 </div>
