@@ -112,7 +112,7 @@ window.onclick = function(event) {
 
 // Bouton lire plus pour les posts
 document.addEventListener('DOMContentLoaded', function () {
-  const posts = document.querySelectorAll('.post');
+  const posts = document.querySelectorAll('.post, .post-ep');
 
   posts.forEach(post => {
       const desc = post.querySelector('.description');
@@ -215,6 +215,7 @@ function openModalEditPost(button) {
       modal.querySelector('#post_codeUE').value = data.codeUE || '';
       modal.querySelector('#post_typeMessage').value = data.typeMessage || '';
       modal.querySelector('#post_depotPostName').textContent = data.depotPostName || '';
+      modal.querySelector('#post_epingleur').checked = !!data.epingleur;
 
       if (data.typePost === 'message') {
         modal.querySelector('#post_typeMessageSelect').value = data.typeMessage || '';

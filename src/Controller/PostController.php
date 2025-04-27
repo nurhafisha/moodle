@@ -26,9 +26,12 @@ final class PostController extends AbstractController
             throw $this->createNotFoundException('UE not found for code: ' . $code_ue);
         }
         $posts = $postRepository->getPostsSorted($code_ue);
+        $postsEp = $postRepository->getPostsEpingles($code_ue);
         return $this->render('post/index.html.twig', [
+            'user_id' => $this->getUser()->getId(),
             'ue' => $ue,
-            'posts' => $posts
+            'posts' => $posts,
+            'posts_ep' => $postsEp,
         ]);
     }
 
@@ -76,6 +79,7 @@ final class PostController extends AbstractController
         $posts = $postRepository->getPostsSorted($code_ue);
 
         return $this->render('post/index.html.twig', [
+            'user_id' => $this->getUser()->getId(),
             'form' => $form,
             'posts' => $posts,
             'ue' => $ue,
@@ -172,6 +176,7 @@ final class PostController extends AbstractController
         $ue = $ueRepository->find($code_ue);
         $posts = $postRepository->getPostsSorted($code_ue);
         return $this->render('post/index.html.twig', [
+            'user_id' => $this->getUser()->getId(),
             'form' => $form,
             'posts' => $posts,
             'ue' => $ue,
@@ -217,6 +222,7 @@ final class PostController extends AbstractController
             'codeUE' => $post->getCodeUE()?->getCodeUE(),
             'typeMessage' => $post->getTypeMessage(),
             'depotPostName' => $post->getDepotPostName(),
+            'epingleur' => $post->getEpingleur()?->getId(),
         ]);
     }
 
