@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 #[Route('/ue')]
 final class UEController extends AbstractController
@@ -33,13 +34,13 @@ final class UEController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // Handle image upload
             $imageFile = $form->get('image_ue')->getData();
-            
+
             if ($imageFile) {
                 try {
                     $uE->setImageMimeTypeUE($imageFile->getMimeType());
                     $uE->setImageUE(file_get_contents($imageFile->getPathname()));
                 } catch (FileException $e) {
-                    $this->addFlash('error', 'Error uploading image: '.$e->getMessage());
+                    $this->addFlash('error', 'Error uploading image: ' . $e->getMessage());
                     return $this->redirectToRoute('app_u_e_new');
                 }
             }
@@ -74,13 +75,13 @@ final class UEController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // Handle image upload
             $imageFile = $form->get('image_ue')->getData();
-            
+
             if ($imageFile) {
                 try {
                     $uE->setImageMimeTypeUE($imageFile->getMimeType());
                     $uE->setImageUE(file_get_contents($imageFile->getPathname()));
                 } catch (FileException $e) {
-                    $this->addFlash('error', 'Error updating image: '.$e->getMessage());
+                    $this->addFlash('error', 'Error updating image: ' . $e->getMessage());
                     return $this->redirectToRoute('app_u_e_edit', ['id' => $uE->getId()]);
                 }
             }
@@ -97,15 +98,24 @@ final class UEController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_u_e_delete', methods: ['POST'])]
-    public function delete(Request $request, UE $uE, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$uE->getCodeUE(), $request->request->get('_token'))) {
-            $entityManager->remove($uE);
-            $entityManager->flush();
-            $this->addFlash('success', 'UE deleted successfully!');
-        }
+    // #[Route('/{id}', name: 'app_u_e_delete', methods: ['POST'])]
+    // public function delete(Request $request, UE $uE, EntityManagerInterface $entityManager): Response
+    // {
+    //     if ($this->isCsrfTokenValid('delete'.$uE->getCodeUE(), $request->request->get('_token'))) {
+    //         $entityManager->remove($uE);
+    //         $entityManager->flush();
+    //         $this->addFlash('success', 'UE deleted successfully!');
+    //     }
 
-        return $this->redirectToRoute('admin_catalogue', [], Response::HTTP_SEE_OTHER);
+    //     return $this->redirectToRoute('admin_catalogue', [], Response::HTTP_SEE_OTHER);
+    // }
+
+    #[Route('/{id}/delete', name: 'app_u_e_delete', methods: ['DELETE'])]
+    public function delete(Request $request, UE $ue, EntityManagerInterface $entityManager): JsonResponse
+    {
+        $entityManager->remove($ue);
+        $entityManager->flush();
+
+        return new JsonResponse(['success' => true], 200);
     }
 }

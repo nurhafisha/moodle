@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/user')]
@@ -88,14 +89,24 @@ class UserController extends AbstractController
     }
 
 
-    #[Route('/{id}/delete', name: 'app_user_delete', methods: ['POST'])]
-    public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($user);
-            $entityManager->flush();
-        }
+    // #[Route('/{id}/delete', name: 'app_user_delete', methods: ['POST'])]
+    // public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
+    // {
+    //     if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
+    //         $entityManager->remove($user);
+    //         $entityManager->flush();
+    //     }
 
-        return $this->redirectToRoute('admin_catalogue');
+    //     return $this->redirectToRoute('admin_catalogue');
+    // }
+
+
+    #[Route('/{id}/delete', name: 'app_user_delete', methods: ['DELETE'])]
+    public function delete(Request $request, User $user, EntityManagerInterface $entityManager): JsonResponse
+    {
+        $entityManager->remove($user);
+        $entityManager->flush();
+
+        return new JsonResponse(['success' => true], 200);
     }
 }
