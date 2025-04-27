@@ -144,8 +144,10 @@
       </ul>
     </nav>
 
-    {% block body %}{% endblock %} {% block script %}
+    {% block body %}{% endblock %}
     <script src="{{ asset('sidebar.js') }}"></script>
+    {% block script %}
+
     {% endblock %}
   </body>
 </html>
