@@ -1,5 +1,9 @@
 main {
-  margin: 3em 10vw;
+  margin: 3em 5vw;
+  padding: 3em;
+  background-color: white;
+  border: 0.5px solid lightgray;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -13,13 +17,34 @@ a {
   text-decoration: none;
 }
 
-.main-container {
+/* Default tab styles */
+.tab {
+  text-decoration: none;
+  color: #333;
+  display: inline-block;
+  /* padding: 10px 20px; */
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Highlight the active tab */
+.tab.active {
+  color: #007bff; /* Highlight color */
+  border-bottom: 2px solid #007bff; /* Underline for active tab */
+}
+
+/* Hover effect for tabs */
+.tab:hover {
+  color: #0056b3;
+}
+
+/* .main-container {
   width: 100%;
   margin: 1em auto;
   background-color: white;
   padding: 1em;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+} */
 
 /* Header */
 .header h1 {
