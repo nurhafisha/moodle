@@ -222,6 +222,7 @@ final class PostController extends AbstractController
             'codeUE' => $post->getCodeUE()?->getCodeUE(),
             'typeMessage' => $post->getTypeMessage(),
             'depotPostName' => $post->getDepotPostName(),
+            'epingleur' => $post->getEpingleur()?->getId(),
         ]);
     }
 
