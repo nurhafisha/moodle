@@ -65,6 +65,16 @@ main {
   transition: transform 0.3s ease;
 }
 
+.post-ep {
+  background-color: #a6a6a6;
+  border-radius: 8px;
+  padding: 20px;
+  list-style-type: none;
+  margin: 4vh 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
 .post-title-text {
   display: flex;
   align-items: center;
@@ -84,6 +94,18 @@ main {
   height: min-content;
   padding: 5px 20px;
   border-radius: 30px;
+}
+
+.post-time-ep {
+  background-color: white;
+  height: min-content;
+  padding: 5px 20px;
+  border-radius: 30px;
+}
+
+.container-ep{
+  display: flex;
+  column-gap: 5px;
 }
 
 .btn-edit-post:hover {

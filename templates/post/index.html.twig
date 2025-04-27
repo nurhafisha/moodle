@@ -20,6 +20,16 @@
       <b>AJOUTER POST</b>
     </button>
     {% endif %}
+
+    <ul id="posts-ep">
+      {% for post in posts_ep %}
+      <li class="post-ep" id="post-{{ post.id }}">
+        {% include 'post/show-epingle.html.twig' %}
+      </li>
+      {% else %}
+        <li class="post-ep">Aucun post epingle pour cette UE.</li>
+      {% endfor %}
+    </ul>
     
     <ul id="posts">
       {% for post in posts %}
@@ -29,7 +39,6 @@
       {% else %}
         <li class="post">Aucun post pour cette UE.</li>
       {% endfor %}
-
     </ul>
 
     {% include 'post/delete.html.twig' %}

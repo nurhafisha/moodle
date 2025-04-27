@@ -17,14 +17,40 @@ class PostRepository extends ServiceEntityRepository
     }
 
     /**
-     * Get posts for a given UE (code_ue) sorted by the latest post
+     * Afficher les posts dans l'ordre decroissant de la date de publication
      * @param string $codeUe
      * @return \Doctrine\ORM\QueryBuilder
+     * 
+     * SELECT * 
+     * FROM post p
+     * WHERE p.codeUE = :codeUe
+     * AND p.epingleur IS NULL
+     * ORDER BY p.datetimePost DESC;
      */
     public function getPostsSorted(string $codeUe)
     {
         return $this->createQueryBuilder('p')
             ->where('p.codeUE = :codeUe')
+            ->andWhere('p.epingleur IS NULL')
+            ->setParameter('codeUe', $codeUe)
+            ->orderBy('p.datetimePost', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Afficher tous les posts qui sont epingles
+     * SELECT * 
+     * FROM post p
+     * WHERE p.codeUE = :codeUe
+     * AND p.epingleur IS NOT NULL
+     * ORDER BY p.datetimePost DESC;
+     */
+    public function getPostsEpingles(string $codeUe)
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.codeUE = :codeUe')
+            ->andWhere('p.epingleur IS NOT NULL')
             ->setParameter('codeUe', $codeUe)
             ->orderBy('p.datetimePost', 'DESC')
             ->getQuery()

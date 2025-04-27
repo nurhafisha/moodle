@@ -113,6 +113,7 @@ window.onclick = function(event) {
 // Bouton lire plus pour les posts
 document.addEventListener('DOMContentLoaded', function () {
   const posts = document.querySelectorAll('.post');
+  const posts_ep = document.querySelectorAll('.post-ep');
 
   posts.forEach(post => {
       const desc = post.querySelector('.description');
@@ -139,6 +140,32 @@ document.addEventListener('DOMContentLoaded', function () {
           btn.textContent = desc.classList.contains('expanded') ? 'Lire moins' : 'Lire plus';
       });
   });
+
+  posts_ep.forEach(post => {
+    const desc = post.querySelector('.description');
+    const btn = post.querySelector('.read-more-btn');
+
+    // Count number of newlines
+    const lineCount = desc.textContent.split('\n').length;
+
+    if (lineCount < 6) {
+        btn.style.display = 'none';
+    }
+
+    btn.addEventListener('click', function () {
+        posts_ep.forEach(otherPost => {
+            const otherDesc = otherPost.querySelector('.description');
+            const otherBtn = otherPost.querySelector('.read-more-btn');
+            if (otherPost !== post) {
+                otherDesc.classList.remove('expanded');
+                otherBtn.textContent = 'Lire plus';
+            }
+        });
+
+        desc.classList.toggle('expanded');
+        btn.textContent = desc.classList.contains('expanded') ? 'Lire moins' : 'Lire plus';
+    });
+});
 });
 
 // action event listener bouton supprimer post

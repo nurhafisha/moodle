@@ -26,10 +26,12 @@ final class PostController extends AbstractController
             throw $this->createNotFoundException('UE not found for code: ' . $code_ue);
         }
         $posts = $postRepository->getPostsSorted($code_ue);
+        $postsEp = $postRepository->getPostsEpingles($code_ue);
         return $this->render('post/index.html.twig', [
             'user_id' => $this->getUser()->getId(),
             'ue' => $ue,
-            'posts' => $posts
+            'posts' => $posts,
+            'posts_ep' => $postsEp,
         ]);
     }
 
