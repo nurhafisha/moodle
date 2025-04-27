@@ -18,8 +18,11 @@ class UE
     #[ORM\Column(length: 255)]
     private ?string $nomUE = null;
 
-    #[ORM\Column(type: Types::BLOB, nullable: true)]
+    #[ORM\Column(type: 'blob', nullable: true)]
     private $imageUE;
+
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true, name: 'image_mime_type_ue')]
+    private $imageMimeTypeUE;
 
     /**
      * @var Collection<int, User>
@@ -81,6 +84,17 @@ class UE
 
         return $this;
     }
+    public function getImageMimeTypeUE(): ?string
+    {
+        return $this->imageMimeTypeUE;
+    }
+
+    public function setImageMimeTypeUE(?string $imageMimeTypeUE): static
+    {
+        $this->imageMimeTypeUE = $imageMimeTypeUE;
+        return $this;
+    }
+
 
     /**
      * @return Collection<int, User>
@@ -167,5 +181,9 @@ class UE
         }
 
         return $this;
+    }
+    public function getId(): ?string
+    {
+        return $this->codeUE; // Returns the codeUE as the ID
     }
 }
