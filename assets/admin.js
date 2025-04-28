@@ -59,3 +59,13 @@ function confirmAndDeleteFromButton(button) {
       });
   }
 }
+
+// jQuery pour la liste des UEs disponibles sur la base de donnees
+$(document).ready(function() {
+  $('.ue-btn').click(function() {
+    $(this).toggleClass('btn-primary btn-outline-primary');
+
+    let checkbox = $(this).prev('input[type="checkbox"]');
+    checkbox.prop('checked', !checkbox.prop('checked'));
+  });
+});

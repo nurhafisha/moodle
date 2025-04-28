@@ -23,13 +23,16 @@
     form_widget(form.roles, { attr: { class: "form-control roles-checkbox" } })
   }}
 </div>
-<div class="mb-3">
-  {{
-    form_label(form.liste_ue, "Associated UEs", {
-      attr: { class: "form-label" }
-    })
-  }}
-  {{ form_widget(form.liste_ue, { attr: { class: "form-check-input" } }) }}
+<div class="form-group">
+  <label>Liste UE</label>
+  <div id="liste-ue-container">
+    {% for ue in form.liste_ue %}
+      <div class="ue-item">
+        {{ form_widget(ue, {'attr': {'class': 'd-none'}}) }}
+        <button type="button" class="btn btn-outline-primary ue-btn">{{ form_label(ue) }}</button>
+      </div>
+    {% endfor %}
+  </div>
 </div>
 <div class="action-buttons">
   <a href="{{ path('admin_catalogue') }}" class="btn btn-back">Annuler</a
