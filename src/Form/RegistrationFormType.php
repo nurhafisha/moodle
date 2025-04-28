@@ -49,18 +49,21 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('roles', ChoiceType::class, [
-                'label' => 'registrationForm.roles', // Translation key
+                'label' => 'Roles',
+                'required' => false,
                 'choices' => [
                     'Etudiant' => 'ROLE_ETUDIANT',
                     'Prof' => 'ROLE_PROF',
                     'Prof. Admin' => 'ROLE_PROF_ADMIN',
                     'Admin' => 'ROLE_ADMIN',
                 ],
-                'expanded' => true, // Renders as checkboxes
-                'multiple' => true, // Allows multiple selections
-                'required' => true,
-                'attr' => ['class' => 'form-control'],
+                'expanded' => false, // Renders as a dropdown or radio buttons
+                'multiple' => false, // Allows only one selection
+                'mapped' => false, // Prevent automatic mapping
+                'data' => $options['data']->getSingleRole(), // Set the initial value
+                'placeholder' => 'Choisissez un rôle',
             ])
+
             ->add('liste_ue', EntityType::class, [
                 'class' => UE::class,
                 'choice_label' => 'nomUe', // Display the UE name
