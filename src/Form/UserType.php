@@ -54,8 +54,10 @@ class UserType extends AbstractType
                     'Prof. Admin' => 'ROLE_PROF_ADMIN',
                     'Admin' => 'ROLE_ADMIN',
                 ],
-                'expanded' => true, // Renders as checkboxes
-                'multiple' => true, // Allows multiple selections
+                'expanded' => false, // Renders as a dropdown or radio buttons
+                'multiple' => false, // Allows only one selection
+                'mapped' => false, // Prevent automatic mapping
+                'data' => $options['data']->getSingleRole(), // Set the initial value
             ])
 
             ->add('liste_ue', EntityType::class, [
