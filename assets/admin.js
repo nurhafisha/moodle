@@ -36,7 +36,7 @@ function confirmAndDeleteFromButton(button) {
   const url = button.getAttribute("data-url");
   const rowSelector = button.getAttribute("data-row-selector");
 
-  if (confirm("Êtes-vous sûr de vouloir supprimer cet élément ?")) {
+  if (confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?")) {
     fetch(url, {
       method: "DELETE",
       headers: {
@@ -48,7 +48,7 @@ function confirmAndDeleteFromButton(button) {
         if (response.ok) {
           // Supprimer la ligne correspondante dans le tableau
           document.querySelector(rowSelector).remove();
-          alert("Élément supprimé avec succès !");
+          alert("Utilisateur supprimé avec succès !");
         } else {
           alert("Erreur lors de la suppression.");
         }
