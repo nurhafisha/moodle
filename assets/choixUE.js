@@ -6,8 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const courseCountSelect = document.createElement('select');
     courseCountSelect.id = 'courseCount';
     courseCountSelect.innerHTML = `
-        <option value="3">3</option>
-        <option value="5">5</option>
+        <option value="4">4</option>
         <option value="all">Tous</option>
     `;
 

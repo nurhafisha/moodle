@@ -39,8 +39,14 @@ final class PostController extends AbstractController
     #[Route('/new', name: 'new_post', methods: ['GET', 'POST'])]
     public function new(string $code_ue, UERepository $ueRepository, Request $request, EntityManagerInterface $entityManager, PostRepository $postRepository): Response
     {
+        if (!$this->getUser()) {
+            throw $this->createAccessDeniedException('You must be logged in to create a post.');
+        }
+
         $post = new Post();
+        $post->setUser($this->getUser());
         $post->setDatetimePost(new \DateTime());    // definir date temps au moment
+        
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
@@ -51,8 +57,15 @@ final class PostController extends AbstractController
                 $post->setDepotPostName($uploadedFile->getClientOriginalName());
                 $post->setDepotPostBlob(file_get_contents($uploadedFile->getPathname()));
             }
+            if ($form->get('epingleur')->getData()) {
+                $post->setEpingleur($this->getUser());
+            } else {
+                $post->setEpingleur(null);
+            }
+            
+            
 
-            $post->setDatetimePost(new \DateTime());
+            
 
             // INSERT INTO post(titre_post, type_post, datetimePost, description_post, depot_post_blob, code_ue, type_message, depot_post_name)
             // VALUES (
@@ -140,7 +153,7 @@ final class PostController extends AbstractController
 
     // edit post
     #[Route('/edit/{idPost}', name: 'post_edit', methods: ['GET', 'POST'])]
-    public function edit(string $code_ue, Request $request, int $idPost, EntityManagerInterface $em, UERepository $ueRepository): Response
+    public function edit(string $code_ue, Request $request, int $idPost, EntityManagerInterface $em, UERepository $ueRepository, PostRepository $postRepository): Response
     {
         $post = $em->getRepository(Post::class)->find($idPost);
 
@@ -185,7 +198,7 @@ final class PostController extends AbstractController
 
     // delete post
     #[Route('/delete/{idPost}', name: 'post_delete', methods: ['DELETE'])]
-    public function delete(string $code_ue, int $idPost, EntityManagerInterface $em, Request $request): JsonResponse
+    public function delete(string $code_ue, int $idPost, EntityManagerInterface $em, Request $request, PostRepository $postRepository): JsonResponse
     {
         $post = $em->getRepository(Post::class)->find($idPost);
 
