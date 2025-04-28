@@ -54,7 +54,16 @@ stylesheets %}
               <td>{{ user.nomUser }}</td>
               <td>{{ user.prenomUser }}</td>
               <td>{{ user.email }}</td>
-              <td>{{ user.roles|join(', ') }}</td>
+              <td>{{  user.roles |filter(role => role != 'ROLE_USER')
+                                 |map(role => role == 'ROLE_PROF_ADMIN' ? 'Enseignant_Administrateur' : 
+                                      role == 'ROLE_PROF' ? 'Enseignant' : 
+                                      role == 'ROLE_ETUDIANT' ? 'Étudiant' :
+                                      role == 'ROLE_ADMIN' ? 'Administrateur' :
+                                      role|replace({'ROLE_': '' })|lower|capitalize
+                    )
+                    |join(', ') 
+                  }}
+              </td>
               <td>
                 <div title="action-btn">
                   <a
