@@ -38,7 +38,7 @@ class ProfileEditType extends AbstractType
 
             ->add('telephone', TextType::class, [
                 'label' => 'Telephone',
-                'mapped' => false,
+
                 'required' => false,
                 
             ])
