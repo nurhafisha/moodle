@@ -8,8 +8,8 @@ main{
 
 
 .box {
-    /*background-color: #f8f9fa;*/
-    /*padding: 15px;*/
+    background-color: #f8f9fa;
+    padding: 15px;
     border-radius: 5px;
     margin-bottom: 20px;
 }
@@ -17,6 +17,11 @@ main{
 .box h3 a {
     text-decoration: none; /* Removes the underline from the link */
     color: inherit; /* Inherits the color from the h3 */
+
+}
+
+.box h3 span {
+   margin: 0;
 }
 
 .box h3 a:hover {
@@ -149,7 +154,7 @@ button[type="submit"]:hover {
 /* The "Supprimer" label */
 label[for="profile_edit_imageFile_delete"] {
     margin-top: 10px;
-    color: (73, 80, 87);
+    color: rgb(73, 80, 87);
     cursor: pointer;
     font-size: 14px;
     user-select: none;

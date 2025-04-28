@@ -20,12 +20,7 @@ class Controller extends AbstractController
         return $this->redirectToRoute('app_login');
     }
 
-    // Profile
-    #[Route('/profile', name: 'profile')]
-    public function login(): Response
-    {
-        return $this->render('profile.html.twig');
-    }
+
 
     // Mes Cours
     #[Route('/mes-cours', name: 'choixUE')]
