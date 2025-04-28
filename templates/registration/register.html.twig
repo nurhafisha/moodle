@@ -50,12 +50,15 @@ stylesheets %}
       }}
     </div>
     <div class="form-group">
-      {{ form_label(registrationForm.liste_ue) }}
-      {{
-        form_widget(registrationForm.liste_ue, {
-          attr: { class: "form-control roles-checkbox" }
-        })
-      }}
+      <label>Liste UE</label>
+      <div id="liste-ue-container">
+        {% for ue in registrationForm.liste_ue %}
+          <div class="ue-item">
+            {{ form_widget(ue, {'attr': {'class': 'd-none'}}) }}
+            <button type="button" class="btn btn-outline-primary ue-btn">{{ form_label(ue) }}</button>
+          </div>
+        {% endfor %}
+      </div>
     </div>
     <div class="action-buttons">
       <a href="{{ path('admin_catalogue') }}" class="btn btn-back">Retourner</a>

@@ -36,6 +36,7 @@ a {
 .tab.active li {
   color: #007bff; /* Highlight color */
   font-weight: bold;
+
 }
 
 /* Hover effect for tabs */
@@ -99,7 +100,7 @@ a {
 }
 
 .styled-table thead tr {
-  background-color: slateblue;
+  background-color: #010101;
   color: #ffffff;
   text-align: left;
 }

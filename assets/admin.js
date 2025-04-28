@@ -36,7 +36,7 @@ function confirmAndDeleteFromButton(button) {
   const url = button.getAttribute("data-url");
   const rowSelector = button.getAttribute("data-row-selector");
 
-  if (confirm("Êtes-vous sûr de vouloir supprimer cet élément ?")) {
+  if (confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?")) {
     fetch(url, {
       method: "DELETE",
       headers: {
@@ -48,7 +48,7 @@ function confirmAndDeleteFromButton(button) {
         if (response.ok) {
           // Supprimer la ligne correspondante dans le tableau
           document.querySelector(rowSelector).remove();
-          alert("Élément supprimé avec succès !");
+          alert("Utilisateur supprimé avec succès !");
         } else {
           alert("Erreur lors de la suppression.");
         }
@@ -59,3 +59,13 @@ function confirmAndDeleteFromButton(button) {
       });
   }
 }
+
+// jQuery pour la liste des UEs disponibles sur la base de donnees
+$(document).ready(function() {
+  $('.ue-btn').click(function() {
+    $(this).toggleClass('btn-primary btn-outline-primary');
+
+    let checkbox = $(this).prev('input[type="checkbox"]');
+    checkbox.prop('checked', !checkbox.prop('checked'));
+  });
+});
