@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Entity;
-
+use App\Entity\User;
 use App\Repository\ActualiteRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -26,9 +26,20 @@ class Actualite
     #[ORM\JoinColumn(name: 'code_ue', referencedColumnName: 'code_ue', onDelete: 'CASCADE', nullable: false)]
     private ?UE $codeUE = null;
 
+    #[ORM\ManyToOne(targetEntity: Post::class)]
+    #[ORM\JoinColumn(name: 'id_post', referencedColumnName: 'id_post', nullable: true)]
+    private ?Post $post = null;
+
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'actualites')]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
+    private ?User $user = null;
+    
+
+
     public function __construct()
     {
-        $this->users = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
@@ -48,32 +59,17 @@ class Actualite
         return $this;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUsers(): Collection
+    public function getUser(): ?User
     {
-        return $this->users;
+        return $this->user;
     }
-
-    public function addUser(User $user): static
+    
+    public function setUser(?User $user): static
     {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
-            $user->addActualite($this);
-        }
-
+        $this->user = $user;
         return $this;
     }
 
-    public function removeUser(User $user): static
-    {
-        if ($this->users->removeElement($user)) {
-            $user->removeActualite($this);
-        }
-
-        return $this;
-    }
 
     public function getDatetimeAct(): ?\DateTimeInterface
     {

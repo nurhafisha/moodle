@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\UserRepository;
 use App\Repository\UERepository;
 use App\Repository\PostRepository;
+use App\Repository\ActualiteRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class Controller extends AbstractController
@@ -29,15 +30,17 @@ class Controller extends AbstractController
 
     // Mes Cours
     #[Route('/mes-cours', name: 'choixUE')]
-    public function choixUE(UserRepository $userRepository): Response
+    public function choixUE(UserRepository $userRepository, ActualiteRepository $actualiteRepository): Response
     {
         $user = $this->getUser();
         if (!$user) {
             throw $this->createAccessDeniedException('User not logged in.');
         }
         $ues = $user->getListeUe(); // returns Collection<UE>
+        $actualites = $actualiteRepository->findBy([], ['datetimeAct' => 'DESC']);
         return $this->render('choixUE.html.twig', [
             'ues' => $ues,
+            'actualites' => $actualites,
         ]);
     }
 

@@ -53,6 +53,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $prenomUser = null;
 
     /**
+     * @var Collection<int, Actualite>
+     */
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Actualite::class)]
+    private Collection $actualites;
+
+    /**
      * @var Collection<int, UE>
      */
     #[ORM\ManyToMany(targetEntity: UE::class, inversedBy: 'users')]
@@ -71,6 +77,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->liste_ue = new ArrayCollection();
         $this->postsEpingle = new ArrayCollection();
+        $this->actualites = new ArrayCollection();
     }
 
     public function getId(): ?int
