@@ -63,7 +63,10 @@ class UserType extends AbstractType
                 'choice_label' => 'nomUe', // Display the UE name
                 'multiple' => true, // Allow selecting multiple UEs
                 'expanded' => true, // Display as checkboxes
-            ]);;
+                'attr' => ['class' => 'form-control'],
+            ]);
+
+
         // ->add('save', SubmitType::class, [
         //     'label' => 'Save',
         //     'attr' => ['class' => 'btn btn-primary'],
