@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
 use App\Repository\PostRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -42,8 +43,14 @@ class Post
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $typeMessage = null;
 
-    #[ORM\ManyToOne(inversedBy: 'postsEpingle')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'postsEpingle')]
+    #[ORM\JoinColumn(name: "epingleur_id", referencedColumnName: "id", onDelete: "CASCADE", nullable: true)]
     private ?User $epingleur = null;
+
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', nullable: false)]
+    private ?User $user = null;
+    
 
     public function getId(): ?int
     {
@@ -156,6 +163,18 @@ class Post
     {
         $this->epingleur = $epingleur;
 
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+    
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+    
         return $this;
     }
 }

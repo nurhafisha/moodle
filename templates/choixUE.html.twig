@@ -14,8 +14,7 @@
     <div>
       <label for="notiCount">Afficher:</label>
       <select id="notiCount">
-        <option value="3">3</option>
-        <option value="5">5</option>
+        <option value="4">4</option>
         <option value="all">Tous</option>
       </select>
     </div>
@@ -24,26 +23,21 @@
   <hr class="divider" />
 
   <nav class="noti-navigation" aria-label="Notification navigation">
-    <a href="#" class="boxnoti">
-      <div class="messagenoti">
-        <h2>WE4A</h2>
-        <h3>M LITZLER a partagé un nouveau fichier</h3>
-      </div>
-    </a>
-
-    <a href="#" class="boxnoti">
-      <div class="messagenoti">
-        <h2>AP4A</h2>
-        <h3>M CREPUT a envoyé un nouveau message</h3>
-      </div>
-    </a>
-
-    <a href="#" class="boxnoti">
-      <div class="messagenoti">
-        <h2>RS40</h2>
-        <h3>M BOUYEKHF a partagé un nouveau fichier</h3>
-      </div>
-    </a>
+      {% for actualite in actualites %}
+          <a href="{{ path('contenu_UE', { code_ue: actualite.codeUE.codeUE }) }}" class="boxnoti">
+              <div class="messagenoti">
+                  <div class="text-content">
+                      <h2>{{ actualite.codeUE.codeUE }}</h2>
+                      <h3>{{ actualite.descriptionAct }}</h3>
+                  </div>
+                  <div class="datetimebadge">
+                      {{ actualite.datetimeAct|date('d/m/Y H:i') }}
+                  </div>
+              </div>
+          </a>
+      {% else %}
+          <p>Aucune actualité pour le moment.</p>
+      {% endfor %}
   </nav>
 
   <hr class="divider" />
@@ -53,8 +47,7 @@
     <div>
       <label for="courseCount">Afficher:</label>
       <select id="courseCount">
-        <option value="3">3</option>
-        <optcybion value="5">5</optcybion>
+        <option value="4">4</option>
         <option value="all">Tous</option>
       </select>
     </div>
