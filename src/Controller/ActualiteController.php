@@ -46,7 +46,16 @@ class ActualiteController extends AbstractController
     #[Route('/list', name: 'actualite_list', methods: ['GET'])]
     public function list(ActualiteRepository $actualiteRepository): Response
     {
-        $actualites = $actualiteRepository->findBy([], ['datetimeAct' => 'DESC']);
+                // Get the current user
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+    
+        // Get UEs of the current user
+        $ues = $user->getListeUe();
+    
+        // Get actualités for user's UEs
+        $actualites = $actualiteRepository->findByUes($ues);
+
 
         return $this->render('choixUE.html.twig', [
             'actualites' => $actualites,

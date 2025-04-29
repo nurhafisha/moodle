@@ -27,16 +27,20 @@ class Controller extends AbstractController
     #[Route('/mes-cours', name: 'choixUE')]
     public function choixUE(UserRepository $userRepository, ActualiteRepository $actualiteRepository): Response
     {
-        $user = $this->getUser();
-        if (!$user) {
-            throw $this->createAccessDeniedException('User not logged in.');
-        }
-        $ues = $user->getListeUe(); // returns Collection<UE>
-        $actualites = $actualiteRepository->findBy([], ['datetimeAct' => 'DESC']);
-        return $this->render('choixUE.html.twig', [
-            'ues' => $ues,
-            'actualites' => $actualites,
-        ]);
+            // Get the current user
+            /** @var \App\Entity\User $user */
+            $user = $this->getUser();
+        
+            // Get UEs of the current user
+            $ues = $user->getListeUe();
+        
+            // Get actualités for user's UEs
+            $actualites = $actualiteRepository->findByUes($ues);
+        
+            return $this->render('choixUE.html.twig', [
+                'actualites' => $actualites,
+                'ues' => $ues
+            ]);
     }
 
     #[Route('/mes-cours/{code_ue}/participants', name: 'participants_UE')]
