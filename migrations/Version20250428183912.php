@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250428163755 extends AbstractMigration
+final class Version20250428183912 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,18 +20,16 @@ final class Version20250428163755 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE post DROP FOREIGN KEY FK_5A8A6C8DA76ED395');
-        $this->addSql('DROP INDEX fk_5a8a6c8da76ed395 ON post');
-        $this->addSql('CREATE INDEX IDX_5A8A6C8DA76ED395 ON post (user_id)');
         $this->addSql('ALTER TABLE post ADD CONSTRAINT FK_5A8A6C8DA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
+        $this->addSql('CREATE INDEX IDX_5A8A6C8DA76ED395 ON post (user_id)');
+        $this->addSql('ALTER TABLE ue DROP responsable_ue_id');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE post DROP FOREIGN KEY FK_5A8A6C8DA76ED395');
-        $this->addSql('DROP INDEX idx_5a8a6c8da76ed395 ON post');
-        $this->addSql('CREATE INDEX FK_5A8A6C8DA76ED395 ON post (user_id)');
-        $this->addSql('ALTER TABLE post ADD CONSTRAINT FK_5A8A6C8DA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
+        $this->addSql('DROP INDEX IDX_5A8A6C8DA76ED395 ON post');
+        $this->addSql('ALTER TABLE ue ADD responsable_ue_id INT DEFAULT NULL');
     }
 }

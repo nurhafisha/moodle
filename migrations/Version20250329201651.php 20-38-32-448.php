@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250329215510 extends AbstractMigration
+final class Version20250329201651 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,17 +20,12 @@ final class Version20250329215510 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE post ADD depot_post LONGBLOB DEFAULT NULL');
-        // Ensure all existing records have a valid idUser before making the column NOT NULL
-        $this->addSql('UPDATE actualite SET id_user = 1 WHERE id_user IS NULL'); // Replace '1' with a valid User ID
-
-        // Apply the NOT NULL constraint
-        $this->addSql('ALTER TABLE actualite ALTER COLUMN id_user SET NOT NULL');
+        $this->addSql('DROP TABLE admin');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE post DROP depot_post');
+        $this->addSql('CREATE TABLE admin (id INT AUTO_INCREMENT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB COMMENT = \'\' ');
     }
 }

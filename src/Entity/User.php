@@ -136,19 +136,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /**
+     * Set a single role for the user.
+     *
+     * @param string $role
+     */
+    public function setSingleRole(string $role): void
+    {
+        $this->roles = [$role];
+    }
+
     public function getSingleRole(): ?string
     {
         // Return the first role if it exists, otherwise null
         return $this->roles[0] ?? null;
     }
 
-    public function setSingleRole(string $role): self
-    {
-        // Overwrite the roles array with a single role
-        $this->roles = [$role];
-
-        return $this;
-    }
 
     /**
      * @see PasswordAuthenticatedUserInterface
@@ -306,17 +309,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-
-    public function getFullName():string
-    {
-        return $this->nomUser . ' ' . $this->prenomUser;
-
-    }
-
-    public function __toString(): string
-    {
-        return $this->getFullName();
-    }
-
 }

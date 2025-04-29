@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250428091837 extends AbstractMigration
+final class Version20250328125026 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,13 +20,12 @@ final class Version20250428091837 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE post ADD CONSTRAINT FK_5A8A6C8D2B50F058 FOREIGN KEY (epingleur_id) REFERENCES user (id) ON DELETE CASCADE');
+        $this->addSql('CREATE TABLE admin (id INT AUTO_INCREMENT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-
-        $this->addSql('ALTER TABLE post CHANGE epingleur_id epingleur_id INT DEFAULT NULL');
+        $this->addSql('DROP TABLE admin');
     }
 }
