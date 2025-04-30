@@ -32,14 +32,10 @@ class UserType extends AbstractType
                 'required' => false,
                 'attr' => ['class' => 'form-control'],
             ])
-            // ->add('email', EmailType::class, [
-            //     'label' => 'Email',
-            //     'required' => false,
-            //     'attr' => ['class' => 'form-control'],
-            // ])
+
             ->add('plainPassword', PasswordType::class, [
                 'label' => 'New Password',
-                'mapped' => false, // Not mapped to the User entity
+                'mapped' => false,   // Not mapped to the User entity
                 'required' => false, // Optional utk tukar
                 'attr' => ['class' => 'form-control'],
             ])
