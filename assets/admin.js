@@ -26,7 +26,7 @@ function setActiveTab(activeTabId) {
   document.getElementById(activeTabId).classList.add("active");
 }
 
-// Set the default active tab on page load
+// Mettre un onglet actif par defaut sur la page admin
 document.addEventListener("DOMContentLoaded", function () {
   showOngletUser(); // l'onglet "Gestion des Utilisateurs" par defaut
 });
@@ -59,7 +59,6 @@ function confirmAndDeleteFromButton(button) {
       });
   }
 }
-
 // jQuery pour la liste des UEs disponibles sur la base de donnees
 $(document).ready(function() {
   $('.ue-btn').click(function() {
