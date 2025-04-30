@@ -29,10 +29,7 @@ class RegistrationFormType extends AbstractType
                 'label' => 'registrationForm.prenomUser', // Translation key
                 'attr' => ['class' => 'form-control'],
             ])
-            // ->add('email', EmailType::class, [
-            //     'label' => 'registrationForm.email', // Translation key
-            //     'attr' => ['class' => 'form-control'],
-            // ])
+
             ->add('plainPassword', PasswordType::class, [
                 'label' => 'registrationForm.password', // Translation key
                 'mapped' => false, // Not mapped to the User entity
@@ -66,9 +63,9 @@ class RegistrationFormType extends AbstractType
 
             ->add('liste_ue', EntityType::class, [
                 'class' => UE::class,
-                'choice_label' => 'nomUe', // Display the UE name
-                'multiple' => true, // Allow selecting multiple UEs
-                'expanded' => true, // Display as checkboxes
+                'choice_label' => 'nomUe', // Afficher le nom de l'UE
+                'multiple' => true, // Permettre de choisir plusiers UEs
+                'expanded' => true, // Afficher checkbox
                 'attr' => ['class' => 'form-control'],
             ]);
     }

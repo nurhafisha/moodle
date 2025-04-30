@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class RegistrationController extends AbstractController
 {
     #[Route('/user/new', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -34,7 +34,7 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('admin_catalogue');
         }
 
-        return $this->render('registration/register.html.twig', [
+        return $this->render('user/new.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
