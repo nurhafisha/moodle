@@ -21,8 +21,6 @@ class Controller extends AbstractController
         return $this->redirectToRoute('app_login');
     }
 
-
-
     // Mes Cours
     #[Route('/mes-cours', name: 'choixUE')]
     public function choixUE(UserRepository $userRepository, ActualiteRepository $actualiteRepository): Response

@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Repository\NewUeRepository;
 use App\Repository\UserRepository;
 use App\Repository\UERepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,7 +14,6 @@ class AdminController extends AbstractController
     public function catalogue(UserRepository $userRepository, UeRepository $UeRepos): Response
     {
         $users = $userRepository->findAll();
-
         $ues = $UeRepos->findAll();
 
         // Encode user images in base64

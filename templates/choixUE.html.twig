@@ -22,7 +22,7 @@
 
   <hr class="divider" />
 
-  <nav class="noti-navigation" aria-label="Notification navigation">
+  <div class="noti-navigation" aria-label="Notification navigation">
       {% for actualite in actualites %}
           <a href="{{ path('contenu_UE', { code_ue: actualite.codeUE.codeUE }) }}" class="boxnoti">
               <div class="messagenoti">
@@ -38,7 +38,7 @@
       {% else %}
           <p>Aucune actualité pour le moment.</p>
       {% endfor %}
-  </nav>
+  </div>
 
   <hr class="divider" />
 
@@ -55,7 +55,7 @@
 
   <hr class="divider" />
 
-  <nav class="course-navigation" aria-label="Course navigation">
+  <div class="course-navigation" aria-label="Course navigation">
     {% for ue in ues %}
     <a
       href="{{ path('contenu_UE', { code_ue: ue.getCodeUE() }) }}"
@@ -71,7 +71,7 @@
     {% else %}
     <li>Vous n'êtes inscrit à aucune UE.</li>
     {% endfor %}
-  </nav>
+  </div>
 </main>
 
 {% endblock %} {% block script %}
