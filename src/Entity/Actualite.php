@@ -27,14 +27,12 @@ class Actualite
     private ?UE $codeUE = null;
 
     #[ORM\ManyToOne(targetEntity: Post::class)]
-    #[ORM\JoinColumn(name: 'id_post', referencedColumnName: 'id_post', nullable: true)]
+    #[ORM\JoinColumn(name: 'id_post', referencedColumnName: 'id_post', onDelete: "CASCADE", nullable: true)]
     private ?Post $post = null;
 
-
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'actualites')]
-    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', onDelete: "CASCADE")]
     private ?User $user = null;
-    
 
 
     public function __construct()
