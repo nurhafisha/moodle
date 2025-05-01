@@ -85,6 +85,11 @@
   grid-template-columns: 1fr;
   gap: 10px;
   background: #fcfcfc;
+
+}
+
+.noti-navigation a{
+  text-decoration: none;
 }
 
 .boxnoti {
@@ -138,6 +143,7 @@
 .text-content {
   display: flex;
   flex-direction: column;
+
 }
 .text-content h2{
   color: #007bff;
@@ -168,7 +174,7 @@
 
 .boxUE {
   display: block;
-  height: 120px;
+  height: 10rem;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

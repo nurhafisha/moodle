@@ -8,6 +8,13 @@
 
 {% block body %}
   <main>
+    <div class="box">
+      <h3>
+          <a href="{{ path('choixUE') }}">Accueil</a>
+          <span>/</span>
+        <a href="{{ path('contenu_UE', { 'code_ue': ue.getCodeUE() }) }}">{{ ue.getCodeUE() }}</a>
+      </h3>
+    </div>
     <h1>{{ ue.getCodeUE() }} {{ ue.getNomUE() }}</h1>
     <ul id="navbar-ue">
       <a href="{{ path('contenu_UE', { 'code_ue': ue.getCodeUE() }) }}" id="selected"><li><span class="material-icons-sharp">school</span><b>Course</b></li></a>
