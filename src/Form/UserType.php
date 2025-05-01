@@ -34,7 +34,7 @@ class UserType extends AbstractType
             ])
 
             ->add('plainPassword', PasswordType::class, [
-                'label' => 'New Password',
+                'label' => 'Nouvelle mot de passe',
                 'mapped' => false,   // Not mapped to the User entity
                 'required' => false, // Optional utk tukar
                 'attr' => ['class' => 'form-control'],
@@ -42,7 +42,7 @@ class UserType extends AbstractType
 
 
             ->add('roles', ChoiceType::class, [
-                'label' => 'Roles',
+                'label' => 'Rôles',
                 'required' => false,
                 'choices' => [
                     'Etudiant' => 'ROLE_ETUDIANT',
@@ -63,12 +63,6 @@ class UserType extends AbstractType
                 'expanded' => true, // Display as checkboxes
                 'attr' => ['class' => 'form-control'],
             ]);
-
-
-        // ->add('save', SubmitType::class, [
-        //     'label' => 'Save',
-        //     'attr' => ['class' => 'btn btn-primary'],
-        // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
