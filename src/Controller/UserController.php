@@ -13,8 +13,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-
-
 #[Route('/user')]
 class UserController extends AbstractController
 {
@@ -31,6 +29,7 @@ class UserController extends AbstractController
      *
      * @return Response Retourne une réponse HTML pour afficher ou soumettre le formulaire.
      */
+    
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
@@ -89,6 +88,7 @@ class UserController extends AbstractController
      *
      * @return JsonResponse Retourne une réponse JSON pour indiquer le succès ou l'échec de la suppression.
      */
+
     #[Route('/{id}/delete', name: 'app_user_delete', methods: ['DELETE'])]
     public function delete(Request $request, User $user, EntityManagerInterface $entityManager): JsonResponse
     {

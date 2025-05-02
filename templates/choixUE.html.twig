@@ -1,20 +1,20 @@
-{% extends 'base.html.twig' %} {% block stylesheets %}
-<link rel="stylesheet" href="{{ asset('styles/choixUE-etu.css') }}" />
+{% extends 'base.html.twig' %} {% block stylesheets %} 
+<link rel="stylesheet" href="{{ asset('styles/choixUE-etu.css') }}" /> {#Lien vers le fichier CSS pour le style de la page #}
 {% endblock %} {% block body %}
 <main>
   <div class="header">
-    <h1>Tableau de bord</h1>
-    <h2>Bienvenue {{ app.user.prenomUser }} 👋🏼</h2>
+    <h1>Tableau de bord</h1> {#Titre de la page#}
+    <h2>Bienvenue {{ app.user.prenomUser }} 👋🏼</h2> {#Une bienvenue pour l'utilisateur#}
   </div>
 
   <hr class="divider" />
 
   <div class="section">
-    <h1>Fils d'actualité</h1>
+    <h1>Fils d'actualité</h1> {#Une section separee pour les actualites#} 
     <div>
-      <label for="notiCount">Afficher:</label>
+      <label for="notiCount">Afficher:</label> {#Ajouter un bouton dropdown pour filtrer les actualites#} 
       <select id="notiCount">
-        <option value="4">4</option>
+        <option value="4">4</option> {#Limiter le nombre d'actualites affichees#} 
         <option value="all">Tous</option>
       </select>
     </div>
@@ -22,32 +22,32 @@
 
   <hr class="divider" />
 
-  <div class="noti-navigation" aria-label="Notification navigation">
-      {% for actualite in actualites %}
-          <a href="{{ path('contenu_UE', { code_ue: actualite.codeUE.codeUE }) }}" class="boxnoti">
+  <div class="noti-navigation" aria-label="Notification navigation"> 
+      {% for actualite in actualites %} {#Boucle pour afficher les actualites#} 
+          <a href="{{ path('contenu_UE', { code_ue: actualite.codeUE.codeUE }) }}" class="boxnoti"> {#Lien vers le contenu de l'UE#} 
               <div class="messagenoti">
                   <div class="text-content">
-                      <h2>{{ actualite.codeUE.codeUE }}</h2>
-                      <h3>{{ actualite.descriptionAct }}</h3>
+                      <h2>{{ actualite.codeUE.codeUE }}</h2> {#Afficher le code de l'UE#} 
+                      <h3>{{ actualite.descriptionAct }}</h3> {#Afficher la description de l'actualite#} 
                   </div>
-                  <div class="datetimebadge">
-                      {{ actualite.datetimeAct|date('d/m/Y H:i') }}
+                  <div class="datetimebadge"> {#Badge pour afficher la date et l'heure de l'actualite#} 
+                      {{ actualite.datetimeAct|date('d/m/Y H:i') }} {#Afficher la date et l'heure de l'actualite#} 
                   </div>
               </div>
           </a>
-      {% else %}
-          <p>Aucune actualité pour le moment.</p>
+      {% else %} {# Si aucune actualite n'est disponible #}
+          <p>Aucune actualité pour le moment.</p>  {#Message si aucune actualite n'est disponible#}
       {% endfor %}
   </div>
 
   <hr class="divider" />
 
   <div class="section">
-    <h1>Mes cours</h1>
+    <h1>Mes cours</h1> {#Une section separee pour les cours#} 
     <div>
-      <label for="courseCount">Afficher:</label>
+      <label for="courseCount">Afficher:</label> {#Ajouter un bouton dropdown pour filtrer les cours#}
       <select id="courseCount">
-        <option value="4">4</option>
+        <option value="4">4</option> {#Limiter le nombre de cours affiches#} 
         <option value="all">Tous</option>
       </select>
     </div>
@@ -56,24 +56,25 @@
   <hr class="divider" />
 
   <div class="course-navigation" aria-label="Course navigation">
-    {% for ue in ues %}
+    {% for ue in ues %}  {#Boucle pour afficher les cours#}
     <a
-      href="{{ path('contenu_UE', { code_ue: ue.getCodeUE() }) }}"
-      class="boxUE"
-      style="background-image: url('{% if ue.getImageUE() and ue.getImageMimeTypeUE() %}{{
-        path('ue_image', { code_ue: ue.getCodeUE() })
-      }}{% else %}{{ asset('images/imageUE.jpg') }}{% endif %}');"
+      href="{{ path('contenu_UE', { code_ue: ue.getCodeUE() }) }}" {# Lien vers le cours #}
+      class="boxUE" {# Class pour le style UE #}
+      style="background-image: url('{% if ue.getImageUE() and ue.getImageMimeTypeUE() %}{{     
+        path('ue_image', { code_ue: ue.getCodeUE() }) 
+      }}{% else %}{{ asset('images/imageUE.jpg') }}{% endif %}');" {# Afficher une image par defaut si aucune image est assigner a l'UE #}
     >
       <div class="codeUE">
-        <h4>{{ ue.getCodeUE() }}: {{ ue.nomUE }}</h4>
+        <h4>{{ ue.getCodeUE() }}: {{ ue.nomUE }}</h4> {# Afficher le code de l'UE et son nom #}
       </div>
     </a>
     {% else %}
-    <li>Vous n'êtes inscrit à aucune UE.</li>
+    <li>Vous n'êtes inscrit à aucune UE.</li> {# Message si l'utilisateur n'est inscrit à aucune UE #}
     {% endfor %}
   </div>
 </main>
 
-{% endblock %} {% block script %}
-<script src="{{ asset('choixUE.js') }}"></script>
+{% endblock %} {% block script %} 
+<script src="{{ asset('choixUE.js') }}"></script> {#Lien vers le fichier JS pour les interactions de la page (le bouton filter afficher) #)
 {% endblock %}
+ 

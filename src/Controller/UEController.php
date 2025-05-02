@@ -93,7 +93,7 @@ final class UEController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Handle image upload
+            // Gérer le téléchargement d'images
             $imageFile = $form->get('image_ue')->getData();
 
             if ($imageFile) {
@@ -133,6 +133,7 @@ final class UEController extends AbstractController
      *
      * @return JsonResponse Retourne une réponse JSON confirmant la suppression avec un statut HTTP 200.
      */
+
     #[Route('/{id}/delete', name: 'app_u_e_delete', methods: ['DELETE'])]
     public function delete(Request $request, UE $ue, EntityManagerInterface $entityManager): JsonResponse
     {

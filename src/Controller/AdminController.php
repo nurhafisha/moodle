@@ -37,7 +37,9 @@ class AdminController extends AbstractController
         $ues = $UeRepos->findAll();
 
 
+
         // Rendu de la vue 'admin_catalogue.html.twig' avec les données des utilisateurs et des UEs.
+
         return $this->render('admin_catalogue.html.twig', [
 
             // Liste des utilisateurs envoyée à la vue.

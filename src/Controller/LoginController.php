@@ -14,27 +14,30 @@ class LoginController extends AbstractController
     {
         if ($this->getUser()) {
             if ($this->isGranted('ROLE_ADMIN')) {
-                return $this->redirectToRoute('admin_catalogue'); // Change to your admin route
+                return $this->redirectToRoute('admin_catalogue'); // Role admin route
             }
-            return $this->redirectToRoute('choixUE'); // Change to your student route
+            return $this->redirectToRoute('choixUE');
         }
 
 
-        // get the login error if there is one
+        // obtenir l'erreur de connexion s'il y en a une
         $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
+
+        // Dernier nom d'utilisateur saisi par l'utilisateur
         $lastUsername = $authenticationUtils->getLastUsername();
 
+        // Récupérer les statistiques des utilisateurs
         $userStats = $userRepository->getUserStatistics();
 
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error , 'user_stats' => $userStats]);
     }
 
+    // Cette méthode est gérée par le pare-feu de sécurité et ne doit pas être appelée directement
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): never
     {
         throw new \LogicException('Cette méthode peut être vide : elle sera interceptée par la clé de déconnexion de votre pare-feu.');
-        // throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+        
     }
 
 

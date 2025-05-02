@@ -111,33 +111,33 @@ window.onclick = function(event) {
 };
 
 // Bouton lire plus pour les posts
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
   const posts = document.querySelectorAll('.post, .post-ep');
 
   posts.forEach(post => {
-      const desc = post.querySelector('.description');
-      const btn = post.querySelector('.read-more-btn');
+    
+    const desc = post.querySelector('p.description');
+    
+    const btn = post.querySelector('button.read-more-btn');
 
-      // Count number of newlines
-      const lineCount = desc.textContent.split('\n').length;
+    if (!desc || !btn) {
+      console.error('Missing elements in post', post);
+      return;
+    }
 
-      if (lineCount < 6) {
-          btn.style.display = 'none';
-      }
+    const lineHeight = parseFloat(getComputedStyle(desc).lineHeight);
+    const maxLines = 6;
+    const maxHeight = lineHeight * maxLines;
+    
+    if (desc.scrollHeight <= maxHeight) {
+      btn.style.display = 'none';
+    }
 
-      btn.addEventListener('click', function () {
-          posts.forEach(otherPost => {
-              const otherDesc = otherPost.querySelector('.description');
-              const otherBtn = otherPost.querySelector('.read-more-btn');
-              if (otherPost !== post) {
-                  otherDesc.classList.remove('expanded');
-                  otherBtn.textContent = 'Lire plus';
-              }
-          });
-
-          desc.classList.toggle('expanded');
-          btn.textContent = desc.classList.contains('expanded') ? 'Lire moins' : 'Lire plus';
-      });
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      desc.classList.toggle('expanded');
+      btn.textContent = desc.classList.contains('expanded') ? 'Lire moins' : 'Lire plus';
+    });
   });
 });
 
