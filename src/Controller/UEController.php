@@ -73,7 +73,7 @@ final class UEController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Gérer le téléchargement d'images
+            // Handle image upload
             $imageFile = $form->get('image_ue')->getData();
 
             if ($imageFile) {
@@ -97,6 +97,18 @@ final class UEController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    // #[Route('/{id}', name: 'app_u_e_delete', methods: ['POST'])]
+    // public function delete(Request $request, UE $uE, EntityManagerInterface $entityManager): Response
+    // {
+    //     if ($this->isCsrfTokenValid('delete'.$uE->getCodeUE(), $request->request->get('_token'))) {
+    //         $entityManager->remove($uE);
+    //         $entityManager->flush();
+    //         $this->addFlash('success', 'UE deleted successfully!');
+    //     }
+
+    //     return $this->redirectToRoute('admin_catalogue', [], Response::HTTP_SEE_OTHER);
+    // }
 
     #[Route('/{id}/delete', name: 'app_u_e_delete', methods: ['DELETE'])]
     public function delete(Request $request, UE $ue, EntityManagerInterface $entityManager): JsonResponse

@@ -41,6 +41,11 @@ nav {
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
 }
 
+#main-nav{
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+}
 #logo {
   width: 120px;
   height: 60px;
