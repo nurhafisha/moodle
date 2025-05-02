@@ -182,6 +182,10 @@ final class PostController extends AbstractController
                 $post->setDepotPostName($uploadedFile->getClientOriginalName());
                 $post->setDepotPostBlob(file_get_contents($uploadedFile->getPathname()));
             }
+
+
+            $em->flush();
+
             // UPDATE post
             // SET
             //     titre_post = $post->getTitrePost(),
@@ -194,6 +198,7 @@ final class PostController extends AbstractController
             //     depot_post_name = $post->getDepotPostName()
             // WHERE id_post = $post->getId();
             $em->flush(); // Mise à jour des données
+
 
             return $this->redirectToRoute('contenu_UE', ['code_ue' => $code_ue], Response::HTTP_SEE_OTHER);
         }

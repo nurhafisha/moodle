@@ -37,31 +37,6 @@ class UserController extends AbstractController
         ]);
     }
 
-    // #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
-    // public function new(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
-    // {
-    //     $user = new User();
-    //     $form = $this->createForm(UserType::class, $user);
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-
-    //         // Hash the password
-    //         $hashedPassword = $passwordHasher->hashPassword($user, $user->getPassword());
-    //         $user->setPassword($hashedPassword);
-
-    //         $entityManager->persist($user);
-    //         $entityManager->flush();
-
-    //         return $this->redirectToRoute('admin_catalogue');
-    //     }
-
-    //     return $this->render('user/new.html.twig', [
-    //         // 'user' => $user,
-    //         'form' => $form->createView(),
-    //     ]);
-    // }
-
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
@@ -97,19 +72,6 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
-
-    // #[Route('/{id}/delete', name: 'app_user_delete', methods: ['POST'])]
-    // public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
-    // {
-    //     if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
-    //         $entityManager->remove($user);
-    //         $entityManager->flush();
-    //     }
-
-    //     return $this->redirectToRoute('admin_catalogue');
-    // }
-
 
     #[Route('/{id}/delete', name: 'app_user_delete', methods: ['DELETE'])]
     public function delete(Request $request, User $user, EntityManagerInterface $entityManager): JsonResponse

@@ -41,6 +41,7 @@ class Controller extends AbstractController
             ]);
     }
 
+    // participants dans une UE
     #[Route('/mes-cours/{code_ue}/participants', name: 'participants_UE')]
     public function showParticipants(string $code_ue, UERepository $ueRepository, UserRepository $userRepository): Response
     {
@@ -61,7 +62,7 @@ class Controller extends AbstractController
     }
     
 
-    // Editer Profile
+    // gestion des utilisateurs
     #[Route('/edit', name: 'edit_profile')]
     public function edit_profile(): Response
     {
