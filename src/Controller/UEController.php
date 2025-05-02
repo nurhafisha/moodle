@@ -16,31 +16,56 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 final class UEController extends AbstractController
 {
 
+    /**
+     * Crée une nouvelle Unité d'Enseignement (UE).
+     *
+     * Cette méthode gère la création d'une UE, y compris le téléchargement d'une image associée.
+     * Si le formulaire est soumis et valide, l'UE est enregistrée dans la base de données.
+     *
+     * @Route('/new', name='app_u_e_new', methods={'GET', 'POST'})
+     *
+     * @param Request $request L'objet Request contenant les données de la requête.
+     * @param EntityManagerInterface $entityManager Le gestionnaire Doctrine pour persister les données.
+     *
+     * @return Response Retourne une réponse HTTP avec le formulaire ou une redirection.
+     */
     #[Route('/new', name: 'app_u_e_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        // Création d'une nouvelle instance de l'entité UE.
         $uE = new UE();
+        // Création du formulaire associé à l'entité UE.
         $form = $this->createForm(UEType::class, $uE);
         $form->handleRequest($request);
 
+        // Vérifie si le formulaire est soumis et valide.
         if ($form->isSubmitted() && $form->isValid()) {
-            // Handle image upload
+            // Récupère le fichier image soumis.
             $imageFile = $form->get('image_ue')->getData();
 
+            // Vérifie si un fichier a été téléchargé.
             if ($imageFile) {
                 try {
                     $uE->setImageMimeTypeUE($imageFile->getMimeType());
+                    // Stocke le contenu de l'image.
                     $uE->setImageUE(file_get_contents($imageFile->getPathname()));
                 } catch (FileException $e) {
                     $this->addFlash('error', 'Error uploading image: ' . $e->getMessage());
+
+                    // Redirige vers le formulaire.
                     return $this->redirectToRoute('app_u_e_new');
                 }
             }
 
+            // Persiste l'entité UE dans la base de données.
             $entityManager->persist($uE);
+            // Sauvegarde les modifications dans la base de données.
+
             $entityManager->flush();
 
             $this->addFlash('success', 'UE created successfully!');
+
+            // Redirige vers le catalogue.
             return $this->redirectToRoute('admin_catalogue', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -51,6 +76,19 @@ final class UEController extends AbstractController
     }
 
 
+    /**
+     * Modifie UE existante.
+     *
+     * Cette méthode permet de modifier une UE, y compris la mise à jour de l'image associée.
+     *
+     * @Route('/{id}/edit', name='app_u_e_edit', methods={'GET', 'POST'})
+     *
+     * @param Request $request L'objet Request contenant les données de la requête.
+     * @param UE $uE L'entité UE à modifier.
+     * @param EntityManagerInterface $entityManager Le gestionnaire Doctrine pour persister les modifications.
+     *
+     * @return Response Retourne une réponse HTTP avec le formulaire ou une redirection.
+     */
     #[Route('/{id}/edit', name: 'app_u_e_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, UE $uE, EntityManagerInterface $entityManager): Response
     {
@@ -58,7 +96,7 @@ final class UEController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Handle image upload
+
             $imageFile = $form->get('image_ue')->getData();
 
             if ($imageFile) {
@@ -71,6 +109,7 @@ final class UEController extends AbstractController
                 }
             }
 
+            // Sauvegarde les modifications dans la base de données.
             $entityManager->flush();
 
             $this->addFlash('success', 'UE updated successfully!');
