@@ -13,54 +13,23 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 #[Route('/user')]
 class UserController extends AbstractController
 {
-    #[Route('/', name: 'app_user_index', methods: ['GET'])]
-    public function index(UserRepository $userRepository): Response
-    {
-        return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findAll(),
-        ]);
-    }
 
-    #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
-    public function show(int $id, UserRepository $userRepository): Response
-    {
-        $user = $userRepository->find($id);
-
-        if (!$user) {
-            throw $this->createNotFoundException('User not found');
-        }
-        return $this->render('user/show.html.twig', [
-            'user' => $user,
-        ]);
-    }
-
-    // #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
-    // public function new(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
-    // {
-    //     $user = new User();
-    //     $form = $this->createForm(UserType::class, $user);
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-
-    //         // Hash the password
-    //         $hashedPassword = $passwordHasher->hashPassword($user, $user->getPassword());
-    //         $user->setPassword($hashedPassword);
-
-    //         $entityManager->persist($user);
-    //         $entityManager->flush();
-
-    //         return $this->redirectToRoute('admin_catalogue');
-    //     }
-
-    //     return $this->render('user/new.html.twig', [
-    //         // 'user' => $user,
-    //         'form' => $form->createView(),
-    //     ]);
-    // }
+    /**
+     * Permet à un administrateur ou un utilisateur autorisé de modifier les informations d'un utilisateur.
+     *
+     * @Route("/{id}/edit", name="app_user_edit", methods={"GET", "POST"})
+     *
+     * @param Request $request L'objet requête qui contient les données du formulaire.
+     * @param User $user L'utilisateur cible à modifier.
+     * @param EntityManagerInterface $entityManager Gère les interactions avec la base de données.
+     * @param UserPasswordHasherInterface $passwordHasher Service pour hacher les mots de passe.
+     *
+     * @return Response Retourne une réponse HTML pour afficher ou soumettre le formulaire.
+     */
 
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
@@ -99,16 +68,17 @@ class UserController extends AbstractController
     }
 
 
-    // #[Route('/{id}/delete', name: 'app_user_delete', methods: ['POST'])]
-    // public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
-    // {
-    //     if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
-    //         $entityManager->remove($user);
-    //         $entityManager->flush();
-    //     }
-
-    //     return $this->redirectToRoute('admin_catalogue');
-    // }
+    /**
+     * Supprime un utilisateur spécifique de la base de données.
+     *
+     * @Route("/{id}/delete", name="app_user_delete", methods={"DELETE"})
+     *
+     * @param Request $request L'objet requête contenant les éventuelles données.
+     * @param User $user L'utilisateur à supprimer.
+     * @param EntityManagerInterface $entityManager Gère les interactions avec la base de données.
+     *
+     * @return JsonResponse Retourne une réponse JSON pour indiquer le succès ou l'échec de la suppression.
+     */
 
 
     #[Route('/{id}/delete', name: 'app_user_delete', methods: ['DELETE'])]

@@ -21,16 +21,17 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Hash the password
+            // Récupération et hachage du mot de passe fourni.
+
             $plainPassword = $form->get('plainPassword')->getData();
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
 
             $user->setSingleRole($form->get('roles')->getData());
-            // Save the user to the database
+            // Sauvegarde de l'utilisateur dans la base de données.
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // Redirect to the login page or another page
+            /// Redirection vers la page admin.
             return $this->redirectToRoute('admin_catalogue');
         }
 

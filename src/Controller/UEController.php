@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\UE;
 use App\Form\UEType;
-use App\Repository\UERepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,13 +15,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 #[Route('/ue')]
 final class UEController extends AbstractController
 {
-    #[Route(name: 'app_u_e_index', methods: ['GET'])]
-    public function index(UERepository $uERepository): Response
-    {
-        return $this->render('ue/index.html.twig', [
-            'ues' => $uERepository->findAll(),
-        ]);
-    }
 
     #[Route('/new', name: 'app_u_e_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -58,13 +50,6 @@ final class UEController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_u_e_show', methods: ['GET'])]
-    public function show(UE $uE): Response
-    {
-        return $this->render('ue/show.html.twig', [
-            'ue' => $uE,
-        ]);
-    }
 
     #[Route('/{id}/edit', name: 'app_u_e_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, UE $uE, EntityManagerInterface $entityManager): Response
@@ -98,17 +83,20 @@ final class UEController extends AbstractController
         ]);
     }
 
-    // #[Route('/{id}', name: 'app_u_e_delete', methods: ['POST'])]
-    // public function delete(Request $request, UE $uE, EntityManagerInterface $entityManager): Response
-    // {
-    //     if ($this->isCsrfTokenValid('delete'.$uE->getCodeUE(), $request->request->get('_token'))) {
-    //         $entityManager->remove($uE);
-    //         $entityManager->flush();
-    //         $this->addFlash('success', 'UE deleted successfully!');
-    //     }
-
-    //     return $this->redirectToRoute('admin_catalogue', [], Response::HTTP_SEE_OTHER);
-    // }
+    /**
+     * Supprime une Unité d'Enseignement (UE) spécifique.
+     *
+     * Cette méthode supprime une UE de la base de données selon l'ID spécifié.
+     * Une réponse JSON est renvoyée pour confirmer la réussite de l'opération.
+     *
+     * @Route("/{id}/delete", name="app_u_e_delete", methods={"DELETE"})
+     *
+     * @param Request $request L'objet Request contenant éventuellement des données supplémentaires.
+     * @param UE $ue L'UE ciblée par la requête (identifiée par son ID).
+     * @param EntityManagerInterface $entityManager Le gestionnaire Doctrine pour effectuer la suppression.
+     *
+     * @return JsonResponse Retourne une réponse JSON confirmant la suppression avec un statut HTTP 200.
+     */
 
     #[Route('/{id}/delete', name: 'app_u_e_delete', methods: ['DELETE'])]
     public function delete(Request $request, UE $ue, EntityManagerInterface $entityManager): JsonResponse
