@@ -65,20 +65,3 @@ class ImageController extends AbstractController
     }
 }
 
-
-
-//  #[Route('/user/image/{id}', name:'user_image')]
-// public function userImage(User $user): Response
-// {
-//     $imageData = $user->getImageData();
-//     $mimeType = $user->getImageMimeType();
-
-//     if (!$imageData || !$mimeType) {
-//         throw $this->createNotFoundException('Image not found');
-//     }
-
-//     return new Response($imageData, 200, [
-//         'Content-Type' => $mimeType,
-//         'Content-Disposition' => 'inline; filename="profile.jpg"'
-//     ]);
-// }

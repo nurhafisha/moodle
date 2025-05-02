@@ -18,15 +18,6 @@ class AdminController extends AbstractController
 
         $ues = $UeRepos->findAll();
 
-        // Encode user images in base64
-        // foreach ($users as $user) {
-        //     if ($user->getImageUser()) {
-        //         $user->base64Image = base64_encode(stream_get_contents($user->getImageUser()));
-        //     } else {
-        //         $user->base64Image = null;
-        //     }
-        // }
-
         return $this->render('admin_catalogue.html.twig', [
             'users' => $users,
 

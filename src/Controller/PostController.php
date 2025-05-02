@@ -171,17 +171,7 @@ final class PostController extends AbstractController
                 $post->setDepotPostName($uploadedFile->getClientOriginalName());
                 $post->setDepotPostBlob(file_get_contents($uploadedFile->getPathname()));
             }
-            // UPDATE post
-            // SET
-            //     titre_post = $post->getTitrePost(),
-            //     type_post = $post->getTypePost(),
-            //     datetimePost = $post->getDatetimePost(),
-            //     description_post = $post->getDescriptionPost(),
-            //     depot_post_blob = $post->getDepotPostBlob(),
-            //     code_ue = $post->getCodeUE(),
-            //     type_message = $post->getTypeMessage(),
-            //     depot_post_name = $post->getDepotPostName()
-            // WHERE id_post = $post->getId();
+
             $em->flush();
 
             return $this->redirectToRoute('contenu_UE', ['code_ue' => $code_ue], Response::HTTP_SEE_OTHER);

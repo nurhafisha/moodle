@@ -58,11 +58,11 @@
   <nav class="course-navigation" aria-label="Course navigation">
     {% for ue in ues %}
     <a
-      href="{{ path('contenu_UE', { code_ue: ue.getCodeUE() }) }}"
-      class="boxUE"
-      style="background-image: url('{% if ue.getImageUE() and ue.getImageMimeTypeUE() %}{{
-        path('ue_image', { code_ue: ue.getCodeUE() })
-      }}{% else %}{{ asset('images/imageUE.jpg') }}{% endif %}');"
+      href="{{ path('contenu_UE', { code_ue: ue.getCodeUE() }) }}" {# Lien vers le cours #}
+      class="boxUE" {# Class pour le style UE #}
+      style="background-image: url('{% if ue.getImageUE() and ue.getImageMimeTypeUE() %}{{     
+        path('ue_image', { code_ue: ue.getCodeUE() }) 
+      }}{% else %}{{ asset('images/imageUE.jpg') }}{% endif %}');" {# Afficher une image par defaut si aucune image est assigner a l'UE #}
     >
       <div class="codeUE">
         <h4>{{ ue.getCodeUE() }}: {{ ue.nomUE }}</h4>
