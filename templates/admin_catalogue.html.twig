@@ -8,6 +8,7 @@ stylesheets %}
   </div>
 
   <div class="content">
+    <!-- Barre de navigation pour basculer entre les onglets (utilisateurs et UEs) -->
     <ul id="navbar-dashboard">
       <a id="tab-user" class="tab active" onclick="showOngletUser()" href="#">
         <li>
@@ -23,7 +24,9 @@ stylesheets %}
       </a>
     </ul>
 
+    <!-- Section de gestion des utilisateurs -->
     <div id="onglet-user" class="onglet-user">
+      <!-- Titre et bouton pour ajouter un utilisateur -->
       <div class="add-user">
         <h2>Liste des Utilisateurs</h2>
         <a href="{{ path('app_register') }}" class="btn btn-add"
@@ -31,13 +34,11 @@ stylesheets %}
         >
       </div>
 
+      <!-- Tableau listant les utilisateurs -->
       <div class="table-container">
         <table class="styled-table">
           <thead>
             <tr>
-              {#
-              <th>ID User</th>
-              #}
               <th>Nom</th>
               <th>Prénom</th>
               <th>Email</th>
@@ -48,12 +49,10 @@ stylesheets %}
           <tbody>
             {% for user in users %}
             <tr data-user-id="{{ user.id }}">
-              {#
-              <td>{{ user.id }}</td>
-              #}
               <td>{{ user.nomUser }}</td>
               <td>{{ user.prenomUser }}</td>
               <td>{{ user.email }}</td>
+              <!-- Formatage des rôles utilisateur -->
               <td>{{  user.roles |filter(role => role != 'ROLE_USER')
                                  |map(role => role == 'ROLE_PROF_ADMIN' ? 'Enseignant_Administrateur' : 
                                       role == 'ROLE_PROF' ? 'Enseignant' : 
@@ -65,14 +64,8 @@ stylesheets %}
                   }}
               </td>
               <td>
+                <!-- Actions disponibles pour chaque utilisateur -->
                 <div title="action-btn">
-
-                  <!-- <a
-                    href="{{ path('app_user_show', { id: user.id }) }}"
-                    class="btn btn-aff"
-                    >Consulter</a
-                  > -->
-
                   <a
                     href="{{ path('app_user_edit', { id: user.id }) }}"
                     class="btn btn-mod"
@@ -95,7 +88,9 @@ stylesheets %}
       </div>
     </div>
 
+    <!-- Section de gestion des UEs -->
     <div id="onglet-ue" class="onglet-ue" style="display: none">
+      <!-- Titre et bouton pour ajouter une UE -->
       <div class="add-ue">
         <h2>Liste de UEs</h2>
         <a href="{{ path('app_u_e_new') }}" class="btn btn-add"
@@ -103,6 +98,7 @@ stylesheets %}
         >
       </div>
 
+      <!-- Tableau listant les UEs -->
       <div class="table-container">
         <table class="styled-table">
           <thead>
@@ -121,12 +117,7 @@ stylesheets %}
               <td>{{ ue.imageUe }}</td>
               <td>
 
-                <!-- <a
-                  href="{{ path('app_u_e_show', { id: ue.codeUe }) }}"
-                  class="btn btn-aff"
-                  >Consulter</a
-                > -->
-
+                <!-- Actions disponibles pour chaque UE -->
                 <a
                   href="{{ path('app_u_e_edit', { id: ue.codeUe }) }}"
                   class="btn btn-mod"
@@ -150,8 +141,6 @@ stylesheets %}
           </tbody>
         </table>
       </div>
-
-      {#{{ include("ue/index.html.twig") }}#}
     </div>
   </div>
 </main>
