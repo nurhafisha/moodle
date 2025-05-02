@@ -39,12 +39,14 @@ class ImageController extends AbstractController
             'Cache-Control' => 'no-cache'
         ]);
     }
-
+    // Route pour afficher l'image d'une UE
     #[Route('/ue/image/{code_ue}', name: 'ue_image')]
     public function ueImage(string $code_ue, UERepository $ueRepository): Response
     {
-        $ue = $ueRepository->findOneBy(['codeUE' => $code_ue]);
+        // Recherche de l’UE à partir du code
+        $ue = $ueRepository->findOneBy(['codeUE' => $code_ue]); 
         
+        // Si l’UE n’a pas d’image, on renvoie une image par défaut
         if (!$ue || !$ue->getImageMimeTypeUE()) {
             $defaultImage = file_get_contents($this->getParameter('kernel.project_dir').'/public/images/default-ue.png');
             return new Response($defaultImage, 200, [
@@ -52,16 +54,18 @@ class ImageController extends AbstractController
                 'Cache-Control' => 'no-cache'
             ]);
         }
-    
+        // Récupération de l’image et conversion si c’est un flux
         $imageData = $ue->getImageUE();
         if (is_resource($imageData)) {
             $imageData = stream_get_contents($imageData);
         }
-    
+        
+        // On renvoie l’image de l’UE avec le bon type MIME
         return new Response($imageData, 200, [
             'Content-Type' => $ue->getImageMimeTypeUE(),
             'Cache-Control' => 'no-cache'
         ]);
     }
 }
+
 

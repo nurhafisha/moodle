@@ -14,6 +14,9 @@ use App\Repository\UERepository;
 // use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
+
+
+
 // Déclaration de la route principale pour accéder aux actions liées à un cours (UE)
 #[Route('/mes-cours/{code_ue}')]
 final class PostController extends AbstractController
