@@ -42,7 +42,11 @@ class Controller extends AbstractController
             ]);
     }
 
+
     // Route pour afficher les participants (étudiants et profs) d'une UE
+
+    // participants dans une UE
+
     #[Route('/mes-cours/{code_ue}/participants', name: 'participants_UE')]
     public function showParticipants(string $code_ue, UERepository $ueRepository, UserRepository $userRepository): Response
     {   
@@ -64,6 +68,7 @@ class Controller extends AbstractController
         ]);
     }
     
+
 
     // Route pour afficher la page de modification du profil utilisateur
     #[Route('/edit', name: 'edit_profile')]

@@ -2,9 +2,11 @@
 {% block stylesheets %}
 <link rel="stylesheet" href="{{ asset('styles/editProfile.css') }}" />
 {% endblock %} {% block body %}
+
 <main>
   <div class="box">
     <h3>
+      <!-- L'administrateur ne peut pas accéder à « Mes Cours » -->
       {% if is_granted('ROLE_PROF_ADMIN') or is_granted('ROLE_ETUDIANT') or
       is_granted('ROLE_PROF')%}
       <a href="{{ path('choixUE') }}">Accueil</a>
@@ -15,6 +17,7 @@
   </div>
   <h2>General</h2>
 
+  <!-- photos de profil -->
   <div>
     <div class="profile-header">
       <div class="picture-container">
@@ -26,6 +29,7 @@
           />
         </div>
 
+        <!-- montrer nom et prénom d'utilisateur -->
         <div class="name">
           <h1>{{ app.user.nomUser }} {{ app.user.prenomUser }}</h1>
         </div>
@@ -34,6 +38,7 @@
 
     {{ form_start(form, {'attr': {'class': 'profile-form'}}) }}
 
+    <!-- form pour les gestion de profil -->
     <div class="form-group">
       {{
         form_row(form.prenomUser, {
@@ -78,6 +83,7 @@
       {{ form_row(form.imageFile) }}
     </div>
 
+    <!-- bouton soumettre -->
     <button type="submit" class="btn btn-primary">
       Enregistrer le profile
     </button>
