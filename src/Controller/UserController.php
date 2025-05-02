@@ -53,6 +53,15 @@ class UserController extends AbstractController
             }
             $user->setSingleRole($form->get('roles')->getData());
 
+            //UPDATE user
+            // SET
+            //     nom_user = $user->getNomUser(),
+            //     prenom_user = $user->getPreomUser(),
+            //     password = $user->getPassword(),
+            //     roles = $user->getSingleRole(),
+            //     liste_ue = $user->getListeUe()
+            // WHERE id = $user->getId();
+
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_catalogue');

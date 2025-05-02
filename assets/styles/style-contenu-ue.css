@@ -33,6 +33,28 @@ main {
   background-color: lightgray;
 }
 
+.box {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.box h3 a {
+  text-decoration: none; /* Removes the underline from the link */
+  color: inherit; /* Inherits the color from the h3 */
+
+}
+
+.box h3 span {
+  margin: 0;
+}
+
+.box h3 a:hover {
+  color: #3498db;
+  cursor: pointer;
+}
+
 #btn-add-post {
   display: inline-flex;
   align-items: center;

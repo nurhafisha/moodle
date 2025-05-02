@@ -1,19 +1,38 @@
+{# Page de l'affichage de contenu d'un UE #}
+
+{# On hérite du template de base (base.html.twig) #}
 {% extends 'base.html.twig' %}
 
+{# Bloc pour définir le titre de la page (onglet du navigateur) #}
 {% block title %}{{ ue.getCodeUE() }} - {{ ue.getNomUE() }}{% endblock %}
 
+{# Bloc pour inclure une feuille de style spécifique à cette page #}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('styles/style-contenu-ue.css') }}" />
 {% endblock %}
 
+{# Bloc principal du corps de la page #}
 {% block body %}
   <main>
+    {# Fil d’Ariane (breadcrumb) pour la navigation #}
+    <div class="box">
+      <h3>
+          <a href="{{ path('choixUE') }}">Accueil</a>
+          <span>/</span>
+        <a href="{{ path('contenu_UE', { 'code_ue': ue.getCodeUE() }) }}">{{ ue.getCodeUE() }}</a>
+      </h3>
+    </div>
+
+    {# Titre principal de la page avec le code et le nom de l’UE #}
     <h1>{{ ue.getCodeUE() }} {{ ue.getNomUE() }}</h1>
+
+    {# Menu de navigation interne pour cette UE #}
     <ul id="navbar-ue">
       <a href="{{ path('contenu_UE', { 'code_ue': ue.getCodeUE() }) }}" id="selected"><li><span class="material-icons-sharp">school</span><b>Course</b></li></a>
       <a href="{{ path('participants_UE', { 'code_ue': ue.getCodeUE() }) }}"><li><span class="material-icons-sharp">group</span>Participants</li></a>
     </ul>
 
+    {# Si l'utilisateur est un professeur ou admin prof, afficher le bouton pour ajouter un post #}
     {% if is_granted('ROLE_PROF') or is_granted ('ROLE_PROF_ADMIN') %}
     <button id="btn-add-post" onclick="openModalNewPost()">
       <span class="material-icons-sharp">add</span>
@@ -21,9 +40,11 @@
     </button>
     {% endif %}
 
+    {# Liste des posts épinglés #}
     <ul id="posts-ep">
       {% for post in posts_ep %}
       <li class="post-ep" id="post-{{ post.id }}">
+        {# Inclusion du template pour afficher un post épinglé #}
         {% include 'post/show-epingle.html.twig' %}
       </li>
       {% else %}
@@ -31,9 +52,11 @@
       {% endfor %}
     </ul>
     
+    {# Liste des posts normaux (non épinglés) #}
     <ul id="posts">
       {% for post in posts %}
       <li class="post" id="post-{{ post.id }}">
+        {# Inclusion du template pour afficher un post normal #}
         {% include 'post/show.html.twig' %}
       </li>
       {% else %}
@@ -41,15 +64,15 @@
       {% endfor %}
     </ul>
 
+    {# Inclusion des modales (pop-up) pour suppression, ajout et édition de posts #}
     {% include 'post/delete.html.twig' %}
-
     {% include 'post/new.html.twig' %}
-
     {% include 'post/edit.html.twig' %}
 
   </main>
 {% endblock %}
 
+{# Bloc pour inclure un script JavaScript spécifique à cette page #}
 {% block script %}
     <script src="{{ asset('contenu-ue.js') }}"></script>
 {% endblock %}
